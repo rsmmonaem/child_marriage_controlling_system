@@ -175,14 +175,18 @@ if ($page_name == "return") {
                             <input class="form-control" type="number" name="pro_qnty" required>
                         </div>
 
-                        <label for="example-text-input" class="col-sm-2 col-form-label">MEASURE</label>
-                        <div class="col-sm-4">
+                        <label for="example-text-input" class="col-sm-2 col-form-label">
+                            MEASURE
+                            <!-- <a class="btn btn-warning ml-2" data-toggle="modal" data-target=".create_measure">Add MEASURE</a> -->
+                        </label>
+                        <div class="col-sm-4 d-flex">
                             <select class="form-control" name="measure" required>
                                 <option>Select</option>
                                 <?php foreach ($this->imm->getmeasure() as $row) : ?>
                                     <option value="<?= $row->measure_name ?>"><?= $row->measure_name ?></option>
                                 <?php endforeach; ?>
                             </select>
+                            <a class="btn btn-warning ml-2" data-toggle="modal" data-target=".create_measure">Add MEASURE</a>
                         </div>
                     </div>
 
@@ -255,7 +259,6 @@ if ($page_name == "return") {
                                 $this->db->where('pro_id', $pro_id);
                                 $pro_name = $this->db->get("product_name")->row("pro_name");
 
-
                                 ?>
                                 <tr>
                                     <td><?= $i++ ?></td>
@@ -281,19 +284,17 @@ if ($page_name == "return") {
 
                                     <td>IN-Total</td>
                                     <?php
-
                                     $query = $this->db->select_sum('total_price', 'intotal');
                                     $this->db->where('invoice_no', $invoice_no);
                                     $query = $this->db->get('inventory_cart');
                                     $result = $query->result();
 
                                     $intotal = $result[0]->intotal;
-
-
                                     ?>
-                                    <td><input class="form-control" type="text" name="intotal" value="<?= $intotal ?>" readonly></td>
+                                    <td>
+                                        <input class="form-control" type="text" name="intotal" value="<?= $intotal ?>" readonly>
+                                    </td>
                                     <td></td>
-
                                 </tr>
 
 
@@ -302,12 +303,9 @@ if ($page_name == "return") {
                                     <td></td>
                                     <td></td>
                                     <td></td>
-
                                     <td>Commission</td>
-
                                     <td><input class="form-control" type="text" name="commission" required="" value="0"></td>
                                     <td></td>
-
                                 </tr>
 
                                 <tr>
@@ -315,10 +313,10 @@ if ($page_name == "return") {
                                     <td></td>
                                     <td></td>
                                     <td></td>
-
                                     <td>Payment</td>
-
-                                    <td><input class="form-control" type="text" name="payment" required="" value="<?= $intotal ?>"></td>
+                                    <td>
+                                        <input class="form-control" type="text" name="payment" required="" value="<?= $intotal ?>">
+                                    </td>
                                     <td></td>
 
                                 </tr>
@@ -328,25 +326,17 @@ if ($page_name == "return") {
                                     <td></td>
                                     <td></td>
                                     <td></td>
-
                                     <td>Payment System</td>
-
-                                    <td><select class="form-control" name="pay_sys" required="">
+                                    <td>
+                                        <select class="form-control" name="pay_sys" required="">
                                             <option value="cash">Cash</option>
                                             <option value="check">Check</option>
                                             <option value="bank_deposit">Bank Deposit</option>
                                             <option value="mobile_banking">Mobile Banking</option>
-
-
-
-
-                                        </select></td>
+                                        </select>
+                                    </td>
                                     <td></td>
-
                                 </tr>
-
-
-
                         </tbody>
                     </table>
 

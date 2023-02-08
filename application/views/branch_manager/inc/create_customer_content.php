@@ -35,7 +35,6 @@
                         <label class="col-sm-2 col-form-label">Field Worker</label>
                         <div class="col-sm-6">
                             <select class="form-control" name="fw_id_no" required>
-
                                 <?php foreach ($this->urm->getfield_worker() as $row) : ?>
                                     <option value="<?= $row->fw_id_no ?>"><?= $row->field_worker ?>_<?= $row->branch_code ?></option>
                                 <?php endforeach; ?>
@@ -43,8 +42,8 @@
                         </div>
 
                         <!-- <div class="col-sm-4">
-                                                    <a class="btn btn-warning ml-2" href="">Add New</a>
-                                                </div> -->
+                                <a class="btn btn-warning ml-2" href="">Add New</a>
+                            </div> -->
 
 
                     </div>
@@ -168,7 +167,7 @@
                             <input class="form-control" type="text" name="granter_add" required>
                         </div>
                     </div>
-
+                </form>
             </div>
         </div>
     </div> <!-- end col -->

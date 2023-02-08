@@ -69,8 +69,8 @@ class Inventory_management_model  extends CI_Model {
                 'update_date'         => date('Y-m-d H:i:s'),
                 'sup_email'            => $this->input->post('sup_email'),
                 'sup_address'        => $this->input->post('sup_address'),
-                'balance'            => $this->input->post('balance'),
-                'due'                => $this->input->post('due'),
+                // 'balance'            => $this->input->post('balance'),
+                // 'due'                => $this->input->post('due'),
 
 
             );
@@ -289,19 +289,14 @@ class Inventory_management_model  extends CI_Model {
         $this->form_validation->set_rules("measure_name", "measure_name", "xss_clean");
         $this->form_validation->set_rules("measure_code", "measure_code", "xss_clean");
 
-
         if ($this->form_validation->run() == FALSE) {
             $this->load->view('super_admin/measure_list');
         } else {
 
             //insert data to database
-
             $data = array(
-
-
                 'measure_name'             => $this->input->post('measure_name'),
                 'measure_code'             => $this->input->post('measure_code')
-
             );
 
             $this->db->insert('measure', $data);

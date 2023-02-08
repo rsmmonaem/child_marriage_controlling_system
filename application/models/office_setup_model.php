@@ -19,6 +19,7 @@ class Office_setup_model  extends CI_Model {
             $com_logo = $_FILES['com_logo']['name'];
             if ($com_logo != "") {
                 $com_logo = random_string('alnum', 10) . '.jpg';
+                
                 //insert image
                 $config['file_name'] = $com_logo;
                 $config['upload_path'] = 'uploads/company';
@@ -153,17 +154,12 @@ class Office_setup_model  extends CI_Model {
         $this->form_validation->set_rules("zonal_head_id", "zonal_head_id", "xss_clean");
         $this->form_validation->set_rules("founded_date", "founded_date", "xss_clean");
 
-
-
-
         if ($this->form_validation->run() == FALSE) {
             $this->load->view('super_admin/zonal_office_list/error');
         } else {
 
             //insert data to database
-
             $data = array(
-
                 'zonal_office'             => $this->input->post('zonal_office'),
                 'zonal_code'             => $this->input->post('zonal_code'),
                 'division'                 => $this->input->post('division'),
@@ -173,7 +169,6 @@ class Office_setup_model  extends CI_Model {
                 'email_address'         => $this->input->post('email_address'),
                 'zonal_head_id'         => "null",
                 'founded_date'             => $this->input->post('founded_date')
-
             );
 
             $this->db->insert('zonal_office', $data);
@@ -207,7 +202,6 @@ class Office_setup_model  extends CI_Model {
 
     function update_zonal_office() {
 
-
         $this->load->library("form_validation");
         $this->load->library("form_validation");
         $this->form_validation->set_rules("zonal_office", "zonal_office", "xss_clean");
@@ -220,7 +214,6 @@ class Office_setup_model  extends CI_Model {
         $this->form_validation->set_rules("zonal_head_id", "zonal_head_id", "xss_clean");
         $this->form_validation->set_rules("founded_date", "founded_date", "xss_clean");
 
-
         if ($this->form_validation->run() == FALSE) {
             echo  $this->upload->display_errors();
             $this->load->view('super_admin/zonal_office_list/error');
@@ -228,9 +221,7 @@ class Office_setup_model  extends CI_Model {
             $zo_id = $this->uri->segment(3);
 
             //insert data to database
-
             $data = array(
-
                 'zonal_office'             => $this->input->post('zonal_office'),
                 //'zonal_code' 			=>$this->input->post('zonal_code'),
                 'division'                 => $this->input->post('division'),
@@ -240,11 +231,7 @@ class Office_setup_model  extends CI_Model {
                 'email_address'         => $this->input->post('email_address'),
                 //'zonal_head_id' 		=>"null",
                 'founded_date'             => $this->input->post('founded_date')
-
-
-
             );
-
 
             $this->db->where('zo_id', $zo_id);
             $this->db->update('zonal_office', $data);
@@ -267,9 +254,6 @@ class Office_setup_model  extends CI_Model {
         $this->form_validation->set_rules("branch_head_id", "branch_head_id", "xss_clean");
         $this->form_validation->set_rules("founded_date", "founded_date", "xss_clean");
 
-
-
-
         if ($this->form_validation->run() == FALSE) {
             $this->load->view('super_admin/branch_office_list/error');
         } else {
@@ -285,12 +269,8 @@ class Office_setup_model  extends CI_Model {
                 $division = $row->division;
             }
 
-
-
             //insert data to database
-
             $data = array(
-
                 'zonal_code'             => $this->input->post('zonal_code'),
                 'zonal_office'             => $zonal_office,
                 'branch_office'         => $this->input->post('branch_office'),
@@ -302,7 +282,6 @@ class Office_setup_model  extends CI_Model {
                 'email_address'         => $this->input->post('email_address'),
                 'branch_head_id'         => "null",
                 'founded_date'             => $this->input->post('founded_date')
-
             );
 
             $this->db->insert('branch_office', $data);
@@ -336,7 +315,6 @@ class Office_setup_model  extends CI_Model {
 
     function update_branch_office() {
 
-
         $this->load->library("form_validation");
         $this->form_validation->set_rules("zonal_office", "zonal_office", "xss_clean");
         $this->form_validation->set_rules("zonal_code", "zonal_code", "xss_clean");
@@ -350,7 +328,6 @@ class Office_setup_model  extends CI_Model {
         $this->form_validation->set_rules("branch_head_id", "branch_head_id", "xss_clean");
         $this->form_validation->set_rules("founded_date", "founded_date", "xss_clean");
 
-
         if ($this->form_validation->run() == FALSE) {
             echo  $this->upload->display_errors();
             $this->load->view('super_admin/branch_list/error');
@@ -358,7 +335,6 @@ class Office_setup_model  extends CI_Model {
             $br_id = $this->uri->segment(3);
 
             //zone change
-
             echo $zonal_code = $this->input->post('zonal_code');
 
             $this->db->where('zonal_code', $zonal_code);
@@ -370,9 +346,7 @@ class Office_setup_model  extends CI_Model {
             }
 
             //insert data to database
-
             $data = array(
-
                 'zonal_code'             => $this->input->post('zonal_code'),
                 'zonal_office'             => $zonal_office,
                 'branch_office'         => $this->input->post('branch_office'),
@@ -384,11 +358,7 @@ class Office_setup_model  extends CI_Model {
                 'email_address'         => $this->input->post('email_address'),
                 'branch_head_id'         => "null",
                 'founded_date'             => $this->input->post('founded_date')
-
-
-
             );
-
 
             $this->db->where('br_id', $br_id);
             $this->db->update('branch_office', $data);
@@ -406,18 +376,12 @@ class Office_setup_model  extends CI_Model {
         $this->form_validation->set_rules("created_date", "created_date", "xss_clean");
         $this->form_validation->set_rules("update_date", "update_date", "xss_clean");
 
-
-
-
-
         if ($this->form_validation->run() == FALSE) {
             $this->load->view('super_admin/bank_details/error');
         } else {
 
             //insert data to database
-
             $data = array(
-
                 'bank_name'         => $this->input->post('bank_name'),
                 'branch_name'         => $this->input->post('branch_name'),
                 'account_no'         => $this->input->post('account_no'),
@@ -426,7 +390,6 @@ class Office_setup_model  extends CI_Model {
                 'balance'             => $this->input->post('starting_balance'),
                 'created_date'         => date('Y-m-d H:i:s'),
                 'update_date'         => date('Y-m-d H:i:s'),
-
             );
 
             $this->db->insert('bank_details', $data);
@@ -460,7 +423,6 @@ class Office_setup_model  extends CI_Model {
 
     function update_bank_details() {
 
-
         $this->load->library("form_validation");
         $this->form_validation->set_rules("bank_name", "bank_name", "xss_clean");
         $this->form_validation->set_rules("branch_name", "branch_name", "xss_clean");
@@ -470,7 +432,6 @@ class Office_setup_model  extends CI_Model {
         $this->form_validation->set_rules("created_date", "created_date", "xss_clean");
         $this->form_validation->set_rules("update_date", "update_date", "xss_clean");
 
-
         if ($this->form_validation->run() == FALSE) {
             echo  $this->upload->display_errors();
             $this->load->view('super_admin/bank_details/error');
@@ -478,20 +439,14 @@ class Office_setup_model  extends CI_Model {
             $b_id = $this->uri->segment(3);
 
             //insert data to database
-
             $data = array(
-
                 'bank_name'         => $this->input->post('bank_name'),
                 'branch_name'         => $this->input->post('branch_name'),
                 'account_no'         => $this->input->post('account_no'),
                 'account_name'         => $this->input->post('account_name'),
                 'balance'             => $this->input->post('balance'),
                 'update_date'         => date('Y-m-d H:i:s')
-
-
-
             );
-
 
             $this->db->where('b_id', $b_id);
             $this->db->update('bank_details', $data);
@@ -509,10 +464,6 @@ class Office_setup_model  extends CI_Model {
         $this->form_validation->set_rules("deposit_amount", "deposit_amount", "xss_clean");
         $this->form_validation->set_rules("deposit_slip", "deposit_slip", "xss_clean");
 
-
-
-
-
         if ($this->form_validation->run() == FALSE) {
             $this->load->view('super_admin/bank_details/error');
         } else {
@@ -524,13 +475,8 @@ class Office_setup_model  extends CI_Model {
             $deposit_amount = $this->input->post('deposit_amount');
             $balance = $last_balance + $deposit_amount;
 
-
-
-
             //insert data to database
-
             $data = array(
-
                 'b_id'                 => $this->input->post('b_id'),
                 'bank_name'         => $this->input->post('bank_name'),
                 'branch_name'         => $this->input->post('branch_name'),
@@ -543,14 +489,11 @@ class Office_setup_model  extends CI_Model {
                 'fw_id_no'             => $this->input->post('fw_id_no'),
                 'created_date'         => date('Y-m-d H:i:s'),
                 'update_date'         => date('Y-m-d H:i:s'),
-
             );
 
             $data2 = array(
-
                 'balance'             => $balance,
                 'update_date'         => date('Y-m-d H:i:s'),
-
             );
 
             $this->db->insert('bank_deposit', $data);
@@ -612,9 +555,6 @@ class Office_setup_model  extends CI_Model {
         $this->form_validation->set_rules("deposit_slip", "deposit_slip", "xss_clean");
         $this->form_validation->set_rules("deposit_type", "deposit_type", "xss_clean");
 
-
-
-
         if ($this->form_validation->run() == FALSE) {
             $this->load->view('distributor/bank_deposit/error');
         } else {
@@ -626,13 +566,8 @@ class Office_setup_model  extends CI_Model {
             $deposit_amount = $this->input->post('deposit_amount');
             $balance = $last_balance + $deposit_amount;
 
-
-
-
             //insert data to database
-
             $data = array(
-
                 'b_id'                 => $this->input->post('b_id'),
                 'bank_name'         => $this->input->post('bank_name'),
                 'branch_name'         => $this->input->post('branch_name'),
@@ -646,14 +581,11 @@ class Office_setup_model  extends CI_Model {
                 'deposit_type'         => $this->input->post('deposit_type'),
                 'created_date'         => date('Y-m-d H:i:s'),
                 'update_date'         => date('Y-m-d H:i:s'),
-
             );
 
             $data2 = array(
-
                 'balance'             => $balance,
                 'update_date'         => date('Y-m-d H:i:s'),
-
             );
 
             $this->db->insert('bank_deposit', $data);
@@ -662,7 +594,6 @@ class Office_setup_model  extends CI_Model {
             $this->db->update('bank_details', $data2);
 
             // distributor ledger
-
             $this->db->order_by("dis_code", "DESC");
             $this->db->where('dis_code', $dis_code);
             $balance = $this->db->get("distributor")->row("balance");
@@ -674,21 +605,18 @@ class Office_setup_model  extends CI_Model {
             $update_credit = $credit - $deposit_amount;
             $update_debit = $debit + $deposit_amount;
             $balance = $update_credit - $update_debit;
-            $data_dis_update = array(
 
+            $data_dis_update = array(
                 'credit'                     => $update_credit,
                 'debit'                     => $update_debit,
                 'balance'                     => $update_credit - $update_debit,
                 'update_date'                 => date('Y-m-d H:i:s')
-
             );
 
             $this->db->where('dis_code', $dis_code);
             $this->db->update('distributor', $data_dis_update);
 
             $dis_ledger = array(
-
-
                 'description'                 => $this->input->post('deposit_type'),
                 'amount'                     => $this->input->post('deposit_amount'),
                 'dis_code'                     => $dis_code,
@@ -696,7 +624,6 @@ class Office_setup_model  extends CI_Model {
                 'debit'                     => $update_debit,
                 'balance'                     => $update_credit - $update_debit,
                 'created_date'             => date('Y-m-d H:i:s')
-
             );
 
             $this->db->insert('dis_ledger', $dis_ledger);

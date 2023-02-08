@@ -34,12 +34,9 @@
                                 <?php endforeach; ?>
                             </select>
                         </div>
-
                         <div class="col-sm-4">
                             <a class="btn btn-warning ml-2" data-toggle="modal" data-target=".create_sup_category">Add New</a>
                         </div>
-
-
                     </div>
 
                     <div class="form-group row">
@@ -48,8 +45,6 @@
                             <input class="form-control" type="text" name="sup_name" required>
                         </div>
                     </div>
-
-
 
                     <div class="form-group row">
                         <label for="example-text-input" class="col-sm-2 col-form-label">CONTACT NO.</label>

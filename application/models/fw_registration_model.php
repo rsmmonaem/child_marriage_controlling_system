@@ -33,6 +33,7 @@ class Fw_registration_model  extends CI_Model {
             $image = $_FILES['image']['name'];
             if ($image != "") {
                 $image = random_string('alnum', 10) . '.jpg';
+                
                 //insert image
                 $config['file_name'] = $image;
                 $config['upload_path'] = 'uploads/photos';

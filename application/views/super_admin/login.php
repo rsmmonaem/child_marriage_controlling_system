@@ -66,8 +66,8 @@ include "inc/form_header_links.php";
                                 <b>super admin:</b><br> user: admin password: admin <br>
                                 <b>Field Worker:</b><br> user: 281354 password: CF1234 <br>
                                 <b>Distributor:</b><br> user: 456788 password: CF1234 <br>
-                                <b>Zonal Manager:</b><br> user: 423693 password: CF1234 <br>
-                                <b>TSO:</b><br> user: 565300 password: CF1234 <br>
+                                <b>Zonal Manager:</b><br> user: 719872 password: CF1234 <br>
+                                <b>Branch Manager:</b><br> user: 789537 password: CF1234 <br>
 
                             </div>
                             <!-- <div class="col-sm-5 m-t-20">

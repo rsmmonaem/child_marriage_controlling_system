@@ -37,7 +37,7 @@
                             <th>Account Name</th>
 
                             <th>Balance</th>
-                            <th>action</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
 

@@ -910,6 +910,7 @@ class User_registration_model  extends CI_Model {
     //start CUSTOMER Functions
 
     function create_customer() {
+        
         $this->load->library("form_validation");
         $this->form_validation->set_rules("status", "status", "xss_clean");
         $this->form_validation->set_rules("zonal_office", "zonal_office", "xss_clean");

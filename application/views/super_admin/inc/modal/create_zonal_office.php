@@ -73,13 +73,13 @@
 
                     </div>
                     <!-- <div class="row">
-                                                                        <div class="col-md-12">
-                                                                            <div class="form-group">
-                                                                                <label for="field-3" class="control-label">Lolation</label>
-                                                                                <input type="text" class="form-control" id="field-3" name="location">
-                                                                            </div>
-                                                                        </div>
-                                                                    </div> -->
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="field-3" class="control-label">Lolation</label>
+                                <input type="text" class="form-control" id="field-3" name="location">
+                            </div>
+                        </div>
+                    </div> -->
 
 
                 </div>

@@ -12,8 +12,8 @@
                         <h6 class="mb-0 ">Date : <?= $row->order_date ?></h6>
                     </div>
                     <?php
-                    $this->db->where('company_code', $row->company_code);
-                    $com_logo = $this->db->get("company_list")->row("com_logo");
+                        $this->db->where('company_code', $row->company_code);
+                        $com_logo = $this->db->get("company_list")->row("com_logo");
                     ?>
                     <div class="">
                         <h4 class="mb-0 align-self-center"><img src="<?= base_url() ?>uploads/company/<?= $com_logo ?>" alt="s"></h4>
@@ -25,13 +25,13 @@
 
                             <div class="float-left mt-4">
                                 <?php
-                                $this->db->where('dis_code', $row->dis_code);
-                                $distributor = $this->db->get("distributor")->row("distributor");
-                                $cont_num = $this->db->get("distributor")->row("cont_num");
-                                $address = $this->db->get("distributor")->row("dis_address");
+                                    $this->db->where('dis_code', $row->dis_code);
+                                    $distributor = $this->db->get("distributor")->row("distributor");
+                                    $cont_num = $this->db->get("distributor")->row("cont_num");
+                                    $address = $this->db->get("distributor")->row("dis_address");
 
-                                $this->db->where('company_code', $row->company_code);
-                                $com_logo = $this->db->get("company_list")->row("com_logo");
+                                    $this->db->where('company_code', $row->company_code);
+                                    $com_logo = $this->db->get("company_list")->row("com_logo");
 
                                 ?>
                                 <address>
@@ -40,11 +40,8 @@
                                 </address>
                             </div>
                             <div class="float-right mt-4">
-
                                 <p><strong>Order Date: </strong> <?= $row->order_date ?></p>
                                 <p><strong>Status: </strong> <b style="color:red"> <?= $row->status ?></b></p>
-
-
                             <?php endforeach; ?>
                             </div>
                         </div>
@@ -63,8 +60,6 @@
                                             <th>Distribute Qty</th>
                                             <th>Price</th>
                                             <th>Total</th>
-
-
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -77,17 +72,15 @@
                                                 <input type="hidden" name="od_id" value="<?= $row->od_id ?>">
 
                                                 <?php
+                                                    $query = $this->db->select_sum('distribute_price', 'distribute_price');
+                                                    $this->db->where('order_no', $row->order_no);
+                                                    $query = $this->db->get('order_details');
+                                                    $result = $query->result();
 
-                                                $query = $this->db->select_sum('distribute_price', 'distribute_price');
-                                                $this->db->where('order_no', $row->order_no);
-                                                $query = $this->db->get('order_details');
-                                                $result = $query->result();
-
-                                                $intotal = $result[0]->distribute_price;
+                                                    $intotal = $result[0]->distribute_price;
                                                 ?>
 
                                                 <tr>
-
                                                     <td><?= $i++ ?></td>
                                                     <?php
                                                     $this->db->where('pro_id', $row->pro_id);
@@ -100,13 +93,8 @@
 
                                                     <td><?= $row->sell_price ?></td>
                                                     <td><?= $row->total_price ?></td>
-
-
+                                                </tr>
                                             </form>
-                                            </td>
-                                            </tr>
-
-
                                         <?php endforeach; ?>
                                     </tbody>
                                 </table>
@@ -153,7 +141,7 @@
                                 echo " Tk Only </h4>";
                                 ?>
                             </div>
-                            <div class="text-center text-muted"><small>Design And Developed By TechnoFLicker !</small></div>
+                            <div class="text-center text-muted"><small>Design And Developed By Inleads IT Solution Ltd !</small></div>
                         </div>
                         <div class="col-lg-12 col-xl-4">
                             <div class="d-print-none float-right">

@@ -29,28 +29,21 @@
     <div class="col-md-12">
         <div class="card">
             <div class="card-body">
-
                 <h4 class="mt-0 header-title">Company List || <a class="btn btn-warning ml-2" data-toggle="modal" data-target=".create_company">Add New</a></h4>
 
-
-
-
                 <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-
-
 
                     <thead>
                         <tr>
                             <th>#</th>
                             <th>Company</th>
-                            <th>Code#</th>
+                            <th>Code</th>
                             <th>Address</th>
                             <th>Contact no.</th>
                             <th>Logo</th>
                             <th>action</th>
                         </tr>
                     </thead>
-
 
                     <tbody>
                         <?php $i = 1;
@@ -61,17 +54,13 @@
                                 <td><?= $row->company_code ?></td>
                                 <td><?= $row->address ?></td>
                                 <td><?= $row->contact_no ?></td>
-                                <td><img src="<?= base_url() ?>uploads/company/<?= $row->com_logo ?>"></td>
+                                <td><img style="width:55px; height:55px;" src="<?= base_url() ?>uploads/company/<?= $row->com_logo ?>"></td>
                                 <td><a onclick="return confirm('Want to delete?');" href="<?= base_url() ?>super_admin/company_delete/<?= $row->com_id ?>" class="btn btn-secondary btn-block mt-0 tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Delete">
                                         <i class="fas fa-times"></i>
                                     </a>
-
                                     <a class="btn btn-warning btn-block mt-0" data-toggle="modal" data-target=".update_company<?= $row->com_id ?>"><i class="fas fa-pencil-alt"></i></a>
-
-
                                 </td>
-
-
+                                
                             </tr>
 
                             <?php include "modal/update_company.php" ?>

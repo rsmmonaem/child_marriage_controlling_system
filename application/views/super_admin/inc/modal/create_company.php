@@ -14,7 +14,6 @@
                 <div class="modal-body">
                     <div class="row">
 
-
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="field-2" class="control-label">Company Name</label>
@@ -58,12 +57,7 @@
                             </div>
                         </div>
 
-
-
-
-
                     </div>
-
 
                 </div>
                 <div class="modal-footer">

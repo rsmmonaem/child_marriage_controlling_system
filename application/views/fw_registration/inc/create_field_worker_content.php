@@ -8,7 +8,7 @@
         <div class="btn-group">
             <div>
 
-                <h4>Sales Officer Registration Form</h4>
+                <h4>Field Worker Registration Form</h4>
 
             </div>
         </div>
@@ -23,7 +23,7 @@
         <div class="card m-b-30">
             <div class="card-body">
                 <form action="<?= base_url() ?>fw_registration/insert_field_worker" method="post" enctype="multipart/form-data">
-                    <h4 class="mt-0 header-title">Sales Officer Details</h4> <br>
+                    <h4 class="mt-0 header-title">Field Worker Details</h4> <br>
 
 
                     <div class="form-group row">

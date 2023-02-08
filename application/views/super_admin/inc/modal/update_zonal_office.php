@@ -1,8 +1,8 @@
 <?php $page_name = $this->uri->segment(2); ?>
 
-<?php $i = 1;
-foreach ($this->osm->getonerow_zonal() as $row) : ?>
-<?php endforeach; ?>
+<?php 
+//foreach ($this->osm->getonerow_zonal() as $row) : ?>
+<?php //endforeach; ?>
 
 <div class="modal update_zonal_office<?= $row->zo_id ?>" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
 

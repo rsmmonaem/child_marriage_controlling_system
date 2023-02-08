@@ -132,159 +132,161 @@ if ($page_name == "return") {
     <div class="row">
         <div class="col-md-12 ">
             <div class="card">
-                <div class="table-responsive">
+                <div class="card-body">
+                    <div class="table-responsive">
 
-                    <h4 class="mt-0 header-title">Order Entry List</h4>
-
-
-                    <table class="table">
-                        <?php
-
-                        $this->db->where('fw_id_no', $fw_id_no);
-                        $field_worker = $this->db->get("field_worker")->row("field_worker");
-                        $this->db->where('fw_id_no', $fw_id_no);
-                        $company_code = $this->db->get("field_worker")->row("company_code");
-                        $this->db->where('fw_id_no', $fw_id_no);
-                        $dis_code = $this->db->get("field_worker")->row("dis_code");
+                        <h4 class="mt-0 header-title">Order Entry List</h4>
 
 
-                        ?>
-                        <thead>
-                            <tr>
-                                <th></th>
-                                <th>Mother Company: <?= $company_code ?> </th>
-                                <th>Distributor: <?= $dis_code ?> </th>
-                                <th>Field Worker: <?= $field_worker ?> </th>
-                                <th>Order no: <?= $order_no ?></th>
-                                <th>Date: <?= $order_date ?></th>
+                        <table class="table">
+                            <?php
 
-                            </tr>
-                            <tr>
-                                <th>#</th>
-                                <th>Pro Name</th>
-                                <th>Qnty</th>
-                                <th>Qnty Price</th>
-                                <th>Total Price</th>
-                                <th>Action</th>
-
-                            </tr>
-                        </thead>
+                            $this->db->where('fw_id_no', $fw_id_no);
+                            $field_worker = $this->db->get("field_worker")->row("field_worker");
+                            $this->db->where('fw_id_no', $fw_id_no);
+                            $company_code = $this->db->get("field_worker")->row("company_code");
+                            $this->db->where('fw_id_no', $fw_id_no);
+                            $dis_code = $this->db->get("field_worker")->row("dis_code");
 
 
-                        <tbody>
-                            <?php $i = 1;
-                            foreach ($this->omm->getorder_cart() as $row) : ?>
-                                <?php
-                                $pro_id = $row->pro_id;
-                                $this->db->where('pro_id', $pro_id);
-                                $pro_name = $this->db->get("product_name")->row("pro_name");
-
-
-                                ?>
+                            ?>
+                            <thead>
                                 <tr>
-                                    <td><?= $i++ ?></td>
-                                    <td><?= $pro_name ?></td>
-                                    <td><?= $row->pro_qnty ?>-<?= $row->measure ?></td>
-                                    <td><?= $row->sell_price ?></td>
-
-                                    <td><?= $row->total_price ?></td>
-                                    <td><a onclick="return confirm('Want to delete?');" href="<?= base_url() ?>field_worker/order_cart_delete/<?= $row->or_id ?>/<?= $fw_id_no ?>/<?= $order_no ?>/<?= $order_date ?>" class="btn btn-secondary btn-block mt-0 tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Delete">
-                                            <i class="fas fa-times"></i>
-                                        </a></td>
+                                    <th></th>
+                                    <th>Mother Company: <?= $company_code ?> </th>
+                                    <th>Distributor: <?= $dis_code ?> </th>
+                                    <th>Field Worker: <?= $field_worker ?> </th>
+                                    <th>Order no: <?= $order_no ?></th>
+                                    <th>Date: <?= $order_date ?></th>
 
                                 </tr>
-                            <?php endforeach; ?>
-
-                            <form action="<?= base_url() ?>field_worker/order_submit" method="post" enctype="multipart/form-data">
                                 <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
+                                    <th>#</th>
+                                    <th>Pro Name</th>
+                                    <th>Qnty</th>
+                                    <th>Qnty Price</th>
+                                    <th>Total Price</th>
+                                    <th>Action</th>
+
+                                </tr>
+                            </thead>
 
 
-                                    <td>IN-Total</td>
+                            <tbody>
+                                <?php $i = 1;
+                                foreach ($this->omm->getorder_cart() as $row) : ?>
                                     <?php
+                                    $pro_id = $row->pro_id;
+                                    $this->db->where('pro_id', $pro_id);
+                                    $pro_name = $this->db->get("product_name")->row("pro_name");
 
-                                    $query = $this->db->select_sum('total_price', 'intotal');
-                                    $this->db->where('order_no', $order_no);
-                                    $query = $this->db->get('order_cart');
-                                    $result = $query->result();
 
-                                    $intotal = $result[0]->intotal;
                                     ?>
-                                    <td><input class="" type="text" name="intotal" value="<?= $intotal ?>" readonly></td>
-                                    <td></td>
+                                    <tr>
+                                        <td><?= $i++ ?></td>
+                                        <td><?= $pro_name ?></td>
+                                        <td><?= $row->pro_qnty ?>-<?= $row->measure ?></td>
+                                        <td><?= $row->sell_price ?></td>
 
-                                </tr>
+                                        <td><?= $row->total_price ?></td>
+                                        <td><a onclick="return confirm('Want to delete?');" href="<?= base_url() ?>field_worker/order_cart_delete/<?= $row->or_id ?>/<?= $fw_id_no ?>/<?= $order_no ?>/<?= $order_date ?>" class="btn btn-secondary btn-block mt-0 tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Delete">
+                                                <i class="fas fa-times"></i>
+                                            </a></td>
 
+                                    </tr>
+                                <?php endforeach; ?>
 
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-
-
-                                    <td>Commission(%)</td>
-
-                                    <td><input class="form-control " type="number" name="commission" required="" value="0"></td>
-                                    <td></td>
-
-                                </tr>
-
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
+                                <form action="<?= base_url() ?>field_worker/order_submit" method="post" enctype="multipart/form-data">
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
 
 
-                                    <td>Payment</td>
+                                        <td>IN-Total</td>
+                                        <?php
 
-                                    <td><input class="form-control" type="number" name="payment" required="" value="0"></td>
-                                    <td></td>
+                                        $query = $this->db->select_sum('total_price', 'intotal');
+                                        $this->db->where('order_no', $order_no);
+                                        $query = $this->db->get('order_cart');
+                                        $result = $query->result();
 
-                                </tr>
+                                        $intotal = $result[0]->intotal;
+                                        ?>
+                                        <td><input class="" type="text" name="intotal" value="<?= $intotal ?>" readonly></td>
+                                        <td></td>
 
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-
-
-                                    <td>Payment System</td>
-
-                                    <td><select class="form-control" name="pay_sys" required="">
-
-                                            <option value="cash">Cash</option>
-                                            <option value="check">Check</option>
-                                            <option value="bank_deposit" selected="">Bank Deposit</option>
-                                            <option value="mobile_banking">Mobile Banking</option>
+                                    </tr>
 
 
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
 
 
-                                        </select></td>
-                                    <td></td>
+                                        <td>Commission(%)</td>
 
-                                </tr>
+                                        <td><input class="form-control " type="number" name="commission" required="" value="0"></td>
+                                        <td></td>
 
+                                    </tr>
 
-
-                        </tbody>
-                    </table>
-
-
-
-                    <input type="hidden" name="order_no" value="<?= $order_no ?>">
-
-                    <input type="hidden" name="order_date" value="<?= $order_date ?>">
-                    <input type="hidden" name="fw_id_no" value="<?= $fw_id_no ?>">
-                    <input type="hidden" name="company_code" value="<?= $company_code ?>">
-                    <input type="hidden" name="dis_code" value="<?= $dis_code ?>">
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
 
 
-                    <button type="submit" class="btn btn-primary ml-2">SUBMIT</button>
+                                        <td>Payment</td>
 
-                    </form>
+                                        <td><input class="form-control" type="number" name="payment" required="" value="0"></td>
+                                        <td></td>
+
+                                    </tr>
+
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+
+
+                                        <td>Payment System</td>
+
+                                        <td><select class="form-control" name="pay_sys" required="">
+
+                                                <option value="cash">Cash</option>
+                                                <option value="check">Check</option>
+                                                <option value="bank_deposit" selected="">Bank Deposit</option>
+                                                <option value="mobile_banking">Mobile Banking</option>
+
+
+
+
+                                            </select></td>
+                                        <td></td>
+
+                                    </tr>
+
+
+
+                            </tbody>
+                        </table>
+
+
+
+                        <input type="hidden" name="order_no" value="<?= $order_no ?>">
+
+                        <input type="hidden" name="order_date" value="<?= $order_date ?>">
+                        <input type="hidden" name="fw_id_no" value="<?= $fw_id_no ?>">
+                        <input type="hidden" name="company_code" value="<?= $company_code ?>">
+                        <input type="hidden" name="dis_code" value="<?= $dis_code ?>">
+
+
+                        <button type="submit" class="btn btn-primary ml-2">SUBMIT</button>
+
+                        </form>
+                    </div>
                 </div>
             </div>
         </div> <!-- end col -->

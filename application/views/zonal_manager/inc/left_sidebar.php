@@ -35,7 +35,7 @@
                             </li> -->
 
                             <li>
-                                <a href="<?= base_url() ?>zonal_manager/branch_manager_list" class="waves-effect"><i class="fas fa-band-aid"></i><span>TSO</span> <span class="float-right"><i class="mdi mdi-chevron-right"></i></span></a>
+                                <a href="<?= base_url() ?>zonal_manager/branch_manager_list" class="waves-effect"><i class="fas fa-band-aid"></i><span>Branch Manager</span> <span class="float-right"><i class="mdi mdi-chevron-right"></i></span></a>
 
                             </li>
 
@@ -45,7 +45,7 @@
                             </li>
 
                             <li>
-                                <a href="<?= base_url() ?>zonal_manager/field_worker_list" class="waves-effect"><i class="fas fa-chalkboard-teacher"></i><span>Sales Officer</span> <span class="float-right"><i class="mdi mdi-chevron-right"></i></span></a>
+                                <a href="<?= base_url() ?>zonal_manager/field_worker_list" class="waves-effect"><i class="fas fa-chalkboard-teacher"></i><span>Field Worker</span> <span class="float-right"><i class="mdi mdi-chevron-right"></i></span></a>
 
                             </li>
 

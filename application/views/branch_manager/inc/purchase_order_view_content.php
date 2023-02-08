@@ -133,7 +133,7 @@
                 <hr>
                 <div class="row d-flex justify-content-center">
                     <div class="col-lg-12 col-xl-4 ml-auto align-self-center">
-                        <div class="text-center text-muted"><small>Design And Developed By TechnoFLicker !</small></div>
+                        <div class="text-center text-muted"><small>Design And Developed By Inleads IT Solution Ltd!</small></div>
                     </div>
                     <div class="col-lg-12 col-xl-4">
                         <div class="d-print-none float-right">

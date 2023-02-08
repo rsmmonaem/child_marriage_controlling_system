@@ -6,19 +6,14 @@
 
         <div class="btn-group">
             <div>
-
                 <a href="<?= base_url() ?>super_admin/zonal_manager_list/" class="btn btn-warning btn-lg tooltips" data-placement="top" data-toggle="tooltip" data-original-title="List">
                     <i class="fas fa-pencil"></i>Zonal Manager List
                 </a>
                 <a href="#" class="btn btn-secondary disabled btn-lg tooltips" data-placement="top" data-toggle="tooltip" data-original-title="<?= $page_name = str_replace("_", " ", $page_name); ?>">
                     <i class="fas fa-book-alt"></i> <?= $page_name = str_replace("_", " ", $page_name); ?>
                 </a>
-
             </div>
         </div>
-
-
-
     </div>
 </div>
 
@@ -28,14 +23,10 @@
             <div class="card-body">
                 <form action="<?= base_url() ?>super_admin/insert_zonal_manager" method="post" enctype="multipart/form-data">
                     <h4 class="mt-0 header-title">Zonal Manager Details</h4> <br>
-
-
-
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label">Zonal Office</label>
                         <div class="col-sm-6">
                             <select class="form-control" name="zonal_code" required>
-
                                 <?php foreach ($this->osm->get_zonal() as $row) : ?>
                                     <option value="<?= $row->zonal_code ?>"><?= $row->zonal_office ?></option>
                                 <?php endforeach; ?>
@@ -45,11 +36,7 @@
                         <div class="col-sm-4">
                             <a class="btn btn-warning ml-2" data-toggle="modal" data-target=".create_zonal_office">Add New</a>
                         </div>
-
-
                     </div>
-
-
 
                     <div class="form-group row">
                         <label for="example-text-input" class="col-sm-2 col-form-label">FULL NAME</label>
@@ -65,12 +52,12 @@
                             <input class="form-control" type="text" name="zm_id_no" required readonly value="<?= $zm_id_no ?>">
                         </div>
                     </div>
-                    <!-- <div class="form-group row">
-                                                <label for="example-text-input" class="col-sm-2 col-form-label">DESIGNATION</label>
-                                                <div class="col-sm-10">
-                                                    <input class="form-control" type="text" name="designation" value="M" required>
-                                                </div>
-                                            </div> -->
+                <!-- <div class="form-group row">
+                        <label for="example-text-input" class="col-sm-2 col-form-label">DESIGNATION</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" type="text" name="designation" value="M" required>
+                        </div>
+                    </div> -->
 
 
 
@@ -140,12 +127,12 @@
                     </div>
                 </div>
 
-                <!-- <div class="form-group row">
-                                                        <label for="example-text-input" class="col-sm-2 col-form-label">UNTIL</label>
-                                                        <div class="col-sm-5">
-                                                        <input type="text" class="form-control ml-2" name="status_until" Value="<?php echo date('m/d/y'); ?>">
-                                                    </div>
-                                                    </div> -->
+            <!-- <div class="form-group row">
+                        <label for="example-text-input" class="col-sm-2 col-form-label">UNTIL</label>
+                        <div class="col-sm-5">
+                        <input type="text" class="form-control ml-2" name="status_until" Value="<?php echo date('m/d/y'); ?>">
+                    </div>
+                </div> -->
 
                 <button type="submit" class="btn btn-primary ml-2">SUBMIT</button>
                 </form>

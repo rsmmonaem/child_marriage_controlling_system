@@ -80,7 +80,11 @@ class Login extends CI_Controller {
 
     /*******LOGOUT FUNCTION *******/
     function logout() {
-        $this->session->unset_userdata();
+        // $this->session->unset_userdata();
+        $this->session->unset_userdata("user_name");
+        $this->session->unset_userdata("user_type");
+        $this->session->unset_userdata("user_id");
+        $this->session->unset_userdata("status");
         $this->session->sess_destroy();
         $this->session->set_flashdata('logout_notification', 'logged_out');
         redirect("login");
