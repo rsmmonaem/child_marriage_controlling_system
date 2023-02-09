@@ -366,6 +366,134 @@ class Office_setup_model  extends CI_Model {
         }
     }
 
+    
+    // PickPoint Model Functions Starts
+    function create_pick_point() {
+
+        $this->load->library("form_validation");
+        $this->form_validation->set_rules("branch_code", "branch_code", "xss_clean");
+        $this->form_validation->set_rules("division", "division", "xss_clean");
+        $this->form_validation->set_rules("district", "district", "xss_clean");
+        $this->form_validation->set_rules("pickpoint_office", "pickpoint_office", "xss_clean");
+        $this->form_validation->set_rules("pickpoint_code", "pickpoint_code", "xss_clean");
+        $this->form_validation->set_rules("address", "address", "xss_clean");
+        $this->form_validation->set_rules("contact_no", "contact_no", "xss_clean");
+        $this->form_validation->set_rules("email_address", "email_address", "xss_clean");
+        $this->form_validation->set_rules("founded_date", "founded_date", "xss_clean");
+
+        if ($this->form_validation->run() == FALSE) {
+            $this->load->view('super_admin/pick_point_list/error');
+        } else {
+
+            //get branch code
+            $branch_code = $this->input->post('branch_code');
+
+            $this->db->where('branch_code', $branch_code);
+            $query = $this->db->get("branch_office")->result();
+            foreach ($query as $row) {
+                $zonal_office = $row->zonal_office;
+                $zonal_code = $row->zonal_code;
+                $branch_office = $row->branch_office;
+                $district = $row->district;
+                $division = $row->division;
+            }
+
+            //insert data to database
+            $data = array(
+                'zonal_office'             => $zonal_office,
+                'zonal_code'             => $zonal_code,
+                'branch_office'         => $branch_office,
+                'branch_code'             => $this->input->post('branch_code'),
+                'division'                 => $division,
+                'district'                 => $district,
+                'pickpoint_office'             => $this->input->post('pickpoint_office'),
+                'pickpoint_code'             => $this->input->post('pickpoint_code'),
+                'address'                 => $this->input->post('address'),
+                'contact_no'             => $this->input->post('contact_no'),
+                'email_address'         => $this->input->post('email_address'),
+                'pickpoint_head_id'         => "null",
+                'founded_date'             => $this->input->post('founded_date')
+            );
+
+            $this->db->insert('pickpoint_office', $data);
+            //$id = $this->db->insert_id();
+            redirect("super_admin/pick_point_list");
+
+            /*$page_name=$this->uri->segment(3);
+
+		if($page_name=="create_supplier"){redirect("super_admin/create_supplier/");}
+		if($page_name=="create_unit_head"){redirect("super_admin/create_unit_head/");}
+		if($page_name=="create_common_user"){redirect("super_admin/create_common_user/");}*/
+        }
+    }
+
+    function get_all_pick_point() {
+        $this->db->order_by("pickpoint_id", "DESC");
+        $query = $this->db->get("pickpoint_office");
+        return $query->result();
+    }
+
+    function getonerow_pick_point() {
+        $pickpoint_id = $this->uri->segment(3);
+        $this->db->where('pickpoint_id', $pickpoint_id);
+        $query = $this->db->get("pickpoint_office");
+        return $query->result();
+    }
+
+
+    function update_pick_point() {
+
+        $this->load->library("form_validation");
+        $this->form_validation->set_rules("branch_code", "branch_code", "xss_clean");
+        $this->form_validation->set_rules("pickpoint_office", "pickpoint_office", "xss_clean");
+        $this->form_validation->set_rules("address", "address", "xss_clean");
+        $this->form_validation->set_rules("contact_no", "contact_no", "xss_clean");
+        $this->form_validation->set_rules("email_address", "email_address", "xss_clean");
+        $this->form_validation->set_rules("founded_date", "founded_date", "xss_clean");
+
+        if ($this->form_validation->run() == FALSE) {
+            echo  $this->upload->display_errors();
+            $this->load->view('super_admin/pick_point_list/error');
+        } else {
+            $pickpoint_id = $this->uri->segment(3);
+
+            //get branch code
+            $branch_code = $this->input->post('branch_code');
+
+            $this->db->where('branch_code', $branch_code);
+            $query = $this->db->get("branch_office")->result();
+            foreach ($query as $row) {
+                $zonal_office = $row->zonal_office;
+                $zonal_code = $row->zonal_code;
+                $branch_office = $row->branch_office;
+                $district = $row->district;
+                $division = $row->division;
+            }
+
+            //insert data to database
+            $data = array(
+                'zonal_office'             => $zonal_office,
+                'zonal_code'             => $zonal_code,
+                'branch_office'         => $branch_office,
+                'branch_code'             => $this->input->post('branch_code'),
+                'division'                 => $division,
+                'district'                 => $district,
+                'pickpoint_office'             => $this->input->post('pickpoint_office'),
+                'address'                 => $this->input->post('address'),
+                'contact_no'             => $this->input->post('contact_no'),
+                'email_address'         => $this->input->post('email_address'),
+                'founded_date'             => $this->input->post('founded_date')
+            );
+
+            // var_dump($data);
+
+            $this->db->where('pickpoint_id', $pickpoint_id);
+            $this->db->update('pickpoint_office', $data);
+            redirect("super_admin/pick_point_list");
+        }
+    }
+    // PickPoint Model Functions Ends
+
     function create_bank_details() {
         $this->load->library("form_validation");
         $this->form_validation->set_rules("bank_name", "bank_name", "xss_clean");

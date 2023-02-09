@@ -8,19 +8,18 @@
                 <a href="<?= base_url() ?>super_admin/company_list/" class="btn btn-info btn-lg tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Company List">
                     <i class="fas fa-pencil"></i>Company List
                 </a>
-
                 <a href="<?= base_url() ?>super_admin/zonal_office_list/" class="btn btn-warning btn-lg tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Zonal List">
                     <i class="fas fa-pencil"></i>Zonal List
                 </a>
                 <a href="<?= base_url() ?>super_admin/branch_list/" class="btn btn-primary btn-lg tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Branch List">
                     <i class="fas fa-pencil"></i>Branch List
                 </a>
+                <a href="<?= base_url() ?>super_admin/pick_point_list/" class="btn btn-secondary btn-lg tooltips" data-placement="top" data-toggle="tooltip" data-original-title="PickPoint List">
+                    <i class="fas fa-pencil"></i>PickPoint List
+                </a>
                 <a href="<?= base_url() ?>super_admin/bank_details/" class="btn btn-danger btn-lg tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Bank Details">
                     <i class="fas fa-pencil"></i>Bank Details
                 </a>
-
-
-
             </div>
         </div>
     </div>

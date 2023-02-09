@@ -32,60 +32,49 @@
         <div class="card">
             <div class="card-body">
 
-                <h4 class="mt-0 header-title">Zonal Office List || <a class="btn btn-warning ml-2" data-toggle="modal" data-target=".create_zonal_office">Add New</a></h4>
-
-
-
+                <h4 class="mt-0 header-title">PickPoint List || <a class="btn btn-warning ml-2" data-toggle="modal" data-target=".create_pick_point">Add PickPoint</a></h4>
 
                 <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-
-
-
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>Zonal Office</th>
+                            <th>Zonal</th>
+                            <th>Branch</th>
+                            <th>PickPoint</th>
                             <th>Code#</th>
                             <th>Address</th>
                             <th>Contact no.</th>
                             <th>Email</th>
-                            <th>Zonal Head</th>
-
-                            <th>action</th>
+                            <th>Branch Head</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
 
-
                     <tbody>
                         <?php $i = 1;
-                        foreach ($this->osm->get_zonal() as $row) : ?>
+                        foreach ($this->osm->get_all_pick_point() as $row) : ?>
                             <tr>
                                 <td><?= $i++ ?></td>
                                 <td><?= $row->zonal_office ?></td>
-                                <td><?= $row->zonal_code ?></td>
+                                <td><?= $row->branch_office ?></td>
+                                <td><?= $row->pickpoint_office ?></td>
+                                <td><?= $row->pickpoint_code ?></td>
                                 <td><?= $row->address ?></td>
                                 <td><?= $row->contact_no ?></td>
                                 <td><?= $row->email_address ?></td>
-                                <td><?= $row->zonal_head_id ?></td>
+                                <td><?= $row->pickpoint_head_id ?></td>
 
-                                <td><a onclick="return confirm('Want to delete?');" href="<?= base_url() ?>super_admin/zonal_delete/<?= $row->zo_id ?>" class="btn btn-secondary btn-block mt-0 tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Delete">
+                                <td><a onclick="return confirm('Want to delete?');" href="<?= base_url() ?>super_admin/pick_point_delete/<?= $row->pickpoint_id ?>" class="btn btn-secondary btn-block mt-0 tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Delete">
                                         <i class="fas fa-times"></i>
                                     </a>
-
-                                    <a class="btn btn-warning btn-block mt-0" data-toggle="modal" data-target=".update_zonal_office<?= $row->zo_id ?>"><i class="fas fa-pencil-alt"></i></a>
-
-
+                                    <a class="btn btn-warning btn-block mt-0" data-toggle="modal" data-target=".update_pick_point<?= $row->pickpoint_id ?>"><i class="fas fa-pencil-alt"></i></a>
                                 </td>
-
-
                             </tr>
 
-                            <?php include "modal/update_zonal_office.php" ?>
+                            <?php include "modal/update_pick_point.php" ?>
                         <?php endforeach; ?>
-
                     </tbody>
                 </table>
-
             </div>
         </div>
     </div> <!-- end col -->
@@ -100,4 +89,4 @@
 
 
 
-<?php include "modal/create_zonal_office.php" ?>
+<?php include "modal/create_pick_point.php" ?>

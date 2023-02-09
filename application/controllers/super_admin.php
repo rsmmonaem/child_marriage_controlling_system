@@ -138,6 +138,39 @@ class Super_admin extends CI_Controller {
         redirect("super_admin/branch_list");
     }
 
+    
+    // Pick Point Functions Starts
+    public function create_pick_point() {
+        $this->session_data();
+        $this->load->model('office_setup_model', 'osm');
+        $this->load->model('order_management_model', 'omm');
+        $this->osm->create_pick_point();
+    }
+
+    public function pick_point_list() {
+        $this->session_data();
+        $this->load->model('office_setup_model', 'osm');
+        $this->load->model('order_management_model', 'omm');
+        $this->load->view('super_admin/pick_point_list');
+    }
+
+    public function update_pick_point() {
+        $this->session_data();
+        $this->load->model('office_setup_model', 'osm');
+        $this->load->model('order_management_model', 'omm');
+        $this->osm->update_pick_point();
+    }
+
+    function pick_point_delete($pickpoint_id) {
+        $this->session_data();
+        $pickpoint_id = $this->uri->segment(3);
+        $this->db->where('pickpoint_id', $pickpoint_id);
+        $this->db->delete('pickpoint_office');
+        redirect("super_admin/pick_point_list");
+    }
+    // Pick Point Functions Ends
+
+
     public function create_bank_details() {
         $this->session_data();
         $this->load->model('office_setup_model', 'osm');
