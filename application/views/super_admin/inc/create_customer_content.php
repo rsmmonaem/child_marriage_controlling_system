@@ -1,24 +1,17 @@
 <?php include "breadcrumb.php" ?>
 
 <div class="card m-b-30">
-
     <div class="card-body">
-
         <div class="btn-group">
             <div>
-
                 <a href="<?= base_url() ?>super_admin/customer_list/" class="btn btn-warning btn-lg tooltips" data-placement="top" data-toggle="tooltip" data-original-title="List">
                     <i class="fas fa-pencil"></i>Customer List
                 </a>
                 <a href="#" class="btn btn-secondary disabled btn-lg tooltips" data-placement="top" data-toggle="tooltip" data-original-title="<?= $page_name = str_replace("_", " ", $page_name); ?>">
                     <i class="fas fa-book-alt"></i> <?= $page_name = str_replace("_", " ", $page_name); ?>
                 </a>
-
             </div>
         </div>
-
-
-
     </div>
 </div>
 
@@ -28,8 +21,6 @@
             <div class="card-body">
                 <form action="<?= base_url() ?>super_admin/insert_customer" method="post" enctype="multipart/form-data">
                     <h4 class="mt-0 header-title">Customer Details</h4> <br>
-
-
 
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label">Field Worker</label>
@@ -41,15 +32,7 @@
                                 <?php endforeach; ?>
                             </select>
                         </div>
-
-                        <!-- <div class="col-sm-4">
-                                                    <a class="btn btn-warning ml-2" href="">Add New</a>
-                                                </div> -->
-
-
                     </div>
-
-
 
                     <div class="form-group row">
                         <label for="example-text-input" class="col-sm-2 col-form-label">FULL NAME</label>
@@ -100,8 +83,6 @@
                         </div>
                     </div>
 
-
-
                     <?php $cm_id_no = mt_rand(100000, 999999); ?>
                     <div class="form-group row">
                         <label for="example-text-input" class="col-sm-2 col-form-label">CUSTOMER ID</label>
@@ -109,7 +90,6 @@
                             <input class="form-control" type="text" name="cm_id_no" required readonly value="<?= $cm_id_no ?>">
                         </div>
                     </div>
-
 
                     <div class="form-group row">
                         <label for="example-text-input" class="col-sm-2 col-form-label">CONTACT NO.</label>
@@ -124,8 +104,6 @@
                             <input class="form-control" type="email" name="email" id="example-email-input" required>
                         </div>
                     </div>
-
-
 
                     <div class="form-group row">
                         <label for="example-email-input" class="col-sm-2 col-form-label">CUSTOMER PHOTO</label>
@@ -169,17 +147,9 @@
                         </div>
                     </div>
 
-            </div>
-        </div>
-    </div> <!-- end col -->
-</div> <!-- end row -->
 
-<div class="row">
-    <div class="col-12">
-        <div class="card m-b-30">
-            <div class="card-body">
+                    <button type="submit" class="btn btn-primary ml-2">SUBMIT</button>
 
-                <button type="submit" class="btn btn-primary ml-2">SUBMIT</button>
                 </form>
             </div>
         </div>

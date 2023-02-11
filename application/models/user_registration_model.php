@@ -587,23 +587,21 @@ class User_registration_model  extends CI_Model {
     //start FIELD WORKER Functions
 
     function create_field_worker() {
-        $this->load->library("form_validation");
-        $this->form_validation->set_rules("status", "status", "xss_clean");
-        $this->form_validation->set_rules("dis_code", "dis_code", "xss_clean");
-        $this->form_validation->set_rules("zonal_office", "zonal_office", "xss_clean");
-        $this->form_validation->set_rules("zonal_code", "zonal_code", "xss_clean");
-        $this->form_validation->set_rules("branch_office", "branch_office", "xss_clean");
-        $this->form_validation->set_rules("branch_code", "branch_code", "xss_clean");
 
+        $this->load->library("form_validation");
+        $this->form_validation->set_rules("zonal_code", "zonal_code", "xss_clean");
+        $this->form_validation->set_rules("branch_code", "branch_code", "xss_clean");
+        $this->form_validation->set_rules("pickpoint_code", "pickpoint_code", "xss_clean");
         $this->form_validation->set_rules("field_worker", "field_worker", "xss_clean");
         $this->form_validation->set_rules("fw_id_no", "fw_id_no", "xss_clean");
-        $this->form_validation->set_rules("designation", "designation", "xss_clean");
         $this->form_validation->set_rules("cont_num", "cont_num", "xss_clean");
         $this->form_validation->set_rules("email", "email", "xss_clean");
-        $this->form_validation->set_rules("target", "target", "xss_clean");
         $this->form_validation->set_rules("image", "fw_image", "xss_clean");
+        $this->form_validation->set_rules("fw_cv", "fw_cv", "xss_clean");
+        $this->form_validation->set_rules("target", "target", "xss_clean");
         $this->form_validation->set_rules("user_name", "user_name", "xss_clean");
         $this->form_validation->set_rules("pass_word", "pass_word", "xss_clean");
+        $this->form_validation->set_rules("status", "status", "xss_clean");
 
         if ($this->form_validation->run() == FALSE) {
             echo  $this->upload->display_errors();
@@ -647,52 +645,42 @@ class User_registration_model  extends CI_Model {
                 $fw_cv = "cv_not_found.jpg";
             }
 
-            //branch name select
+            //pickpoint code select
+            $pickpoint_code = $this->input->post('pickpoint_code');
 
-            $branch_code = $this->input->post('branch_code');
-
-            $this->db->where('branch_code', $branch_code);
-            $query = $this->db->get("branch_office")->result();
+            $this->db->where('pickpoint_code', $pickpoint_code);
+            $query = $this->db->get("pickpoint_office")->result();
             foreach ($query as $row) {
                 $zonal_office = $row->zonal_office;
                 $zonal_code = $row->zonal_code;
                 $branch_office = $row->branch_office;
-                $district = $row->district;
-                $division = $row->division;
-            }
-
-            $dis_code = $this->input->post('dis_code');
-
-            $this->db->where('dis_code', $dis_code);
-            $query = $this->db->get("distributor")->result();
-            foreach ($query as $row) {
-                $company_code = $row->company_code;
+                $branch_code = $row->branch_code;
+                $pickpoint_office = $row->pickpoint_office;
             }
 
             //insert data to database
-
             $data = array(
+                'user_id'             => $this->input->post('fw_id_no'),
                 'status'             => $this->input->post('status'),
-                'dis_code'             => $this->input->post('dis_code'),
-                'target'             => $this->input->post('target'),
-                'achieve'             => '0',
-                'company_code'         => $company_code,
                 'zonal_office'         => $zonal_office,
                 'zonal_code'         => $zonal_code,
                 'branch_office'     => $branch_office,
-                'branch_code'         => $this->input->post('branch_code'),
+                'branch_code'         => $branch_code,
+                'pickpoint_code'         => $this->input->post('pickpoint_code'),
+                'pickpoint_office'         => $pickpoint_office,
                 'field_worker'         => $this->input->post('field_worker'),
                 'fw_id_no'             => $this->input->post('fw_id_no'),
-                'user_id'             => $this->input->post('fw_id_no'),
-                'created_date'         => date('Y-m-d H:i:s'),
-                'update_date'         => date('Y-m-d H:i:s'),
                 'designation'        => 'field_worker',
                 'cont_num'            => $this->input->post('cont_num'),
                 'email'             => $this->input->post('email'),
                 'fw_image'             => $image,
                 'fw_cv'             => $fw_cv,
+                'target'             => $this->input->post('target'),
+                'achieve'             => '0',
                 'user_name'         => $this->input->post('user_name'),
-                'pass_word'         => $this->input->post('pass_word')
+                'pass_word'         => $this->input->post('pass_word'),
+                'created_date'         => date('Y-m-d H:i:s'),
+                'update_date'         => date('Y-m-d H:i:s')
             );
 
             $data2 = array(
@@ -704,12 +692,12 @@ class User_registration_model  extends CI_Model {
                 'full_name'         => $this->input->post('field_worker'),
                 'update_date'         => date('Y-m-d H:i:s')
             );
-            print_r($data);
+
+            // print_r($data);
             $this->db->insert('field_worker', $data);
             $this->db->insert('admin_user', $data2);
 
             //$id = $this->db->insert_id();
-
             redirect("super_admin/field_worker_list/");
         }
     }
@@ -731,20 +719,18 @@ class User_registration_model  extends CI_Model {
     function update_field_worker() {
 
         $this->load->library("form_validation");
-        $this->form_validation->set_rules("status", "status", "xss_clean");
-        $this->form_validation->set_rules("zonal_office", "zonal_office", "xss_clean");
         $this->form_validation->set_rules("zonal_code", "zonal_code", "xss_clean");
-        $this->form_validation->set_rules("branch_office", "branch_office", "xss_clean");
         $this->form_validation->set_rules("branch_code", "branch_code", "xss_clean");
-
+        $this->form_validation->set_rules("pickpoint_code", "pickpoint_code", "xss_clean");
         $this->form_validation->set_rules("field_worker", "field_worker", "xss_clean");
         $this->form_validation->set_rules("fw_id_no", "fw_id_no", "xss_clean");
-        $this->form_validation->set_rules("designation", "designation", "xss_clean");
         $this->form_validation->set_rules("cont_num", "cont_num", "xss_clean");
         $this->form_validation->set_rules("email", "email", "xss_clean");
         $this->form_validation->set_rules("image", "fw_image", "xss_clean");
+        $this->form_validation->set_rules("target", "target", "xss_clean");
         $this->form_validation->set_rules("user_name", "user_name", "xss_clean");
         $this->form_validation->set_rules("pass_word", "pass_word", "xss_clean");
+        $this->form_validation->set_rules("status", "status", "xss_clean");
 
 
         if ($this->form_validation->run() == FALSE) {
@@ -770,29 +756,32 @@ class User_registration_model  extends CI_Model {
                 $image = $this->input->post('image');
             }
 
-            $fw_cv = $_FILES['fw_cv']['name'];
-            if ($fw_cv != "") {
-                $fw_cv = random_string('alnum', 10) . '.pdf';
-                //insert image
-                $config['file_name'] = $fw_cv;
-                $config['upload_path'] = 'uploads/cv';
-                $config['allowed_types'] = 'pdf|doc';
-                $config['max_size']         = '500000';
-                $config['encrypt_name']     = false;
-                //$config['image_library'] = 'gd2';
-                $this->load->library('upload', $config);
-                $this->upload->initialize($config);
-                $this->upload->do_upload('zm_cv');
+            // $fw_cv = $_FILES['fw_cv']['name'];
+            // if ($fw_cv != "") {
+            //     $fw_cv = random_string('alnum', 10) . '.pdf';
+            //     //insert image
+            //     $config['file_name'] = $fw_cv;
+            //     $config['upload_path'] = 'uploads/cv';
+            //     $config['allowed_types'] = 'pdf|doc';
+            //     $config['max_size']         = '500000';
+            //     $config['encrypt_name']     = false;
+            //     //$config['image_library'] = 'gd2';
+            //     $this->load->library('upload', $config);
+            //     $this->upload->initialize($config);
+            //     $this->upload->do_upload('zm_cv');
 
-                $file_data = $this->upload->data();
-            } else {
-                $fw_cv = $this->input->post('fw_cv');
-            }
+            //     $file_data = $this->upload->data();
+            // } else {
+            //     $fw_cv = $this->input->post('fw_cv');
+            // }
+
             $page_name = $this->uri->segment(1);
+
             $user_id = $this->input->post('user_id');
             $user_name = $this->input->post('user_name');
             $new_user_name = $this->input->post('new_user_name');
-            $new_pass_word = $this->input->post('new_pass_word');
+
+            // $new_pass_word = $this->input->post('new_pass_word');
 
             // find out user name
             if ($user_name != $new_user_name) {
@@ -817,57 +806,40 @@ class User_registration_model  extends CI_Model {
             }
 
 
-            $branch_code = $this->input->post('branch_code');
+            //pickpoint code select
+            $pickpoint_code = $this->input->post('pickpoint_code');
 
-            $this->db->where('branch_code', $branch_code);
-            $query = $this->db->get("branch_office")->result();
+            $this->db->where('pickpoint_code', $pickpoint_code);
+            $query = $this->db->get("pickpoint_office")->result();
             foreach ($query as $row) {
                 $zonal_office = $row->zonal_office;
                 $zonal_code = $row->zonal_code;
                 $branch_office = $row->branch_office;
-                $district = $row->district;
-                $division = $row->division;
-            }
-
-            echo    $dis_code = $this->input->post('dis_code');
-
-            $this->db->where('dis_code', $dis_code);
-            $query = $this->db->get("distributor")->result();
-            foreach ($query as $row) {
-                $company_code = $row->company_code;
+                $branch_code = $row->branch_code;
+                $pickpoint_office = $row->pickpoint_office;
             }
 
             //insert data to database
-
             $data = array(
                 'status'             => $this->input->post('status'),
-                'dis_code'             => $this->input->post('dis_code'),
-                'target'             => $this->input->post('target'),
-                'company_code'         => $company_code,
-                'branch_office'     => $branch_office,
-                'branch_code'         => $branch_code,
                 'zonal_office'         => $zonal_office,
                 'zonal_code'         => $zonal_code,
-
+                'branch_office'     => $branch_office,
+                'branch_code'         => $branch_code,
+                'pickpoint_code'         => $this->input->post('pickpoint_code'),
+                'pickpoint_office'         => $pickpoint_office,
                 'field_worker'         => $this->input->post('field_worker'),
-                //'fao_id_no' 		=>$this->input->post('fao_id_no'),
-                //'user_id' 			=>$this->input->post('fao_id_no'),
-                'update_date'         => date('Y-m-d H:i:s'),
                 'cont_num'            => $this->input->post('cont_num'),
                 'email'             => $this->input->post('email'),
                 'fw_image'             => $image,
-                'fw_cv'             => $fw_cv,
-
-
+                'target'             => $this->input->post('target'),
                 'user_name'         => $this->input->post('new_user_name'),
-                'pass_word'         => $this->input->post('new_pass_word')
-
-
-
+                'pass_word'         => $this->input->post('new_pass_word'),
+                'update_date'         => date('Y-m-d H:i:s')
             );
 
+
             $data2 = array(
-                //'user_id' 			=>$this->input->post('fao_id_no'),
                 'user_name'         => $this->input->post('new_user_name'),
                 'status'             => $this->input->post('status'),
                 'pass_word'         => $this->input->post('new_pass_word')
@@ -876,6 +848,7 @@ class User_registration_model  extends CI_Model {
 
             $this->db->where('user_id', $user_id);
             $this->db->update('field_worker', $data);
+
             $this->db->where('user_id', $user_id);
             $this->db->update('admin_user', $data2);
 
@@ -912,11 +885,7 @@ class User_registration_model  extends CI_Model {
     function create_customer() {
         
         $this->load->library("form_validation");
-        $this->form_validation->set_rules("status", "status", "xss_clean");
-        $this->form_validation->set_rules("zonal_office", "zonal_office", "xss_clean");
-        $this->form_validation->set_rules("zonal_code", "zonal_code", "xss_clean");
-        $this->form_validation->set_rules("branch_office", "branch_office", "xss_clean");
-        $this->form_validation->set_rules("branch_code", "branch_code", "xss_clean");
+        $this->form_validation->set_rules("fw_id_no", "fw_id_no", "xss_clean");
         $this->form_validation->set_rules("customer", "customer", "xss_clean");
         $this->form_validation->set_rules("father_name", "father_name", "xss_clean");
         $this->form_validation->set_rules("mother_name", "mother_name", "xss_clean");
@@ -924,16 +893,15 @@ class User_registration_model  extends CI_Model {
         $this->form_validation->set_rules("cm_nid_no", "cm_nid_no", "xss_clean");
         $this->form_validation->set_rules("cm_present_add", "cm_present_add", "xss_clean");
         $this->form_validation->set_rules("cm_permanent_add", "cm_permanent_add", "xss_clean");
+        $this->form_validation->set_rules("cm_id_no", "cm_id_no", "xss_clean");
+        $this->form_validation->set_rules("cont_num", "cont_num", "xss_clean");
+        $this->form_validation->set_rules("email", "email", "xss_clean");
+        $this->form_validation->set_rules("cm_image", "cm_image", "xss_clean");
+        $this->form_validation->set_rules("cm_nid_front", "cm_nid_front", "xss_clean");
+        $this->form_validation->set_rules("cm_nid_back", "cm_nid_back", "xss_clean");
         $this->form_validation->set_rules("granter_name", "granter_name", "xss_clean");
         $this->form_validation->set_rules("granter_cont", "granter_cont", "xss_clean");
         $this->form_validation->set_rules("granter_add", "granter_add", "xss_clean");
-        $this->form_validation->set_rules("cm_id_no", "cm_id_no", "xss_clean");
-        $this->form_validation->set_rules("designation", "designation", "xss_clean");
-        $this->form_validation->set_rules("cont_num", "cont_num", "xss_clean");
-        $this->form_validation->set_rules("email", "email", "xss_clean");
-        $this->form_validation->set_rules("image", "cm_image", "xss_clean");
-        $this->form_validation->set_rules("cm_nid_front", "cm_nid_front", "xss_clean");
-        $this->form_validation->set_rules("cm_nid_back", "cm_nid_back", "xss_clean");
 
 
         if ($this->form_validation->run() == FALSE) {
@@ -1001,7 +969,6 @@ class User_registration_model  extends CI_Model {
 
 
             //field worker select
-
             $fw_id_no = $this->input->post('fw_id_no');
 
             $this->db->where('fw_id_no', $fw_id_no);
@@ -1011,21 +978,21 @@ class User_registration_model  extends CI_Model {
                 $zonal_code = $row->zonal_code;
                 $branch_office = $row->branch_office;
                 $branch_code = $row->branch_code;
-
-                $branch_office = $row->branch_office;
-                $district = $row->district;
-                $division = $row->division;
+                $pickpoint_office = $row->pickpoint_office;
+                $pickpoint_code = $row->pickpoint_code;
             }
 
             //insert data to database
-
             $data = array(
+                'user_id'             => $this->input->post('cm_id_no'),
                 'status'             => 'ENABLE',
+                'fw_id_no'             => $fw_id_no,
                 'zonal_office'         => $zonal_office,
                 'zonal_code'         => $zonal_code,
                 'branch_office'     => $branch_office,
-                'fw_id_no'             => $fw_id_no,
                 'branch_code'         => $branch_code,
+                'pickpoint_office'     => $pickpoint_office,
+                'pickpoint_code'         => $pickpoint_code,
                 'customer'             => $this->input->post('customer'),
                 'father_name'         => $this->input->post('father_name'),
                 'mother_name'         => $this->input->post('mother_name'),
@@ -1036,22 +1003,16 @@ class User_registration_model  extends CI_Model {
                 'granter_name'         => $this->input->post('granter_name'),
                 'granter_cont'         => $this->input->post('granter_cont'),
                 'granter_add'         => $this->input->post('granter_add'),
-
-
                 'cm_id_no'             => $this->input->post('cm_id_no'),
-                'user_id'             => $this->input->post('cm_id_no'),
-                'created_date'         => date('Y-m-d H:i:s'),
-                'update_date'         => date('Y-m-d H:i:s'),
                 'designation'        => 'customer',
                 'cont_num'            => $this->input->post('cont_num'),
                 'email'             => $this->input->post('email'),
                 'cm_image'             => $cm_image,
                 'cm_nid_front'         => $cm_nid_front,
-                'cm_nid_back'         => $cm_nid_back
+                'cm_nid_back'         => $cm_nid_back,
+                'created_date'         => date('Y-m-d H:i:s'),
+                'update_date'         => date('Y-m-d H:i:s'),
             );
-
-
-            print_r($data);
 
             $this->db->insert('customer', $data);
             $page_name = $this->uri->segment(1);
@@ -1079,11 +1040,7 @@ class User_registration_model  extends CI_Model {
     function update_customer() {
 
         $this->load->library("form_validation");
-        $this->form_validation->set_rules("status", "status", "xss_clean");
-        $this->form_validation->set_rules("zonal_office", "zonal_office", "xss_clean");
-        $this->form_validation->set_rules("zonal_code", "zonal_code", "xss_clean");
-        $this->form_validation->set_rules("branch_office", "branch_office", "xss_clean");
-        $this->form_validation->set_rules("branch_code", "branch_code", "xss_clean");
+        $this->form_validation->set_rules("fw_id_no", "fw_id_no", "xss_clean");
         $this->form_validation->set_rules("customer", "customer", "xss_clean");
         $this->form_validation->set_rules("father_name", "father_name", "xss_clean");
         $this->form_validation->set_rules("mother_name", "mother_name", "xss_clean");
@@ -1091,23 +1048,22 @@ class User_registration_model  extends CI_Model {
         $this->form_validation->set_rules("cm_nid_no", "cm_nid_no", "xss_clean");
         $this->form_validation->set_rules("cm_present_add", "cm_present_add", "xss_clean");
         $this->form_validation->set_rules("cm_permanent_add", "cm_permanent_add", "xss_clean");
-        $this->form_validation->set_rules("granter_name", "granter_name", "xss_clean");
-        $this->form_validation->set_rules("granter_cont", "granter_cont", "xss_clean");
-        $this->form_validation->set_rules("granter_add", "granter_add", "xss_clean");
         $this->form_validation->set_rules("cm_id_no", "cm_id_no", "xss_clean");
-        $this->form_validation->set_rules("designation", "designation", "xss_clean");
         $this->form_validation->set_rules("cont_num", "cont_num", "xss_clean");
         $this->form_validation->set_rules("email", "email", "xss_clean");
         $this->form_validation->set_rules("cm_image", "cm_image", "xss_clean");
         $this->form_validation->set_rules("cm_nid_front", "cm_nid_front", "xss_clean");
         $this->form_validation->set_rules("cm_nid_back", "cm_nid_back", "xss_clean");
-
+        $this->form_validation->set_rules("granter_name", "granter_name", "xss_clean");
+        $this->form_validation->set_rules("granter_cont", "granter_cont", "xss_clean");
+        $this->form_validation->set_rules("granter_add", "granter_add", "xss_clean");
 
         if ($this->form_validation->run() == FALSE) {
             echo  $this->upload->display_errors();
             $this->load->view('super_admin/customer_list/error');
         } else {
             $cm_image = $_FILES['cm_image']['name'];
+            $prev_cm_image = $this->input->post('prev_cm_image');
             if ($cm_image != "") {
                 $cm_image = random_string('alnum', 10) . '.jpg';
                 //insert image
@@ -1123,10 +1079,11 @@ class User_registration_model  extends CI_Model {
 
                 $file_data = $this->upload->data();
             } else {
-                $cm_image = $this->input->post('cm_image');
+                $cm_image = $prev_cm_image;
             }
 
             $cm_nid_front = $_FILES['cm_nid_front']['name'];
+            $prev_cm_nid_front = $this->input->post('prev_cm_nid_front');
             if ($cm_nid_front != "") {
                 $cm_nid_front = random_string('alnum', 10) . '.jpg';
                 //insert image
@@ -1142,11 +1099,12 @@ class User_registration_model  extends CI_Model {
 
                 $file_data = $this->upload->data();
             } else {
-                $cm_nid_front = "default.png";
+                $cm_nid_front = $prev_cm_nid_front;
             }
 
 
             $cm_nid_back = $_FILES['cm_nid_back']['name'];
+            $prev_cm_nid_back = $this->input->post('prev_cm_nid_back');
             if ($cm_nid_back != "") {
                 $cm_nid_back = random_string('alnum', 10) . '.jpg';
                 //insert image
@@ -1162,11 +1120,12 @@ class User_registration_model  extends CI_Model {
 
                 $file_data = $this->upload->data();
             } else {
-                $cm_nid_back = "default.png";
+                $cm_nid_back = $prev_cm_nid_back;
             }
 
             $page_name = $this->uri->segment(1);
 
+            //field worker select 
             $fw_id_no = $this->input->post('fw_id_no');
 
             $this->db->where('fw_id_no', $fw_id_no);
@@ -1176,19 +1135,20 @@ class User_registration_model  extends CI_Model {
                 $zonal_code = $row->zonal_code;
                 $branch_office = $row->branch_office;
                 $branch_code = $row->branch_code;
+                $pickpoint_office = $row->pickpoint_office;
+                $pickpoint_code = $row->pickpoint_code;
             }
 
             //insert data to database
-
             $data = array(
-
+                'fw_id_no'             => $fw_id_no,
                 'zonal_office'         => $zonal_office,
                 'zonal_code'         => $zonal_code,
                 'branch_office'     => $branch_office,
                 'branch_code'         => $branch_code,
+                'pickpoint_office'     => $pickpoint_office,
+                'pickpoint_code'         => $pickpoint_code,
                 'customer'             => $this->input->post('customer'),
-                'fw_id_no'             => $this->input->post('fw_id_no'),
-
                 'father_name'         => $this->input->post('father_name'),
                 'mother_name'         => $this->input->post('mother_name'),
                 'cm_dob'             => $this->input->post('cm_dob'),
@@ -1198,18 +1158,14 @@ class User_registration_model  extends CI_Model {
                 'granter_name'         => $this->input->post('granter_name'),
                 'granter_cont'         => $this->input->post('granter_cont'),
                 'granter_add'         => $this->input->post('granter_add'),
-                'created_date'         => date('Y-m-d H:i:s'),
-                'update_date'         => date('Y-m-d H:i:s'),
-                'designation'        => 'customer',
                 'cont_num'            => $this->input->post('cont_num'),
                 'email'             => $this->input->post('email'),
                 'cm_image'             => $cm_image,
                 'cm_nid_front'         => $cm_nid_front,
-                'cm_nid_back'         => $cm_nid_back
-
-
-
+                'cm_nid_back'         => $cm_nid_back,
+                'update_date'         => date('Y-m-d H:i:s'),
             );
+
             $user_id = $this->input->post('user_id');
             $this->db->where('user_id', $user_id);
             $this->db->update('customer', $data);

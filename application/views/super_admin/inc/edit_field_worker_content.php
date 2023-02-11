@@ -24,23 +24,20 @@ if ($error == "username_invalid") {
                     <h4 class="mt-0 header-title">Field Worker Details</h4> <br>
 
                     <div class="form-group row">
-                        <label class="col-sm-2 col-form-label">DISTRIBUTOR</label>
+                        <label class="col-sm-2 col-form-label">ZONE</label>
                         <div class="col-sm-6">
-                            <select class="form-control" name="dis_code">
+                            <select class="form-control" name="zonal_code">
                                 <option>Select</option>
-                                <?php foreach ($this->dmm->getdistributor() as $row2) : ?>
+                                <?php foreach ($this->osm->get_zonal() as $row2) : ?>
                                     <?php $i = 1;
                                     foreach ($this->urm->getonerow_field_worker() as $row) : ?>
-                                        <option <?php if ($row->dis_code == $row2->dis_code) {
+                                        <option <?php if ($row->zonal_code == $row2->zonal_code) {
                                                     echo "selected";
-                                                } ?> value="<?= $row2->dis_code ?>"><?= $row2->distributor ?></option>
+                                                } ?> value="<?= $row2->zonal_code ?>"><?= $row2->zonal_office ?></option>
                                     <?php endforeach; ?>
                                 <?php endforeach; ?>
                             </select>
                         </div>
-                        <!-- <div class="col-sm-4">
-                                                    <a class="btn btn-warning ml-2" data-toggle="modal" data-target=".create_branch_office">Add New</a>
-                                                </div> -->
                     </div>
 
                     <div class="form-group row">
@@ -58,11 +55,24 @@ if ($error == "username_invalid") {
                                 <?php endforeach; ?>
                             </select>
                         </div>
-                        <!-- <div class="col-sm-4">
-                                                    <a class="btn btn-warning ml-2" data-toggle="modal" data-target=".create_branch_office">Add New</a>
-                                                </div> -->
                     </div>
 
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">ASSIGN PICKPOINT</label>
+                        <div class="col-sm-6">
+                            <select class="form-control" name="pickpoint_code">
+                                <option>Select</option>
+                                <?php foreach ($this->osm->get_all_pick_point() as $row2) : ?>
+                                    <?php $i = 1;
+                                    foreach ($this->urm->getonerow_field_worker() as $row) : ?>
+                                        <option <?php if ($row->pickpoint_code == $row2->pickpoint_code) {
+                                                    echo "selected";
+                                                } ?> value="<?= $row2->pickpoint_code ?>"><?= $row2->pickpoint_office ?></option>
+                                    <?php endforeach; ?>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                    </div>
 
                     <div class="form-group row">
                         <label for="example-text-input" class="col-sm-2 col-form-label">FIELD WORKER NAME</label>
@@ -76,14 +86,6 @@ if ($error == "username_invalid") {
                             <input class="form-control" type="text" name="bmitd_no" value="<?= $row->fw_id_no ?>" readonly>
                         </div>
                     </div>
-                    <!-- <div class="form-group row">
-                                                <label for="example-text-input" class="col-sm-2 col-form-label">DESIGNATION</label>
-                                                <div class="col-sm-10">
-                                                    <input class="form-control" type="text" name="designation" value="<?= $row->designation ?>" >
-                                                </div>
-                                            </div> -->
-
-
 
                     <div class="form-group row">
                         <label for="example-text-input" class="col-sm-2 col-form-label">CONTACT NO.</label>
@@ -126,8 +128,6 @@ if ($error == "username_invalid") {
         <div class="card m-b-30">
             <div class="card-body">
                 <h4 class="mt-0 header-title">LOGIN DETAILS</h4>
-                <?php // $user_name = mt_rand(100000,999999); 
-                ?>
 
                 <input type="hidden" name="user_name" value="<?= $row->user_name ?>">
                 <input type="hidden" name="pass_word" value="<?= $row->pass_word ?>">
@@ -148,14 +148,12 @@ if ($error == "username_invalid") {
                     <label class="col-sm-2 col-form-label">STATUS</label>
                     <div class="col-sm-5">
                         <select class="form-control ml-2" name="status" required>
-                            <option <?php if ($row->status == "ENABLE") {
-                                        echo "selected";
-                                    } ?> value="ENABLE">ENABLE</option>
-
+                            <option value="ENABLE" <?php if ($row->status == "ENABLE") {
+                                                        echo "selected";
+                                                    } ?>>ENABLE</option>
                             <option value="DISABLE" <?php if ($row->status == "DISABLE") {
                                                         echo "selected";
                                                     } ?>>DISABLE</option>
-
                         </select>
                     </div>
                 </div>
@@ -176,6 +174,3 @@ if ($error == "username_invalid") {
 </div> <!-- Page content Wrapper -->
 
 </div> <!-- content -->
-
-
-<?php include "modal/create_branch_office.php" ?>

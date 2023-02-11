@@ -2,7 +2,6 @@
 
 class Fw_registration extends CI_Controller {
 
-
     function __construct() {
         parent::__construct();
 
@@ -13,7 +12,6 @@ class Fw_registration extends CI_Controller {
         $this->output->set_header("Expires: Mon, 26 Jul 2010 05:00:00 GMT");
     }
 
-
     /*public function session_data() {		
 		$this->load->model('requisition_model','rm');
 		$this->load->model('purchase_order_model','po');
@@ -22,11 +20,7 @@ class Fw_registration extends CI_Controller {
 
 	}*/
 
-
-    //end of branch manager
-
     // start field worker
-
     public function create_field_worker() {
 
         $this->load->model('office_setup_model', 'osm');
