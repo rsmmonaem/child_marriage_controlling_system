@@ -296,9 +296,6 @@ class Office_setup_model  extends CI_Model {
         }
     }
 
-
-
-
     function get_branch() {
         $this->db->order_by("br_id", "DESC");
         $query = $this->db->get("branch_office");
@@ -309,6 +306,18 @@ class Office_setup_model  extends CI_Model {
         $br_id = $this->uri->segment(3);
         $this->db->where('br_id', $br_id);
         $query = $this->db->get("branch_office");
+        return $query->result();
+    }
+
+    function get_branch_by_zone($zonal_code){
+        $this->db->where('zonal_code', $zonal_code);
+        $query = $this->db->get("branch_office");
+        return $query->result();
+    }
+
+    function get_pickpoint_by_branch($branch_code){
+        $this->db->where('branch_code', $branch_code);
+        $query = $this->db->get("pickpoint_office");
         return $query->result();
     }
 

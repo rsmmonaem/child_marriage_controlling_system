@@ -15,21 +15,18 @@ if ($error == "username_invalid") {
                 <strong><?= $error_msg ?></strong>
             </div>
         <?php } ?>
-        <div class="card m-b-30">
-            <div class="card-body">
-
-                <form action="<?= base_url() ?>super_admin/update_field_worker" method="post" enctype="multipart/form-data">
-
+        <form action="<?= base_url() ?>super_admin/update_field_worker" method="post" enctype="multipart/form-data">
+            <div class="card m-b-30">
+                <div class="card-body">
 
                     <h4 class="mt-0 header-title">Field Worker Details</h4> <br>
 
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label">ZONE</label>
                         <div class="col-sm-6">
-                            <select class="form-control" name="zonal_code">
-                                <option>Select</option>
+                            <select class="form-control" name="zonal_code" id="zonal_dropdown" required>
                                 <?php foreach ($this->osm->get_zonal() as $row2) : ?>
-                                    <?php $i = 1;
+                                    <?php
                                     foreach ($this->urm->getonerow_field_worker() as $row) : ?>
                                         <option <?php if ($row->zonal_code == $row2->zonal_code) {
                                                     echo "selected";
@@ -43,14 +40,13 @@ if ($error == "username_invalid") {
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label">BRANCH OFFICE</label>
                         <div class="col-sm-6">
-                            <select class="form-control" name="branch_code">
-                                <option>Select</option>
+                            <select class="form-control" name="branch_code" id="branch_dropdown" required>
                                 <?php foreach ($this->osm->get_branch() as $row2) : ?>
-                                    <?php $i = 1;
+                                    <?php
                                     foreach ($this->urm->getonerow_field_worker() as $row) : ?>
-                                        <option <?php if ($row->branch_code == $row2->branch_code) {
-                                                    echo "selected";
-                                                } ?> value="<?= $row2->branch_code ?>"><?= $row2->branch_office ?></option>
+                                        <?php if ($row->branch_code == $row2->branch_code) : ?>
+                                            <option value="<?= $row2->branch_code ?>" selected><?= $row2->branch_office ?></option>
+                                        <?php endif; ?>
                                     <?php endforeach; ?>
                                 <?php endforeach; ?>
                             </select>
@@ -60,14 +56,13 @@ if ($error == "username_invalid") {
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label">ASSIGN PICKPOINT</label>
                         <div class="col-sm-6">
-                            <select class="form-control" name="pickpoint_code">
-                                <option>Select</option>
+                            <select class="form-control" name="pickpoint_code" id="pickpoint_dropdown" required>
                                 <?php foreach ($this->osm->get_all_pick_point() as $row2) : ?>
-                                    <?php $i = 1;
+                                    <?php
                                     foreach ($this->urm->getonerow_field_worker() as $row) : ?>
-                                        <option <?php if ($row->pickpoint_code == $row2->pickpoint_code) {
-                                                    echo "selected";
-                                                } ?> value="<?= $row2->pickpoint_code ?>"><?= $row2->pickpoint_office ?></option>
+                                        <?php if ($row->pickpoint_code == $row2->pickpoint_code) : ?>
+                                            <option value="<?= $row2->pickpoint_code ?>" selected><?= $row2->pickpoint_office ?></option>       
+                                        <?php endif; ?>
                                     <?php endforeach; ?>
                                 <?php endforeach; ?>
                             </select>
@@ -118,52 +113,48 @@ if ($error == "username_invalid") {
                         </div>
                     </div>
 
+                </div>
             </div>
-        </div>
-    </div> <!-- end col -->
-</div> <!-- end row -->
 
-<div class="row">
-    <div class="col-12">
-        <div class="card m-b-30">
-            <div class="card-body">
-                <h4 class="mt-0 header-title">LOGIN DETAILS</h4>
+            <div class="card m-b-30">
+                <div class="card-body">
+                    <h4 class="mt-0 header-title">LOGIN DETAILS</h4>
 
-                <input type="hidden" name="user_name" value="<?= $row->user_name ?>">
-                <input type="hidden" name="pass_word" value="<?= $row->pass_word ?>">
-                <div class="form-group row">
-                    <label for="example-text-input" class="col-sm-2 col-form-label">USER NAME</label>
-                    <div class="col-sm-5">
-                        <input type="text" class="form-control ml-2" name="new_user_name" value="<?= $row->user_name ?>">
+                    <input type="hidden" name="user_name" value="<?= $row->user_name ?>">
+                    <input type="hidden" name="pass_word" value="<?= $row->pass_word ?>">
+                    <div class="form-group row">
+                        <label for="example-text-input" class="col-sm-2 col-form-label">USER NAME</label>
+                        <div class="col-sm-5">
+                            <input type="text" class="form-control ml-2" name="new_user_name" value="<?= $row->user_name ?>">
+                        </div>
                     </div>
-                </div>
-                <div class="form-group row">
-                    <label for="example-text-input" class="col-sm-2 col-form-label">PASSWORD</label>
-                    <div class="col-sm-5">
-                        <input type="text" class="form-control ml-2" name="new_pass_word" value="<?= $row->pass_word ?>">
+                    <div class="form-group row">
+                        <label for="example-text-input" class="col-sm-2 col-form-label">PASSWORD</label>
+                        <div class="col-sm-5">
+                            <input type="text" class="form-control ml-2" name="new_pass_word" value="<?= $row->pass_word ?>">
+                        </div>
                     </div>
-                </div>
 
-                <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">STATUS</label>
-                    <div class="col-sm-5">
-                        <select class="form-control ml-2" name="status" required>
-                            <option value="ENABLE" <?php if ($row->status == "ENABLE") {
-                                                        echo "selected";
-                                                    } ?>>ENABLE</option>
-                            <option value="DISABLE" <?php if ($row->status == "DISABLE") {
-                                                        echo "selected";
-                                                    } ?>>DISABLE</option>
-                        </select>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">STATUS</label>
+                        <div class="col-sm-5">
+                            <select class="form-control ml-2" name="status" required>
+                                <option value="ENABLE" <?php if ($row->status == "ENABLE") {
+                                                            echo "selected";
+                                                        } ?>>ENABLE</option>
+                                <option value="DISABLE" <?php if ($row->status == "DISABLE") {
+                                                            echo "selected";
+                                                        } ?>>DISABLE</option>
+                            </select>
+                        </div>
                     </div>
+
+                    <button type="submit" class="btn btn-primary ml-2">SUBMIT</button>
+
+                    <a href="<?= base_url() ?>super_admin/field_worker_list" class="btn btn-danger ml-2">Cancel</a>
                 </div>
-
-                <button type="submit" class="btn btn-primary ml-2">SUBMIT</button>
-
-                <a href="<?= base_url() ?>super_admin/field_worker_list" class="btn btn-danger ml-2">Cancel</a>
-                </form>
             </div>
-        </div>
+        </form>
     </div>
 </div> <!-- end col -->
 </div> <!-- end row -->

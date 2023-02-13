@@ -470,6 +470,41 @@ class Super_admin extends CI_Controller {
         $this->load->view('super_admin/field_worker_list_search');
     }
 
+    public function get_branch_ajax(){
+        $this->session_data();
+        $this->load->model('office_setup_model', 'osm');
+
+        $zonal_code=$this->input->post('zonal_code');
+
+        echo "<option value='' selected disabled hidden>Choose here</option>";
+        foreach ($this->osm->get_branch_by_zone($zonal_code) as $row) {
+            echo "<option value='$row->branch_code'>$row->branch_office</option>";
+        }
+    }
+
+    public function get_branch_without_session_ajax(){
+        $this->load->model('office_setup_model', 'osm');
+
+        $zonal_code=$this->input->post('zonal_code');
+
+        echo "<option value='' selected disabled hidden>Choose here</option>";
+        foreach ($this->osm->get_branch_by_zone($zonal_code) as $row) {
+            echo "<option value='$row->branch_code'>$row->branch_office</option>";
+        }
+    }
+
+    public function get_pickpoint_ajax(){
+        $this->session_data();
+        $this->load->model('office_setup_model', 'osm');
+
+        $branch_code=$this->input->post('branch_code');
+
+        echo "<option value='' selected disabled hidden>Choose here</option>";
+        foreach ($this->osm->get_pickpoint_by_branch($branch_code) as $row) {
+            echo "<option value='$row->pickpoint_code'>$row->pickpoint_office</option>";
+        }
+    }
+
     //end of field worker
 
     // start customer
