@@ -16,11 +16,9 @@ if ($page_name == "return") {
 ?>
 
 <div class="card m-b-30">
-
     <div class="card-body">
         <div class="btn-group">
             <div>
-
                 <a href="<?= base_url() ?>super_admin/inventory_list/" class="btn btn-warning btn-lg tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Inventory List">
                     <i class="fas fa-pencil"></i>Inventory List
                 </a>
@@ -52,7 +50,6 @@ if ($page_name == "return") {
                         </div>
                     <?php } ?><br>
 
-
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label">PRODUCT NAME</label>
                         <div class="col-sm-6">
@@ -69,19 +66,12 @@ if ($page_name == "return") {
                                 </div>
                             <?php } ?>
                             <!-- End Error -->
-
                         </div>
-
-
 
                         <div class="col-sm-4">
-                            <a class="btn btn-warning ml-2" data-toggle="modal" data-target=".create_pro_name">Add New</a>
+                            <a class="btn btn-warning ml-2" href="<?= base_url() ?>super_admin/product_list">Add New</a>
                         </div>
-
-
                     </div>
-
-
 
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label">CATEGORY</label>
@@ -93,12 +83,9 @@ if ($page_name == "return") {
                                 <?php endforeach; ?>
                             </select>
                         </div>
-
                         <div class="col-sm-4">
-                            <a class="btn btn-warning ml-2" data-toggle="modal" data-target=".create_pro_category">Add New</a>
+                            <a class="btn btn-warning ml-2" href="<?= base_url() ?>super_admin/system_settings">Add New</a>
                         </div>
-
-
                     </div>
 
                     <div class="form-group row">
@@ -111,15 +98,10 @@ if ($page_name == "return") {
                                 <?php endforeach; ?>
                             </select>
                         </div>
-
                         <div class="col-sm-4">
-                            <a class="btn btn-warning ml-2" data-toggle="modal" data-target=".create_pro_brand">Add New</a>
+                            <a class="btn btn-warning ml-2" href="<?= base_url() ?>super_admin/pro_brand_list">Add New</a>
                         </div>
-
-
                     </div>
-
-
 
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label">SUPPLIER</label>
@@ -133,16 +115,10 @@ if ($page_name == "return") {
                                 <?php endforeach; ?>
                             </select>
                         </div>
-
                         <div class="col-sm-4">
                             <a class="btn btn-warning ml-2" href="<?= base_url() ?>super_admin/create_supplier">Add New</a>
                         </div>
-
-
                     </div>
-
-
-
 
                     <div class="form-group row">
                         <label for="example-text-input" class="col-sm-2 col-form-label">INVOICE NO.</label>
@@ -177,7 +153,6 @@ if ($page_name == "return") {
 
                         <label for="example-text-input" class="col-sm-2 col-form-label">
                             MEASURE
-                            <!-- <a class="btn btn-warning ml-2" data-toggle="modal" data-target=".create_measure">Add MEASURE</a> -->
                         </label>
                         <div class="col-sm-4 d-flex">
                             <select class="form-control" name="measure" required>
@@ -186,11 +161,9 @@ if ($page_name == "return") {
                                     <option value="<?= $row->measure_name ?>"><?= $row->measure_name ?></option>
                                 <?php endforeach; ?>
                             </select>
-                            <a class="btn btn-warning ml-2" data-toggle="modal" data-target=".create_measure">Add MEASURE</a>
+                            <a class="btn btn-warning ml-2" href="<?= base_url() ?>super_admin/pro_measure_list">Add New</a>
                         </div>
                     </div>
-
-
 
                     <div class="form-group row">
                         <label for="example-text-input" class="col-sm-2 col-form-label">QNTY PRICE</label>
@@ -220,14 +193,10 @@ if ($page_name == "return") {
 
                     <h4 class="mt-0 header-title">Inventory Entry List</h4>
 
-
                     <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                         <?php
-
                         $this->db->where('sup_id', $sup_id);
                         $sup_name = $this->db->get("supplier")->row("sup_name");
-
-
                         ?>
                         <thead>
                             <tr>
@@ -235,7 +204,6 @@ if ($page_name == "return") {
                                 <th>Company Name: <?= $sup_name ?></th>
                                 <th>Invoice no: <?= $invoice_no ?></th>
                                 <th>Date: <?= $invoice_date ?></th>
-
                             </tr>
                             <tr>
                                 <th>#</th>
@@ -243,13 +211,10 @@ if ($page_name == "return") {
                                 <th>Qnty</th>
                                 <th>Qnty Price</th>
                                 <th>Sell Price</th>
-
                                 <th>Total Price</th>
                                 <th>Action</th>
-
                             </tr>
                         </thead>
-
 
                         <tbody>
                             <?php $i = 1;
@@ -258,7 +223,6 @@ if ($page_name == "return") {
                                 $pro_id = $row->pro_id;
                                 $this->db->where('pro_id', $pro_id);
                                 $pro_name = $this->db->get("product_name")->row("pro_name");
-
                                 ?>
                                 <tr>
                                     <td><?= $i++ ?></td>
@@ -266,7 +230,6 @@ if ($page_name == "return") {
                                     <td><?= $row->pro_qnty ?>-<?= $row->measure ?></td>
                                     <td><?= $row->qnty_price ?></td>
                                     <td><?= $row->sell_price ?></td>
-
                                     <td><?= $row->total_price ?></td>
                                     <td><a onclick="return confirm('Want to delete?');" href="<?= base_url() ?>super_admin/inventory_cart_delete/<?= $row->ivc_id ?>/<?= $sup_id ?>/<?= $invoice_no ?>/<?= $invoice_date ?>" class="btn btn-secondary btn-block mt-0 tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Delete">
                                             <i class="fas fa-times"></i>
@@ -281,7 +244,6 @@ if ($page_name == "return") {
                                     <td></td>
                                     <td></td>
                                     <td></td>
-
                                     <td>IN-Total</td>
                                     <?php
                                     $query = $this->db->select_sum('total_price', 'intotal');
@@ -296,7 +258,6 @@ if ($page_name == "return") {
                                     </td>
                                     <td></td>
                                 </tr>
-
 
                                 <tr>
                                     <td></td>
@@ -318,7 +279,6 @@ if ($page_name == "return") {
                                         <input class="form-control" type="text" name="payment" required="" value="<?= $intotal ?>">
                                     </td>
                                     <td></td>
-
                                 </tr>
 
                                 <tr>

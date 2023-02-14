@@ -13,11 +13,12 @@
                 </div>
                 <div class="modal-body">
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-6" id="product_brand_name_id">
                             <div class="form-group">
-                                <label for="field-1" class="control-label">Product Brand</label>
-                                <input type="text" class="form-control" id="field-1" name="pro_brand" required="">
+                                <label for="field_product_brand" class="control-label">Product Brand</label>
+                                <input type="text" class="form-control" id="field_product_brand" name="pro_brand" required="">
                             </div>
+                            <span class="error-message"></span>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
@@ -27,19 +28,9 @@
                             </div>
                         </div>
                     </div>
-                    <!-- <div class="row">
-                                                                        <div class="col-md-12">
-                                                                            <div class="form-group">
-                                                                                <label for="field-3" class="control-label">Lolation</label>
-                                                                                <input type="text" class="form-control" id="field-3" name="location">
-                                                                            </div>
-                                                                        </div>
-                                                                    </div> -->
-
-
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-raised btn-primary ml-2">ADD</button>
+                    <button type="submit" class="btn btn-raised btn-primary ml-2" disabled>ADD</button>
                     <button type="button" class="btn btn-raised btn-danger" data-dismiss="modal">Close</button>
                 </div>
             </div>

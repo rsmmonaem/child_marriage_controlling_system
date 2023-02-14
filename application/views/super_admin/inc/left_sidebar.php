@@ -61,7 +61,7 @@
                 <!-- extra  -->
                 <li class="menu-title">Extra</li>
                 <li>
-                    <a href="<?= base_url() ?>super_admin/system_settings" class="waves-effect waves-light"><i class="fas fa-plus-square"></i><span> Add Category </span> <span class="float-right"></span></a>
+                    <a href="<?= base_url() ?>super_admin/system_settings" class="waves-effect waves-light"><i class="fas fa-plus-square"></i><span> Add Product </span> <span class="float-right"></span></a>
                 </li>
 
                 <!-- <li class="menu-title">Reporting</li>

@@ -1,11 +1,9 @@
 <?php include "breadcrumb.php"; ?>
 
 <div class="card m-b-30">
-
     <div class="card-body">
         <div class="btn-group">
             <div>
-
                 <a href="<?= base_url() ?>super_admin/create_inventory/" class="btn btn-warning btn-lg tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Inventory List">
                     <i class="fas fa-pencil"></i>Create Inventory
                 </a>
@@ -26,12 +24,9 @@
     <div class="col-md-12">
         <div class="card">
             <div class="card-body">
-
                 <h4 class="mt-0 header-title">Inventory List</h4>
 
-
                 <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-
                     <thead>
                         <tr>
                             <th>#</th>
@@ -47,7 +42,6 @@
                             <th>Action</th>
                         </tr>
                     </thead>
-
 
                     <tbody>
                         <?php $i = 1;
@@ -72,15 +66,10 @@
                                 <td><a href="<?= base_url() ?>super_admin/inventory_view/<?= $row->inventory_no ?>" class="btn btn-secondary btn-block mt-0 tooltips" data-placement="top" data-toggle="tooltip" data-original-title="View">
                                         <i class="fas fa-eye"></i>
                                     </a></td>
-
-
                             </tr>
-
                         <?php endforeach; ?>
-
                     </tbody>
                 </table>
-
             </div>
         </div>
     </div> <!-- end col -->

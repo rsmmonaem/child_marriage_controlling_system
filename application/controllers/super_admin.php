@@ -891,6 +891,13 @@ class Super_admin extends CI_Controller {
         $this->load->model('order_management_model', 'omm');
         $this->imm->deleteproduct();
     }
+    
+    function deleteproductbyid(){
+        $this->session_data();
+        $this->load->model('inventory_management_model', 'imm');
+        $this->load->model('order_management_model', 'omm');
+        $this->imm->deleteproductbyid();
+    }
 
     public function outof_stock_check() {
         $this->session_data();
@@ -1178,6 +1185,34 @@ class Super_admin extends CI_Controller {
         $this->load->view('super_admin/category_list');
     }
 
+    public function product_list() {
+        $this->session_data();
+        $this->load->model('requisition_model', 'rm');
+        $this->load->model('purchase_model', 'pm');
+        $this->load->model('purchase_order_model', 'po');
+        $this->load->model('inventory_management_model', 'imm');
+        $this->load->model('order_management_model', 'omm');
+        $this->load->view('super_admin/product_list');
+    }
+
+    public function check_product_unique_name_ajx(){
+        $this->session_data();
+        $this->load->model('inventory_management_model', 'imm');
+
+        $pro_name = $this->input->post('pro_name');
+
+        echo $this->imm->check_product_unique_name($pro_name);
+    }
+
+    public function check_product_unique_category_ajx(){
+        $this->session_data();
+        $this->load->model('inventory_management_model', 'imm');
+
+        $pro_cat_name = $this->input->post('pro_cat_name');
+
+        echo $this->imm->check_product_unique_category($pro_cat_name);
+    }
+
     public function pro_brand_list() {
         $this->session_data();
         $this->load->model('requisition_model', 'rm');
@@ -1186,6 +1221,15 @@ class Super_admin extends CI_Controller {
         $this->load->model('inventory_management_model', 'imm');
         $this->load->model('order_management_model', 'omm');
         $this->load->view('super_admin/pro_brand_list');
+    }
+
+    public function check_product_brand_ajx(){
+        $this->session_data();
+        $this->load->model('inventory_management_model', 'imm');
+
+        $pro_brand = $this->input->post('pro_brand');
+
+        echo $this->imm->check_product_brand($pro_brand);
     }
 
     public function pro_brand_delete() {
@@ -1205,6 +1249,15 @@ class Super_admin extends CI_Controller {
         $this->load->model('inventory_management_model', 'imm');
         $this->load->model('order_management_model', 'omm');
         $this->load->view('super_admin/pro_measure_list');
+    }
+
+    public function check_product_measure_ajx(){
+        $this->session_data();
+        $this->load->model('inventory_management_model', 'imm');
+
+        $measure_name = $this->input->post('measure_name');
+
+        echo $this->imm->check_product_measure($measure_name);
     }
 
     public function measure_delete() {

@@ -40,7 +40,7 @@
                             <th>Address</th>
                             <th>Contact no.</th>
                             <th>Logo</th>
-                            <th>action</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
 
