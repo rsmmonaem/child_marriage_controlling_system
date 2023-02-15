@@ -470,11 +470,11 @@ class Super_admin extends CI_Controller {
         $this->load->view('super_admin/field_worker_list_search');
     }
 
-    public function get_branch_ajax(){
+    public function get_branch_ajax() {
         $this->session_data();
         $this->load->model('office_setup_model', 'osm');
 
-        $zonal_code=$this->input->post('zonal_code');
+        $zonal_code = $this->input->post('zonal_code');
 
         echo "<option value='' selected disabled hidden>Choose here</option>";
         foreach ($this->osm->get_branch_by_zone($zonal_code) as $row) {
@@ -482,10 +482,10 @@ class Super_admin extends CI_Controller {
         }
     }
 
-    public function get_branch_without_session_ajax(){
+    public function get_branch_without_session_ajax() {
         $this->load->model('office_setup_model', 'osm');
 
-        $zonal_code=$this->input->post('zonal_code');
+        $zonal_code = $this->input->post('zonal_code');
 
         echo "<option value='' selected disabled hidden>Choose here</option>";
         foreach ($this->osm->get_branch_by_zone($zonal_code) as $row) {
@@ -493,11 +493,11 @@ class Super_admin extends CI_Controller {
         }
     }
 
-    public function get_pickpoint_ajax(){
+    public function get_pickpoint_ajax() {
         $this->session_data();
         $this->load->model('office_setup_model', 'osm');
 
-        $branch_code=$this->input->post('branch_code');
+        $branch_code = $this->input->post('branch_code');
 
         echo "<option value='' selected disabled hidden>Choose here</option>";
         foreach ($this->osm->get_pickpoint_by_branch($branch_code) as $row) {
@@ -891,8 +891,8 @@ class Super_admin extends CI_Controller {
         $this->load->model('order_management_model', 'omm');
         $this->imm->deleteproduct();
     }
-    
-    function deleteproductbyid(){
+
+    function deleteproductbyid() {
         $this->session_data();
         $this->load->model('inventory_management_model', 'imm');
         $this->load->model('order_management_model', 'omm');
@@ -1195,7 +1195,7 @@ class Super_admin extends CI_Controller {
         $this->load->view('super_admin/product_list');
     }
 
-    public function check_product_unique_name_ajx(){
+    public function check_product_unique_name_ajx() {
         $this->session_data();
         $this->load->model('inventory_management_model', 'imm');
 
@@ -1204,7 +1204,7 @@ class Super_admin extends CI_Controller {
         echo $this->imm->check_product_unique_name($pro_name);
     }
 
-    public function check_product_unique_category_ajx(){
+    public function check_product_unique_category_ajx() {
         $this->session_data();
         $this->load->model('inventory_management_model', 'imm');
 
@@ -1223,7 +1223,7 @@ class Super_admin extends CI_Controller {
         $this->load->view('super_admin/pro_brand_list');
     }
 
-    public function check_product_brand_ajx(){
+    public function check_product_brand_ajx() {
         $this->session_data();
         $this->load->model('inventory_management_model', 'imm');
 
@@ -1251,7 +1251,7 @@ class Super_admin extends CI_Controller {
         $this->load->view('super_admin/pro_measure_list');
     }
 
-    public function check_product_measure_ajx(){
+    public function check_product_measure_ajx() {
         $this->session_data();
         $this->load->model('inventory_management_model', 'imm');
 
@@ -1266,6 +1266,31 @@ class Super_admin extends CI_Controller {
         $this->load->model('purchase_order_model', 'po');
         $this->load->model('inventory_management_model', 'imm');
         $this->imm->measure_delete();
+    }
+
+    public function supply_category() {
+        $this->session_data();
+        $this->load->model('requisition_model', 'rm');
+        $this->load->model('purchase_model', 'pm');
+        $this->load->model('purchase_order_model', 'po');
+        $this->load->model('inventory_management_model', 'imm');
+        $this->load->model('order_management_model', 'omm');
+        $this->load->view('super_admin/supply_category');
+    }
+
+    public function check_supply_category_ajx() {
+        $this->session_data();
+        $this->load->model('inventory_management_model', 'imm');
+
+        $supc_name = $this->input->post('supc_name');
+
+        echo $this->imm->check_supply_category($supc_name);
+    }
+
+    public function supply_category_delete() {
+        $this->session_data();
+        $this->load->model('inventory_management_model', 'imm');
+        $this->imm->supply_category_delete();
     }
 
     public function unit_list() {
@@ -1317,6 +1342,23 @@ class Super_admin extends CI_Controller {
         $this->load->model('user_registration_model', 'urm');
         $this->load->model('order_management_model', 'omm');
         $this->load->view('super_admin/profit_fact');
+    }
+
+    public function update_profile() {
+        $this->session_data();
+        $this->load->model('requisition_model', 'rm');
+        $this->load->model('purchase_model', 'pm');
+        $this->load->model('purchase_order_model', 'po');
+        $this->load->model('inventory_management_model', 'imm');
+        $this->load->model('user_registration_model', 'urm');
+        $this->load->model('order_management_model', 'omm');
+        $this->load->view('super_admin/update_profile');
+    }
+
+    public function update_admin() {
+        $this->session_data();
+        $this->load->model('user_registration_model', 'urm');
+        $this->urm->update_admin();
     }
 }
 

@@ -4,7 +4,7 @@
     <div class="card-body">
         <div class="btn-group">
             <div>
-                <a href="#" class="btn btn-success btn-lg tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Products List">
+                <a href="<?= base_url() ?>super_admin/product_list/" class="btn btn-success btn-lg tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Products List">
                     <i class="fas fa-pencil"></i>Products List
                 </a>
                 <a href="<?= base_url() ?>super_admin/system_settings/" class="btn btn-warning btn-lg tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Product Category">
@@ -16,7 +16,7 @@
                 <a href="<?= base_url() ?>super_admin/pro_measure_list/" class="btn btn-danger btn-lg tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Product Measure">
                     <i class="fas fa-pencil"></i>Product Measure
                 </a>
-                <a href="<?= base_url() ?>super_admin/supply_category/" class="btn btn-secondary btn-lg tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Supply Category">
+                <a href="#" class="btn btn-secondary btn-lg tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Supply Category">
                     <i class="fas fa-pencil"></i>Supply Category
                 </a>
             </div>
@@ -28,40 +28,26 @@
         <div class="card">
             <div class="card-body">
 
-                <h4 class="mt-0 header-title">Product List || <a class="btn btn-warning ml-2" data-toggle="modal" data-target=".create_pro_name">Add New</a></h4>
+                <h4 class="mt-0 header-title">Supply Category List || <a class="btn btn-warning ml-2" data-toggle="modal" data-target=".create_sup_category">Add New</a></h4>
 
                 <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>Product Name</th>
+                            <th>Supply Category</th>
                             <th>Code#</th>
-                            <th>Category</th>
-                            <th>Brand</th>
-                            <th>Total Stock</th>
-                            <th>In Stock</th>
-                            <th>Measure</th>
-                            <th>Buy Price</th>
-                            <th>Sell Price</th>
                             <th>Action</th>
                         </tr>
                     </thead>
 
                     <tbody>
                         <?php $i = 1;
-                        foreach ($this->imm->getproduct_name() as $row) : ?>
+                        foreach ($this->imm->getsup_category() as $row) : ?>
                             <tr>
                                 <td><?= $i++ ?></td>
-                                <td><?= $row->pro_name ?></td>
-                                <td><?= $row->pro_code ?></td>
-                                <td><?= $row->procat_id ?></td>
-                                <td><?= $row->pro_brand ?></td>
-                                <td><?= $row->total_stock ?></td>
-                                <td><?= $row->instock ?></td>
-                                <td><?= $row->measure ?></td>
-                                <td><?= $row->latest_price ?></td>
-                                <td><?= $row->sell_price ?></td>
-                                <td><a onclick="return confirm('Want to delete?');" href="<?= base_url() ?>super_admin/deleteproductbyid/<?= $row->pro_id ?>" class="btn btn-secondary btn-block mt-0 tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Delete">
+                                <td><?= $row->supc_name ?></td>
+                                <td><?= $row->supc_code ?></td>
+                                <td><a onclick="return confirm('Want to delete?');" href="<?= base_url() ?>super_admin/supply_category_delete/<?= $row->supc_id ?>" class="btn btn-secondary btn-block mt-0 tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Delete">
                                         <i class="fas fa-times"></i>
                                     </a></td>
                             </tr>
@@ -80,36 +66,36 @@
 </div> <!-- content -->
 
 <?php
-include "modal/create_pro_name.php";
+include "modal/create_sup_category.php";
 include "footer.php";
 include "footer_data_table_js.php";
 ?>
 
 <script>
     $(document).ready(function() {
-        $('#field_product_name').on('blur', function() {
-            let pro_name = this.value;
-            console.log("Product name: " + pro_name);
+        $('#field_supply_category').on('blur', function() {
+            let supc_name = this.value;
+            console.log("Supply category name: " + supc_name);
             $.ajax({
-                url: "<?= base_url() ?>super_admin/check_product_unique_name_ajx",
+                url: "<?= base_url() ?>super_admin/check_supply_category_ajx",
                 type: "POST",
                 data: {
-                    pro_name: pro_name
+                    supc_name: supc_name
                 },
                 cache: false,
                 success: function(result) {
                     console.log("Result: " + result);
-                    if (result == "product_name_exists") {
-                        $("#product_name_id .error-message").html("Product name exists! Change name.");
-                        $(".create_pro_name button[type='submit']").prop("disabled", true);
+                    if (result == "supply_category_exists") {
+                        $("#supply_category_name_id .error-message").html("Supply category exists! Change category name.");
+                        $(".create_sup_category button[type='submit']").prop("disabled", true);
                     } else {
-                        $("#product_name_id .error-message").html("");
-                        $(".create_pro_name button[type='submit']").prop("disabled", false);
+                        $("#supply_category_name_id .error-message").html("");
+                        $(".create_sup_category button[type='submit']").prop("disabled", false);
                     }
                 }
             });
         }).on('focus', function() {
-            $("#product_name_id .error-message").html("");
+            $("#supply_category_name_id .error-message").html("");
         });
     });
 </script>

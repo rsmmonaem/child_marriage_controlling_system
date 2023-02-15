@@ -20,10 +20,7 @@ if ($error == "success") {
 
 
 <form action="<?= base_url() ?>super_admin/update_admin" method="post" enctype="multipart/form-data">
-
-
-
-    <?php $i = 1;
+    <?php
     foreach ($this->urm->getadmin() as $row) : ?>
         <div class="row">
             <div class="col-12">
@@ -55,16 +52,15 @@ if ($error == "success") {
                             </div>
                         </div>
 
-
-
                         <button type="submit" class="btn btn-primary ml-2">SUBMIT</button>
 
                         <a href="<?= base_url() ?>super_admin/" class="btn btn-danger ml-2">Cancel</a>
+                    </div>
+                </div>
+            </div>
+        </div> <!-- end col -->
+    <?php endforeach; ?>
 </form>
-</div>
-</div>
-</div>
-</div> <!-- end col -->
 </div> <!-- end row -->
 
 
@@ -73,7 +69,3 @@ if ($error == "success") {
 </div> <!-- Page content Wrapper -->
 
 </div> <!-- content -->
-<?php endforeach; ?>
-
-<?php include "modal/create_department.php" ?>
-<?php include "modal/create_unit.php" ?>

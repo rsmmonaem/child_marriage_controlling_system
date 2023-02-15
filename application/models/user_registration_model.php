@@ -1418,13 +1418,10 @@ class User_registration_model  extends CI_Model {
 
     function update_admin() {
 
-
         $this->load->library("form_validation");
         $this->form_validation->set_rules("full_name", "full_name", "xss_clean");
         $this->form_validation->set_rules("new_user_name", "user_name", "xss_clean");
         $this->form_validation->set_rules("new_pass_word", "pass_word", "xss_clean");
-
-
 
         if ($this->form_validation->run() == FALSE) {
             echo  $this->upload->display_errors();
@@ -1434,7 +1431,6 @@ class User_registration_model  extends CI_Model {
             $user_id = "admin";
             $user_name = $this->input->post('user_name');
             $new_user_name = $this->input->post('new_user_name');
-            $new_pass_word = $this->input->post('new_pass_word');
 
             // find out user name
             if ($user_name != $new_user_name) {
@@ -1451,21 +1447,23 @@ class User_registration_model  extends CI_Model {
             }
 
             //insert data to database
-
             $data2 = array(
                 'full_name'         => $this->input->post('full_name'),
                 'user_name'         => $this->input->post('new_user_name'),
                 'pass_word'         => $this->input->post('new_pass_word')
-
             );
 
             $this->db->where('user_id', $user_id);
             $this->db->update('admin_user', $data2);
-            //redirect("super_admin/update_profile/success");
-            $this->session->unset_userdata();
+
+            $this->session->unset_userdata("user_name");
+            $this->session->unset_userdata("user_type");
+            $this->session->unset_userdata("user_id");
+            $this->session->unset_userdata("status");
+
             $this->session->sess_destroy();
             $this->session->set_flashdata('logout_notification', 'logged_out');
-            redirect("login");
+            redirect("super_admin");
         }
     }
 

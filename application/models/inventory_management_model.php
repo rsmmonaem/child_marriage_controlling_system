@@ -20,14 +20,25 @@ class Inventory_management_model  extends CI_Model {
             );
 
             $this->db->insert('sup_category', $data);
+            
             //$id = $this->db->insert_id();
-            $page_name = $this->uri->segment(3);
+            //$page_name = $this->uri->segment(3);
 
             //if($page_name=="create_supplier"){redirect("super_admin/create_supplier/");}
             //if($page_name=="create_unit_head"){redirect("super_admin/create_unit_head/");}
             //if($page_name=="create_common_user"){redirect("super_admin/create_common_user/");}
 
-            redirect("super_admin/create_supplier/");
+            redirect("super_admin/supply_category/");
+        }
+    }
+
+    function check_supply_category($supc_name){
+        $this->db->where('supc_name', $supc_name);
+        $query = $this->db->get("sup_category");
+        if($query->num_rows() > 0){
+            return "supply_category_exists";
+        }else{
+            return "success";
         }
     }
 
@@ -35,6 +46,13 @@ class Inventory_management_model  extends CI_Model {
         $this->db->order_by("supc_id", "DESC");
         $query = $this->db->get("sup_category");
         return $query->result();
+    }
+
+    function supply_category_delete() {
+        $supc_id = $this->uri->segment(3);
+        $this->db->where('supc_id', $supc_id);
+        $this->db->delete('sup_category');
+        redirect("super_admin/supply_category");
     }
 
     function create_supplier() {

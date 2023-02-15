@@ -1,11 +1,9 @@
 <?php include "breadcrumb.php" ?>
+
 <div class="card m-b-30">
-
     <div class="card-body">
-
         <div class="btn-group">
             <div>
-
                 <a href="<?= base_url() ?>super_admin/supplier_list/" class="btn btn-warning btn-lg tooltips" data-placement="top" data-toggle="tooltip" data-original-title="List">
                     <i class="fas fa-pencil"></i>Supplier List
                 </a>
@@ -14,7 +12,6 @@
                 </a>
             </div>
         </div>
-
     </div>
 </div>
 
@@ -35,7 +32,7 @@
                             </select>
                         </div>
                         <div class="col-sm-4">
-                            <a class="btn btn-warning ml-2" data-toggle="modal" data-target=".create_sup_category">Add New</a>
+                            <a class="btn btn-warning ml-2" href="<?=base_url()?>super_admin/supply_category">Add New</a>
                         </div>
                     </div>
 

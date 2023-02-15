@@ -26,12 +26,12 @@
                 <li>
                     <a href="<?= base_url() ?>super_admin/bank_details" class="waves-effect"><i class="fas fa-university"></i><span>Banking</span> <span class="float-right"><i class="mdi mdi-chevron-right"></i></span></a>
                 </li>
-                <li>
+                <!-- <li>
                     <a href="<?= base_url() ?>super_admin/zonal_manager_list" class="waves-effect"><i class="fas fa-anchor"></i><span>Regional Manager</span> <span class="float-right"><i class="mdi mdi-chevron-right"></i></span></a>
                 </li>
                 <li>
                     <a href="<?= base_url() ?>super_admin/branch_manager_list" class="waves-effect"><i class="fas fa-band-aid"></i><span>Branch Manager</span> <span class="float-right"><i class="mdi mdi-chevron-right"></i></span></a>
-                </li>
+                </li> -->
                 <li>
                     <a href="<?= base_url() ?>super_admin/distributor_list_table" class="waves-effect waves-light"><i class="mdi mdi-cart"></i> <span> Distributor </span> <span class="float-right"><i class="mdi mdi-chevron-right"></i></span></a>
                 </li>
