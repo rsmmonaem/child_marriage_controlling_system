@@ -16,9 +16,9 @@
                 <a href="<?= base_url() ?>super_admin/pro_measure_list/" class="btn btn-danger btn-lg tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Product Measure">
                     <i class="fas fa-pencil"></i>Product Measure
                 </a>
-                <a href="<?= base_url() ?>super_admin/supply_category/" class="btn btn-secondary btn-lg tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Supply Category">
+                <!-- <a href="<?= base_url() ?>super_admin/supply_category/" class="btn btn-secondary btn-lg tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Supply Category">
                     <i class="fas fa-pencil"></i>Supply Category
-                </a>
+                </a> -->
             </div>
         </div>
     </div>

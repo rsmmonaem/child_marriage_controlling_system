@@ -3,11 +3,9 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="card m-b-30">
-
                 <div class="card-body">
                     <div class="btn-group">
                         <div>
-
                             <a href="#" class="btn btn-secondary disabled btn-lg tooltips" data-placement="top" data-toggle="tooltip" data-original-title="<?= $page_name = str_replace("_", " ", $page_name); ?>">
                                 <i class="fas fa-book-alt"></i> <?= $page_name = str_replace("_", " ", $page_name); ?>
                             </a>
@@ -33,24 +31,11 @@
                                 <span class="input-group-append">
                                     <button type="submit" class="btn btn-effect-ripple btn-primary"><i class="fas fa-search"></i> Search </button>
                                 </span>
-
-
                             </div>
                         </div>
+                    </form>
                 </div>
-                </form>
             </div>
-        </div><!--end row-->
-
-
-        <div class="row">
-
-            <!-- Start of fao List -->
-
-
-
-            <!-- end of fao_list -->
-
         </div><!--end row-->
 
         <div class="row">

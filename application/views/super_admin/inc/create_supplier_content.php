@@ -21,20 +21,20 @@
             <div class="card-body">
                 <form action="<?= base_url() ?>super_admin/insert_supplier" method="post" enctype="multipart/form-data">
                     <h4 class="mt-0 header-title">SUPPLIER DETAILS</h4> <br>
-                    <div class="form-group row">
+                    <!-- <div class="form-group row">
                         <label class="col-sm-2 col-form-label">CATEGORY</label>
                         <div class="col-sm-6">
                             <select class="form-control" name="sup_category" required>
                                 <option>Select</option>
-                                <?php foreach ($this->imm->getsup_category() as $row) : ?>
-                                    <option value="<?= $row->supc_name ?>"><?= $row->supc_name ?></option>
-                                <?php endforeach; ?>
+                                <?php //foreach ($this->imm->getsup_category() as $row) : ?>
+                                    <option value="<?php // $row->supc_name ?>"><?php // $row->supc_name ?></option>
+                                <?php //endforeach; ?>
                             </select>
                         </div>
                         <div class="col-sm-4">
-                            <a class="btn btn-warning ml-2" href="<?=base_url()?>super_admin/supply_category">Add New</a>
+                            <a class="btn btn-warning ml-2" href="<?php // base_url() ?>super_admin/supply_category">Add New</a>
                         </div>
-                    </div>
+                    </div> -->
 
                     <div class="form-group row">
                         <label for="example-text-input" class="col-sm-2 col-form-label">SUPPLIER NAME</label>
@@ -64,9 +64,27 @@
                         </div>
                     </div>
 
+                    <div class="form-group row">
+                        <div class="col-md-6">
+                            <div class="row">
+                                <label for="balance" class="col-sm-4 col-form-label">BALANCE</label>
+                                <div class="col-sm-8">
+                                    <input class="form-control" type="number" name="balance" id="balance" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="row">
+                                <label for="due" class="col-sm-4 col-form-label">DUE</label>
+                                <div class="col-sm-8">
+                                    <input class="form-control" type="number" name="due" id="due" required>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <button type="submit" class="btn btn-primary ml-2">SUBMIT</button>
                 </form>
-
             </div>
         </div>
     </div> <!-- end col -->

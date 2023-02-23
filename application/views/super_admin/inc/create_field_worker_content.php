@@ -25,25 +25,13 @@
                     <h4 class="mt-0 header-title">Field Worker Details</h4> <br>
 
                     <div class="form-group row">
-                        <label class="col-sm-2 col-form-label">SELECT ZONE</label>
-                        <div class="col-sm-6">
-                            <select class="form-control" name="zonal_code" id="zonal_dropdown" required>
-                                <option value='' selected disabled hidden>Select Here</option>
-                                <?php foreach ($this->osm->get_zonal() as $row) : ?>
-                                    <option value="<?= $row->zonal_code ?>"><?= $row->zonal_office ?></option>
-                                <?php endforeach; ?>
-                            </select>
-                        </div>
-                        <div class="col-sm-4">
-                            <a class="btn btn-warning ml-2" data-toggle="modal" data-target=".create_zonal_office">Add New</a>
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
                         <label class="col-sm-2 col-form-label">BRANCH OFFICE</label>
                         <div class="col-sm-6">
                             <select class="form-control" name="branch_code" id="branch_dropdown" required>
-                                <option value='' selected disabled hidden>Select Zone First</option>
+                                <option value='' selected disabled hidden>Select Here</option>
+                                <?php foreach ($this->osm->get_branch() as $row) : ?>
+                                    <option value="<?= $row->branch_code ?>"><?= $row->branch_office ?></option>
+                                <?php endforeach; ?>
                             </select>
                         </div>
                         <div class="col-sm-4">
@@ -170,6 +158,6 @@
 
 <?php
 include "modal/create_branch_office.php";
-include "modal/create_zonal_office.php";
+// include "modal/create_zonal_office.php";
 include "modal/create_pick_point.php";
 ?>

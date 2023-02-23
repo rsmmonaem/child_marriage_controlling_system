@@ -589,7 +589,6 @@ class User_registration_model  extends CI_Model {
     function create_field_worker() {
 
         $this->load->library("form_validation");
-        $this->form_validation->set_rules("zonal_code", "zonal_code", "xss_clean");
         $this->form_validation->set_rules("branch_code", "branch_code", "xss_clean");
         $this->form_validation->set_rules("pickpoint_code", "pickpoint_code", "xss_clean");
         $this->form_validation->set_rules("field_worker", "field_worker", "xss_clean");
@@ -651,8 +650,8 @@ class User_registration_model  extends CI_Model {
             $this->db->where('pickpoint_code', $pickpoint_code);
             $query = $this->db->get("pickpoint_office")->result();
             foreach ($query as $row) {
-                $zonal_office = $row->zonal_office;
-                $zonal_code = $row->zonal_code;
+                // $zonal_office = $row->zonal_office;
+                // $zonal_code = $row->zonal_code;
                 $branch_office = $row->branch_office;
                 $branch_code = $row->branch_code;
                 $pickpoint_office = $row->pickpoint_office;
@@ -662,8 +661,8 @@ class User_registration_model  extends CI_Model {
             $data = array(
                 'user_id'             => $this->input->post('fw_id_no'),
                 'status'             => $this->input->post('status'),
-                'zonal_office'         => $zonal_office,
-                'zonal_code'         => $zonal_code,
+                'zonal_office'         => '',
+                'zonal_code'         => '',
                 'branch_office'     => $branch_office,
                 'branch_code'         => $branch_code,
                 'pickpoint_code'         => $this->input->post('pickpoint_code'),
@@ -719,7 +718,6 @@ class User_registration_model  extends CI_Model {
     function update_field_worker() {
 
         $this->load->library("form_validation");
-        $this->form_validation->set_rules("zonal_code", "zonal_code", "xss_clean");
         $this->form_validation->set_rules("branch_code", "branch_code", "xss_clean");
         $this->form_validation->set_rules("pickpoint_code", "pickpoint_code", "xss_clean");
         $this->form_validation->set_rules("field_worker", "field_worker", "xss_clean");
@@ -812,8 +810,8 @@ class User_registration_model  extends CI_Model {
             $this->db->where('pickpoint_code', $pickpoint_code);
             $query = $this->db->get("pickpoint_office")->result();
             foreach ($query as $row) {
-                $zonal_office = $row->zonal_office;
-                $zonal_code = $row->zonal_code;
+                // $zonal_office = $row->zonal_office;
+                // $zonal_code = $row->zonal_code;
                 $branch_office = $row->branch_office;
                 $branch_code = $row->branch_code;
                 $pickpoint_office = $row->pickpoint_office;
@@ -822,8 +820,6 @@ class User_registration_model  extends CI_Model {
             //insert data to database
             $data = array(
                 'status'             => $this->input->post('status'),
-                'zonal_office'         => $zonal_office,
-                'zonal_code'         => $zonal_code,
                 'branch_office'     => $branch_office,
                 'branch_code'         => $branch_code,
                 'pickpoint_code'         => $this->input->post('pickpoint_code'),
@@ -843,7 +839,6 @@ class User_registration_model  extends CI_Model {
                 'user_name'         => $this->input->post('new_user_name'),
                 'status'             => $this->input->post('status'),
                 'pass_word'         => $this->input->post('new_pass_word')
-
             );
 
             $this->db->where('user_id', $user_id);
@@ -966,16 +961,14 @@ class User_registration_model  extends CI_Model {
                 $cm_nid_back = "default.png";
             }
 
-
-
             //field worker select
             $fw_id_no = $this->input->post('fw_id_no');
 
             $this->db->where('fw_id_no', $fw_id_no);
             $query = $this->db->get("field_worker")->result();
             foreach ($query as $row) {
-                $zonal_office = $row->zonal_office;
-                $zonal_code = $row->zonal_code;
+                // $zonal_office = $row->zonal_office;
+                // $zonal_code = $row->zonal_code;
                 $branch_office = $row->branch_office;
                 $branch_code = $row->branch_code;
                 $pickpoint_office = $row->pickpoint_office;
@@ -987,8 +980,8 @@ class User_registration_model  extends CI_Model {
                 'user_id'             => $this->input->post('cm_id_no'),
                 'status'             => 'ENABLE',
                 'fw_id_no'             => $fw_id_no,
-                'zonal_office'         => $zonal_office,
-                'zonal_code'         => $zonal_code,
+                'zonal_office'         => '',
+                'zonal_code'         => '',
                 'branch_office'     => $branch_office,
                 'branch_code'         => $branch_code,
                 'pickpoint_office'     => $pickpoint_office,
@@ -1131,8 +1124,8 @@ class User_registration_model  extends CI_Model {
             $this->db->where('fw_id_no', $fw_id_no);
             $query = $this->db->get("field_worker")->result();
             foreach ($query as $row) {
-                $zonal_office = $row->zonal_office;
-                $zonal_code = $row->zonal_code;
+                // $zonal_office = $row->zonal_office;
+                // $zonal_code = $row->zonal_code;
                 $branch_office = $row->branch_office;
                 $branch_code = $row->branch_code;
                 $pickpoint_office = $row->pickpoint_office;
@@ -1142,8 +1135,6 @@ class User_registration_model  extends CI_Model {
             //insert data to database
             $data = array(
                 'fw_id_no'             => $fw_id_no,
-                'zonal_office'         => $zonal_office,
-                'zonal_code'         => $zonal_code,
                 'branch_office'     => $branch_office,
                 'branch_code'         => $branch_code,
                 'pickpoint_office'     => $pickpoint_office,

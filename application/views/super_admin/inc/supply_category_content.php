@@ -7,7 +7,7 @@
                 <a href="<?= base_url() ?>super_admin/product_list/" class="btn btn-success btn-lg tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Products List">
                     <i class="fas fa-pencil"></i>Products List
                 </a>
-                <a href="<?= base_url() ?>super_admin/system_settings/" class="btn btn-warning btn-lg tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Product Category">
+                <a href="<?= base_url() ?>super_admin/pro_category_list/" class="btn btn-warning btn-lg tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Product Category">
                     <i class="fas fa-pencil"></i>Product Category
                 </a>
                 <a href="<?= base_url() ?>super_admin/pro_brand_list/" class="btn btn-primary btn-lg tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Product Brand">

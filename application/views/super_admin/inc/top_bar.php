@@ -1,10 +1,12 @@
 <!-- Start right Content here -->
 
-<?php $user_id = $this->session->userdata('user_id');
+<?php
+$user_id = $this->session->userdata('user_id');
 
 $this->db->where('user_id', $user_id);
 $full_name = $this->db->get("admin_user")->row()->full_name;
 $user_type = $this->session->userdata('user_type');
+
 if ($user_type != "super_admin") {
     $this->session->unset_userdata();
     $this->session->sess_destroy();
@@ -12,21 +14,19 @@ if ($user_type != "super_admin") {
     redirect("login");
 }
 
-
 ?>
 
 <div class="content-page">
     <!-- Start content -->
     <div class="content">
-
         <!-- Top Bar Start -->
         <div class="topbar">
             <nav class="navbar-custom">
                 <ul class="list-inline float-right mb-0">
                     <?php
-                    $this->db->where('status', 'pending');
-                    $this->db->from("order_list");
-                    $pending_order = $this->db->count_all_results();
+                        $this->db->where('status', 'pending');
+                        $this->db->from("order_list");
+                        $pending_order = $this->db->count_all_results();
                     ?>
                     <li class="list-inline-item dropdown notification-list">
                         <a class="nav-link dropdown-toggle arrow-none waves-effect waves-light" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
@@ -38,10 +38,6 @@ if ($user_type != "super_admin") {
                             <div class="dropdown-item noti-title">
                                 <h5><span class="badge badge-danger float-right"><?= $pending_order ?></span>Pending Orders</h5>
                             </div>
-
-
-
-
 
                             <!-- item-->
                             <?php $i = 1;
@@ -61,14 +57,12 @@ if ($user_type != "super_admin") {
                     </li>
 
                     <?php
-                    //$this->db->where('user_name',$user_id);
-                    $this->db->where('status', 'pending');
+                        // $this->db->where('user_name',$user_id);
+                        $this->db->where('status', 'pending');
 
-                    $this->db->from("submit_requisition");
-                    $pending_requisition = $this->db->count_all_results();
+                        $this->db->from("submit_requisition");
+                        $pending_requisition = $this->db->count_all_results();
                     ?>
-
-
 
                     <li class="list-inline-item dropdown notification-list">
                         <a class="nav-link dropdown-toggle arrow-none waves-effect waves-light nav-user" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
@@ -81,7 +75,7 @@ if ($user_type != "super_admin") {
                             </div>
                             <a class="dropdown-item" href="<?= base_url() ?>super_admin/update_profile"><i class="mdi mdi-account-circle "></i> Profile</a>
 
-                            <a class="dropdown-item" href="<?= base_url() ?>super_admin/system_settings"><i class="mdi mdi-settings "></i> Settings</a>
+                            <!-- <a class="dropdown-item" href="<?= base_url() ?>super_admin/system_settings"><i class="mdi mdi-settings "></i> Settings</a> -->
 
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item text-danger" href="<?= base_url() ?>login/logout"><i class="mdi mdi-power text-danger"></i> Logout</a>
@@ -95,7 +89,6 @@ if ($user_type != "super_admin") {
                             <i class="mdi mdi-menu"></i>
                         </button>
                     </li>
-
                 </ul>
                 <div class="clearfix"></div>
             </nav>

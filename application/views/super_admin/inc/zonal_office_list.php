@@ -5,11 +5,9 @@
     <div class="card-body">
         <div class="btn-group">
             <div>
-
                 <a href="<?= base_url() ?>super_admin/company_list/" class="btn btn-info btn-lg tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Company List">
                     <i class="fas fa-pencil"></i>Company List
                 </a>
-
                 <a href="<?= base_url() ?>super_admin/zonal_office_list/" class="btn btn-warning btn-lg tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Zonal List">
                     <i class="fas fa-pencil"></i>Zonal List
                 </a>
@@ -22,7 +20,6 @@
                 <a href="<?= base_url() ?>super_admin/bank_details/" class="btn btn-danger btn-lg tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Bank Details">
                     <i class="fas fa-pencil"></i>Bank Details
                 </a>
-
             </div>
         </div>
     </div>
@@ -31,16 +28,9 @@
     <div class="col-md-12">
         <div class="card">
             <div class="card-body">
-
                 <h4 class="mt-0 header-title">Zonal Office List || <a class="btn btn-warning ml-2" data-toggle="modal" data-target=".create_zonal_office">Add New</a></h4>
 
-
-
-
                 <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-
-
-
                     <thead>
                         <tr>
                             <th>#</th>
@@ -50,12 +40,9 @@
                             <th>Contact no.</th>
                             <th>Email</th>
                             <th>Zonal Head</th>
-
-                            <th>action</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
-
-
                     <tbody>
                         <?php $i = 1;
                         foreach ($this->osm->get_zonal() as $row) : ?>
@@ -71,21 +58,13 @@
                                 <td><a onclick="return confirm('Want to delete?');" href="<?= base_url() ?>super_admin/zonal_delete/<?= $row->zo_id ?>" class="btn btn-secondary btn-block mt-0 tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Delete">
                                         <i class="fas fa-times"></i>
                                     </a>
-
                                     <a class="btn btn-warning btn-block mt-0" data-toggle="modal" data-target=".update_zonal_office<?= $row->zo_id ?>"><i class="fas fa-pencil-alt"></i></a>
-
-
                                 </td>
-
-
                             </tr>
-
                             <?php include "modal/update_zonal_office.php" ?>
                         <?php endforeach; ?>
-
                     </tbody>
                 </table>
-
             </div>
         </div>
     </div> <!-- end col -->

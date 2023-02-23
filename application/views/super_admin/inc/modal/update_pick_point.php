@@ -19,10 +19,8 @@ foreach ($this->osm->getonerow_branch() as $row) : ?>
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="field-7" class="control-label">Branch Office</label>
-
-                                <select class="form-control" name="branch_code" id="field-7" required>
-
+                                <label for="branch_code" class="control-label">Branch Office</label>
+                                <select class="form-control" name="branch_code" id="branch_code" required>
                                     <?php foreach ($this->osm->get_branch() as $row2) : ?>
                                         <option <?php if ($row2->branch_code == $row->branch_code) {
                                                     echo "selected";
@@ -34,45 +32,43 @@ foreach ($this->osm->getonerow_branch() as $row) : ?>
 
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="field-1" class="control-label">PickPoint Name</label>
-                                <input type="text" class="form-control" id="field-1" name="pickpoint_office" required="" value="<?= $row->pickpoint_office ?>">
+                                <label for="pickpoint_office" class="control-label">PickPoint Name</label>
+                                <input type="text" class="form-control" id="pickpoint_office" name="pickpoint_office" required="" value="<?= $row->pickpoint_office ?>">
                             </div>
                         </div>
 
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="field-2" class="control-label">PickPoint Code</label>
-                                <?php //$zonal_code = mt_rand(100,999); 
-                                ?>
-                                <input type="text" class="form-control" id="field-2" name="pickpoint_code" value="<?= $row->pickpoint_code ?>" readonly>
+                                <label for="pickpoint_code" class="control-label">PickPoint Code</label>
+                                <input type="text" class="form-control" id="pickpoint_code" name="pickpoint_code" value="<?= $row->pickpoint_code ?>" readonly>
                             </div>
                         </div>
 
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="field-3" class="control-label">Address</label>
-                                <input type="text" class="form-control" id="field-3" name="address" required="" value="<?= $row->address ?>">
+                                <label for="address" class="control-label">Address</label>
+                                <input type="text" class="form-control" id="address" name="address" required="" value="<?= $row->address ?>">
                             </div>
                         </div>
 
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="field-4" class="control-label">Contact No.</label>
-                                <input type="text" class="form-control" id="field-4" name="contact_no" required="" value="<?= $row->contact_no ?>">
+                                <label for="contact_no" class="control-label">Contact No.</label>
+                                <input type="text" class="form-control" id="contact_no" name="contact_no" required="" value="<?= $row->contact_no ?>">
                             </div>
                         </div>
 
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="field-5" class="control-label">Email</label>
-                                <input type="text" class="form-control" id="field-5" name="email_address" required="" value="<?= $row->email_address ?>">
+                                <label for="email_address" class="control-label">Email</label>
+                                <input type="text" class="form-control" id="email_address" name="email_address" required="" value="<?= $row->email_address ?>">
                             </div>
                         </div>
 
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="field-6" class="control-label">Founded</label>
-                                <input type="date" class="form-control" id="field-6" name="founded_date" required="" value="<?= $row->founded_date ?>">
+                                <label for="founded_date" class="control-label">Founded</label>
+                                <input type="date" class="form-control" id="founded_date" name="founded_date" required="" value="<?= $row->founded_date ?>">
                             </div>
                         </div>
 

@@ -20,7 +20,7 @@ class Inventory_management_model  extends CI_Model {
             );
 
             $this->db->insert('sup_category', $data);
-            
+
             //$id = $this->db->insert_id();
             //$page_name = $this->uri->segment(3);
 
@@ -32,12 +32,12 @@ class Inventory_management_model  extends CI_Model {
         }
     }
 
-    function check_supply_category($supc_name){
+    function check_supply_category($supc_name) {
         $this->db->where('supc_name', $supc_name);
         $query = $this->db->get("sup_category");
-        if($query->num_rows() > 0){
+        if ($query->num_rows() > 0) {
             return "supply_category_exists";
-        }else{
+        } else {
             return "success";
         }
     }
@@ -58,7 +58,7 @@ class Inventory_management_model  extends CI_Model {
     function create_supplier() {
 
         $this->load->library("form_validation");
-        $this->form_validation->set_rules("sup_category", "sup_category", "xss_clean");
+        // $this->form_validation->set_rules("sup_category", "sup_category", "xss_clean");
         $this->form_validation->set_rules("sup_name", "sup_name", "xss_clean");
         $this->form_validation->set_rules("cont_num", "cont_num", "xss_clean");
         $this->form_validation->set_rules("sup_email", "sup_email", "xss_clean");
@@ -71,15 +71,15 @@ class Inventory_management_model  extends CI_Model {
 
             //insert data to database
             $data = array(
-                'sup_category'         => $this->input->post('sup_category'),
+                'sup_category'         => '',
                 'sup_name'             => $this->input->post('sup_name'),
                 'cont_num'             => $this->input->post('cont_num'),
                 'created_date'         => date('Y-m-d H:i:s'),
                 'update_date'         => date('Y-m-d H:i:s'),
                 'sup_email'            => $this->input->post('sup_email'),
                 'sup_address'        => $this->input->post('sup_address'),
-                // 'balance'            => $this->input->post('balance'),
-                // 'due'                => $this->input->post('due'),
+                'balance'            => $this->input->post('balance'),
+                'due'                => $this->input->post('due'),
             );
 
             $this->db->insert('supplier', $data);
@@ -104,7 +104,7 @@ class Inventory_management_model  extends CI_Model {
     function update_supplier() {
 
         $this->load->library("form_validation");
-        $this->form_validation->set_rules("sup_category", "sup_category", "xss_clean");
+        // $this->form_validation->set_rules("sup_category", "sup_category", "xss_clean");
         $this->form_validation->set_rules("sup_name", "sup_name", "xss_clean");
         $this->form_validation->set_rules("cont_num", "cont_num", "xss_clean");
         $this->form_validation->set_rules("sup_email", "sup_email", "xss_clean");
@@ -119,7 +119,7 @@ class Inventory_management_model  extends CI_Model {
 
             //insert data to database
             $data = array(
-                'sup_category'         => $this->input->post('sup_category'),
+                // 'sup_category'         => $this->input->post('sup_category'),
                 'sup_name'             => $this->input->post('sup_name'),
                 'cont_num'             => $this->input->post('cont_num'),
                 'sup_email'            => $this->input->post('sup_email'),
@@ -186,60 +186,62 @@ class Inventory_management_model  extends CI_Model {
             $page_name = $this->uri->segment(3);
             $panel = $this->uri->segment(1);
 
-            if ($panel == "super_admin" && $page_name == "create_inventory") {
-                redirect("super_admin/create_inventory/");
-            }
-            if ($panel == "store_keeper" && $page_name == "create_inventory") {
-                redirect("store_keeper/create_inventory/");
-            }
-            if ($page_name == "category_list") {
-                redirect("super_admin/category_list/");
-            }
-            if ($page_name == "request_requisition") {
-                redirect("common_user/request_requisition");
-            }
-            if ($page_name == "system_settings") {
-                redirect("super_admin/system_settings");
-            }
+            redirect("super_admin/pro_category_list");
+
+            // if ($panel == "super_admin" && $page_name == "create_inventory") {
+            //     redirect("super_admin/create_inventory/");
+            // }
+            // if ($panel == "store_keeper" && $page_name == "create_inventory") {
+            //     redirect("store_keeper/create_inventory/");
+            // }
+            // if ($page_name == "category_list") {
+            //     redirect("super_admin/category_list/");
+            // }
+            // if ($page_name == "request_requisition") {
+            //     redirect("common_user/request_requisition");
+            // }
+            // if ($page_name == "system_settings") {
+            //     redirect("super_admin/system_settings");
+            // }
         }
     }
 
-    function check_product_unique_name($pro_name){
+    function check_product_unique_name($pro_name) {
         $this->db->where('pro_name', $pro_name);
         $query = $this->db->get("product_name");
-        if($query->num_rows() > 0){
+        if ($query->num_rows() > 0) {
             return "product_name_exists";
-        }else{
+        } else {
             return "success";
         }
     }
 
-    function check_product_unique_category($pro_cat_name){
+    function check_product_unique_category($pro_cat_name) {
         $this->db->where('pro_cat_name', $pro_cat_name);
         $query = $this->db->get("pro_category");
-        if($query->num_rows() > 0){
+        if ($query->num_rows() > 0) {
             return "product_category_exists";
-        }else{
+        } else {
             return "success";
         }
     }
 
-    function check_product_brand($pro_brand){
+    function check_product_brand($pro_brand) {
         $this->db->where('pro_brand', $pro_brand);
         $query = $this->db->get("pro_brand");
-        if($query->num_rows() > 0){
+        if ($query->num_rows() > 0) {
             return "product_brand_exists";
-        }else{
+        } else {
             return "success";
         }
     }
 
-    function check_product_measure($measure_name){
+    function check_product_measure($measure_name) {
         $this->db->where('measure_name', $measure_name);
         $query = $this->db->get("measure");
-        if($query->num_rows() > 0){
+        if ($query->num_rows() > 0) {
             return "product_measure_exists";
-        }else{
+        } else {
             return "success";
         }
     }
@@ -384,8 +386,6 @@ class Inventory_management_model  extends CI_Model {
         } else {
 
             $sup_id = $this->input->post('sup_id');
-            $invoice_no = $this->input->post('invoice_no');
-            $invoice_date = $this->input->post('invoice_date');
             $pro_qnty = $this->input->post('pro_qnty');
             $qnty_price = $this->input->post('qnty_price');
             $total_price = $pro_qnty * $qnty_price;
@@ -395,8 +395,6 @@ class Inventory_management_model  extends CI_Model {
                 'procat_id'                 => $this->input->post('procat_id'),
                 'pro_brand'                 => $this->input->post('pro_brand'),
                 'sup_id'                     => $sup_id,
-                'invoice_no'                 => $invoice_no,
-                'invoice_date'                 => $invoice_date,
                 'pro_qnty'                     => $pro_qnty,
                 'measure'                     => $this->input->post('measure'),
                 'qnty_price'                 => $qnty_price,
@@ -407,18 +405,9 @@ class Inventory_management_model  extends CI_Model {
                 'update_date'                 => date('Y-m-d H:i:s')
             );
 
-            //print_r($data);
-
             $this->db->insert('inventory_cart', $data);
-            $page_name = $this->uri->segment(1);
-            if ($page_name == "super_admin") {
-                redirect("super_admin/create_inventory/return/" . $sup_id . "/" . $invoice_no . "/" . $invoice_date);
-            }
-            if ($page_name == "store_keeper") {
-                redirect("store_keeper/create_inventory/return/" . $sup_id . "/" . $invoice_no . "/" . $invoice_date);
-            }
 
-            //redirect("super_admin/create_inventory/return/".$sup_id. "/".$invoice_no. "/" .$invoice_date);
+            redirect("super_admin/create_inventory");
         }
     }
 
@@ -428,6 +417,217 @@ class Inventory_management_model  extends CI_Model {
         $this->db->where('invoice_no', $invoice_no);
         $query = $this->db->get("inventory_cart");
         return $query->result();
+    }
+
+    function get_single_inventory_cart($ivc_id) {
+        $this->db->where('ivc_id', $ivc_id);
+        $query = $this->db->get("inventory_cart");
+        return $query->row();
+    }
+
+    function get_product_name($pro_id) {
+        $this->db->where('pro_id', $pro_id);
+        $query = $this->db->get("product_name");
+        $result = $query->row();
+        return $result->pro_name;
+    }
+
+    function get_supplier_name($sup_id) {
+        $this->db->where('sup_id', $sup_id);
+        $query = $this->db->get("supplier");
+        $result = $query->row();
+        return $result->sup_name;
+    }
+
+    function get_inventory_cart_items() {
+        // $invoice_no = $this->uri->segment(5);
+        $this->db->order_by("sup_id", "DESC");
+        $query = $this->db->get("inventory_cart");
+        return $query->result();
+    }
+
+    function insert_inventory_checkout() {
+
+        $this->load->library("form_validation");
+        $this->form_validation->set_rules("invoice_no", "invoice_no", "xss_clean");
+        $this->form_validation->set_rules("inventory_no", "inventory_no", "xss_clean");
+        $this->form_validation->set_rules("invoice_date", "invoice_date", "xss_clean");
+        $this->form_validation->set_rules("sup_id", "sup_id", "xss_clean");
+        $this->form_validation->set_rules("intotal", "intotal", "xss_clean");
+        $this->form_validation->set_rules("commission", "commission", "xss_clean");
+        $this->form_validation->set_rules("payment", "payment", "xss_clean");
+        $this->form_validation->set_rules("pay_sys", "pay_sys", "xss_clean");
+        $this->form_validation->set_rules("inv_cart_itemids", "inv_cart_itemids", "xss_clean");
+
+        if ($this->form_validation->run() == FALSE) {
+            $this->load->view('super_admin/inventory_cart');
+        } else {
+
+            var_dump($_POST);
+
+            //Getting post values
+            $inv_cart_itemids = $_POST["inv_cart_itemids"];
+
+            var_dump($inv_cart_itemids);
+
+            $invoice_no = $this->input->post('invoice_no');
+            $inventory_no = $this->input->post('inventory_no');
+            $invoice_date = $this->input->post('invoice_date');
+            $sup_id = $this->input->post('sup_id');
+            $intotal = $this->input->post('intotal');
+            $commission = $this->input->post('commission');
+            $payment = $this->input->post('payment');
+            $pay_sys = $this->input->post('pay_sys');
+            $sub_total = $intotal - $commission;
+            $due = $sub_total - $payment;
+
+            $data_inventory = array(
+                'inventory_no'                 => $inventory_no,
+                'invoice_no'                 => $invoice_no,
+                'sup_id'                     => $sup_id,
+                'invoice_date'                 => $invoice_date,
+                'intotal'                     => $intotal,
+                'commission'                 => $commission,
+                'payment'                     => $payment,
+                'pay_sys'                     => $pay_sys,
+                'sub_total'                 => $sub_total,
+                'due'                         => $due,
+                'created_date'                 => date('Y-m-d H:i:s'),
+                'update_date'                 => date('Y-m-d H:i:s')
+            );
+
+            $this->db->insert('inventory_list', $data_inventory);
+
+            //transfer inventory cart to inventory details
+            foreach ($inv_cart_itemids as $ivc_id) {
+
+                $this->db->where('ivc_id', $ivc_id);
+                $ivc_row = $this->db->get("inventory_cart")->row();
+
+                $pro_id = $ivc_row->pro_id;
+                $procat_id = $ivc_row->procat_id;
+                $pro_brand = $ivc_row->pro_brand;
+                $sup_id = $sup_id;
+                $pro_qnty = $ivc_row->pro_qnty;
+                $measure = $ivc_row->measure;
+                $qnty_price = $ivc_row->qnty_price;
+                $sell_price = $ivc_row->sell_price;
+                $total_price = $ivc_row->total_price;
+                $created_date = $ivc_row->created_date;
+
+                $data_iv_details = array(
+                    'pro_id'                     => $pro_id,
+                    'inventory_no'                 => $inventory_no,
+                    'procat_id'                 => $procat_id,
+                    'pro_brand'                 => $pro_brand,
+                    'sup_id'                     => $sup_id,
+                    'invoice_no'                 => $invoice_no,
+                    'invoice_date'                 => $invoice_date,
+                    'pro_qnty'                     => $pro_qnty,
+                    'measure'                     => $measure,
+                    'qnty_price'                 => $qnty_price,
+                    'sell_price'                 => $sell_price,
+                    'total_price'                 => $total_price,
+                    'created_date'                 => $created_date,
+                    'update_date'                 => date('Y-m-d H:i:s')
+                );
+
+                $this->db->insert('inventory_details', $data_iv_details);
+
+                // product stock update
+                $this->db->where('pro_id', $pro_id);
+                $total_stock = $this->db->get("product_name")->row("total_stock");
+
+                $this->db->where('pro_id', $pro_id);
+                $instock = $this->db->get("product_name")->row("instock");
+
+                $this->db->where('pro_id', $pro_id);
+                $last_price = $this->db->get("product_name")->row("last_price");
+                $stock_update = $instock + $pro_qnty;
+                $update_total_stock = $total_stock + $pro_qnty;
+
+                $this->db->where('pro_id', $pro_id);
+                $pro_name = $this->db->get("product_name")->row("pro_name");
+
+                $this->db->where('pro_id', $pro_id);
+                $existing_sup_id = $this->db->get("product_name")->row("sup_id");
+
+                if ($last_price == 0) {
+                    $last_price = $qnty_price;
+                }
+                if ($last_price != $qnty_price) {
+                    $last_price = $last_price;
+                }
+
+                $data_pro_update = array(
+                    'procat_id'                 => $procat_id,
+                    'pro_brand'                 => $pro_brand,
+                    'pro_name'                     => $pro_name,
+                    'sup_id'                     => $sup_id,
+                    'total_stock'                 => $update_total_stock,
+                    'instock'                     => $stock_update,
+                    'measure'                     => $measure,
+                    'last_price'                 => $last_price,
+                    'latest_price'             => $qnty_price,
+                    'sell_price'                 => $sell_price,
+                    'update_date'                 => date('Y-m-d H:i:s')
+                );
+
+                if ($sup_id == $existing_sup_id) {
+                    $this->db->where('pro_id', $pro_id);
+                    $this->db->update('product_name', $data_pro_update);
+                } else {
+                    //Product with Different Supplier 
+                    $pro_code = "PRO-" . mt_rand(100, 999);
+                    $data_pro_update["pro_code"] = $pro_code;
+
+                    $this->db->insert('product_name', $data_pro_update);
+                }
+
+                // delete from inventory_cart
+                $this->db->where('ivc_id', $ivc_id);
+                $this->db->delete('inventory_cart');
+            }
+
+            //supplier balance update
+            $this->db->where('sup_id', $sup_id);
+            $balance = $this->db->get("supplier")->row("balance");
+
+            $this->db->where('sup_id', $sup_id);
+            $last_bal = $this->db->get("supplier")->row("last_bal");
+
+            $this->db->where('sup_id', $sup_id);
+            $present_due = $this->db->get("supplier")->row("due");
+
+            $this->db->where('sup_id', $sup_id);
+            $present_commission = $this->db->get("supplier")->row("commission");
+
+            $update_balance = $balance + $sub_total;
+            $update_last_bal = $balance;
+            $update_due = $present_due + $due;
+            $update_commission = $present_commission + $commission;
+
+            $data_supplier_update = array(
+                'balance'                     => $update_balance,
+                'last_bal'                     => $update_last_bal,
+                'due'                         => $update_due,
+                'commission'                 => $update_commission,
+                'update_date'                 => date('Y-m-d H:i:s')
+            );
+
+            $this->db->where('sup_id', $sup_id);
+            $this->db->update('supplier', $data_supplier_update);
+
+            redirect("super_admin/inventory_list");
+        }
+    }
+
+    function delete_inventory_cart_item() {
+        $ivc_id = $this->uri->segment(3);
+        $this->db->where('ivc_id', $ivc_id);
+        $this->db->delete('inventory_cart');
+
+        redirect("super_admin/inventory_cart");
     }
 
 
@@ -672,6 +872,7 @@ class Inventory_management_model  extends CI_Model {
 
     function create_pro_name() {
         $this->load->library("form_validation");
+        $this->form_validation->set_rules("sup_id", "sup_id", "xss_clean");
         $this->form_validation->set_rules("pro_name", "pro_name", "xss_clean");
         $this->form_validation->set_rules("pro_code", "pro_code", "xss_clean");
 
@@ -681,28 +882,17 @@ class Inventory_management_model  extends CI_Model {
         } else {
 
             //product name check
-
             $pro_name = $this->input->post('pro_name');
             $qry = "SELECT count(*) as cnt from product_name where pro_name= '$pro_name'";
             $res = $this->db->query($qry, array($pro_name))->result();
 
             if ($res[0]->cnt == 1) {
-
-                $page_name = $this->uri->segment(1);
-                if ($page_name == "super_admin") {
-                    redirect("super_admin/create_inventory/pro_name_error");
-                }
-                if ($page_name == "store_keeper") {
-                    redirect("store_keeper/create_inventory/pro_name_error");
-                }
+                redirect("super_admin/product_list/pro_name_error");
             } else {
-
-                //$sup_id=$this->uri->segment(3);
-                //$invoice_no=$this->uri->segment(4);
-                //$invoice_date=$this->uri->segment(5);
 
                 //insert data to database
                 $data = array(
+                    'sup_id'             => $this->input->post('sup_id'),
                     'pro_name'             => $this->input->post('pro_name'),
                     'pro_code'             => $this->input->post('pro_code'),
                     'sell_price'             => "0",
@@ -710,28 +900,9 @@ class Inventory_management_model  extends CI_Model {
                 );
 
                 $this->db->insert('product_name', $data);
-                //$id = $this->db->insert_id();
-                //$page_name=$this->uri->segment(3);
-                //if($sup_id!=""){
-                //redirect("super_admin/create_inventory/return/".$sup_id. "/".$invoice_no. "/" .$invoice_date);
-                //}
 
-                $page_name = $this->uri->segment(1);
-                if ($page_name == "super_admin") {
-                    redirect("super_admin/product_list/");
-                }
-                if ($page_name == "store_keeper") {
-                    redirect("store_keeper/create_inventory/");
-                }
-                redirect("super_admin/create_inventory/");
-
-                //if($page_name=="create_inventory"){redirect("super_admin/create_inventory/");}
-                //if($page_name=="request_requisition"){redirect("common_user/request_requisition");}
-                //if($page_name=="create_common_user"){redirect("super_admin/create_common_user/");}
-                //redirect("super_admin/create_inventory/");
-
-            }  //if pro name not match close
-
+                redirect("super_admin/product_list/");
+            }
         }
     }
 

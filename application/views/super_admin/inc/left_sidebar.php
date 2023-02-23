@@ -31,10 +31,10 @@
                 </li>
                 <li>
                     <a href="<?= base_url() ?>super_admin/branch_manager_list" class="waves-effect"><i class="fas fa-band-aid"></i><span>Branch Manager</span> <span class="float-right"><i class="mdi mdi-chevron-right"></i></span></a>
-                </li> -->
+                </li>
                 <li>
                     <a href="<?= base_url() ?>super_admin/distributor_list_table" class="waves-effect waves-light"><i class="mdi mdi-cart"></i> <span> Distributor </span> <span class="float-right"><i class="mdi mdi-chevron-right"></i></span></a>
-                </li>
+                </li> -->
                 <li>
                     <a href="<?= base_url() ?>super_admin/field_worker_list_table" class="waves-effect"><i class="fas fa-chalkboard-teacher"></i><span>Field Worker</span> <span class="float-right"><i class="mdi mdi-chevron-right"></i></span></a>
                 </li>
@@ -61,7 +61,7 @@
                 <!-- extra  -->
                 <li class="menu-title">Extra</li>
                 <li>
-                    <a href="<?= base_url() ?>super_admin/system_settings" class="waves-effect waves-light"><i class="fas fa-plus-square"></i><span> Add Product </span> <span class="float-right"></span></a>
+                    <a href="<?= base_url() ?>super_admin/product_list" class="waves-effect waves-light"><i class="fas fa-plus-square"></i><span> Add Product </span> <span class="float-right"></span></a>
                 </li>
 
                 <!-- <li class="menu-title">Reporting</li>

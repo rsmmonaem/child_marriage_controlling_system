@@ -242,8 +242,8 @@ class Office_setup_model  extends CI_Model {
 
     function create_branch_office() {
         $this->load->library("form_validation");
-        $this->form_validation->set_rules("zonal_office", "zonal_office", "xss_clean");
-        $this->form_validation->set_rules("zonal_code", "zonal_code", "xss_clean");
+        // $this->form_validation->set_rules("zonal_office", "zonal_office", "xss_clean");
+        // $this->form_validation->set_rules("zonal_code", "zonal_code", "xss_clean");
         $this->form_validation->set_rules("branch_office", "branch_office", "xss_clean");
         $this->form_validation->set_rules("branch_code", "branch_code", "xss_clean");
         $this->form_validation->set_rules("division", "division", "xss_clean");
@@ -259,40 +259,34 @@ class Office_setup_model  extends CI_Model {
         } else {
 
             //get zonal code
-            echo $zonal_code = $this->input->post('zonal_code');
+            // echo $zonal_code = $this->input->post('zonal_code');
 
-            $this->db->where('zonal_code', $zonal_code);
-            $query = $this->db->get("zonal_office")->result();
-            foreach ($query as $row) {
-                $zonal_office = $row->zonal_office;
-                $district = $row->district;
-                $division = $row->division;
-            }
+            // $this->db->where('zonal_code', $zonal_code);
+            // $query = $this->db->get("zonal_office")->result();
+            // foreach ($query as $row) {
+            //     $zonal_office = $row->zonal_office;
+            //     $district = $row->district;
+            //     $division = $row->division;
+            // }
 
             //insert data to database
             $data = array(
-                'zonal_code'             => $this->input->post('zonal_code'),
-                'zonal_office'             => $zonal_office,
+                'zonal_code'             => '',
+                'zonal_office'             => '',
                 'branch_office'         => $this->input->post('branch_office'),
                 'branch_code'             => $this->input->post('branch_code'),
-                'division'                 => $division,
-                'district'                 => $district,
+                'division'                 => $this->input->post('division'),
+                'district'                 => $this->input->post('district'),
                 'address'                 => $this->input->post('address'),
                 'contact_no'             => $this->input->post('contact_no'),
                 'email_address'         => $this->input->post('email_address'),
-                'branch_head_id'         => "null",
+                'branch_head_id'         => '',
                 'founded_date'             => $this->input->post('founded_date')
             );
 
             $this->db->insert('branch_office', $data);
             //$id = $this->db->insert_id();
             redirect("super_admin/branch_list/");
-
-            /*$page_name=$this->uri->segment(3);
-
-		if($page_name=="create_supplier"){redirect("super_admin/create_supplier/");}
-		if($page_name=="create_unit_head"){redirect("super_admin/create_unit_head/");}
-		if($page_name=="create_common_user"){redirect("super_admin/create_common_user/");}*/
         }
     }
 
@@ -325,16 +319,12 @@ class Office_setup_model  extends CI_Model {
     function update_branch_office() {
 
         $this->load->library("form_validation");
-        $this->form_validation->set_rules("zonal_office", "zonal_office", "xss_clean");
-        $this->form_validation->set_rules("zonal_code", "zonal_code", "xss_clean");
         $this->form_validation->set_rules("branch_office", "branch_office", "xss_clean");
-        $this->form_validation->set_rules("branch_code", "branch_code", "xss_clean");
         $this->form_validation->set_rules("division", "division", "xss_clean");
         $this->form_validation->set_rules("district", "district", "xss_clean");
         $this->form_validation->set_rules("address", "address", "xss_clean");
         $this->form_validation->set_rules("contact_no", "contact_no", "xss_clean");
         $this->form_validation->set_rules("email_address", "email_address", "xss_clean");
-        $this->form_validation->set_rules("branch_head_id", "branch_head_id", "xss_clean");
         $this->form_validation->set_rules("founded_date", "founded_date", "xss_clean");
 
         if ($this->form_validation->run() == FALSE) {
@@ -344,28 +334,24 @@ class Office_setup_model  extends CI_Model {
             $br_id = $this->uri->segment(3);
 
             //zone change
-            echo $zonal_code = $this->input->post('zonal_code');
+            // echo $zonal_code = $this->input->post('zonal_code');
 
-            $this->db->where('zonal_code', $zonal_code);
-            $query = $this->db->get("zonal_office")->result();
-            foreach ($query as $row) {
-                $zonal_office = $row->zonal_office;
-                $district = $row->district;
-                $division = $row->division;
-            }
+            // $this->db->where('zonal_code', $zonal_code);
+            // $query = $this->db->get("zonal_office")->result();
+            // foreach ($query as $row) {
+            //     $zonal_office = $row->zonal_office;
+            //     $district = $row->district;
+            //     $division = $row->division;
+            // }
 
             //insert data to database
             $data = array(
-                'zonal_code'             => $this->input->post('zonal_code'),
-                'zonal_office'             => $zonal_office,
                 'branch_office'         => $this->input->post('branch_office'),
-                'branch_code'             => $this->input->post('branch_code'),
-                'division'                 => $division,
-                'district'                 => $district,
+                'division'                 => $this->input->post('division'),
+                'district'                 => $this->input->post('district'),
                 'address'                 => $this->input->post('address'),
                 'contact_no'             => $this->input->post('contact_no'),
                 'email_address'         => $this->input->post('email_address'),
-                'branch_head_id'         => "null",
                 'founded_date'             => $this->input->post('founded_date')
             );
 
@@ -400,8 +386,6 @@ class Office_setup_model  extends CI_Model {
             $this->db->where('branch_code', $branch_code);
             $query = $this->db->get("branch_office")->result();
             foreach ($query as $row) {
-                $zonal_office = $row->zonal_office;
-                $zonal_code = $row->zonal_code;
                 $branch_office = $row->branch_office;
                 $district = $row->district;
                 $division = $row->division;
@@ -409,8 +393,8 @@ class Office_setup_model  extends CI_Model {
 
             //insert data to database
             $data = array(
-                'zonal_office'             => $zonal_office,
-                'zonal_code'             => $zonal_code,
+                'zonal_office'             => '',
+                'zonal_code'             => '',
                 'branch_office'         => $branch_office,
                 'branch_code'             => $this->input->post('branch_code'),
                 'division'                 => $division,
@@ -420,19 +404,13 @@ class Office_setup_model  extends CI_Model {
                 'address'                 => $this->input->post('address'),
                 'contact_no'             => $this->input->post('contact_no'),
                 'email_address'         => $this->input->post('email_address'),
-                'pickpoint_head_id'         => "null",
+                'pickpoint_head_id'         => '',
                 'founded_date'             => $this->input->post('founded_date')
             );
 
             $this->db->insert('pickpoint_office', $data);
             //$id = $this->db->insert_id();
             redirect("super_admin/pick_point_list");
-
-            /*$page_name=$this->uri->segment(3);
-
-		if($page_name=="create_supplier"){redirect("super_admin/create_supplier/");}
-		if($page_name=="create_unit_head"){redirect("super_admin/create_unit_head/");}
-		if($page_name=="create_common_user"){redirect("super_admin/create_common_user/");}*/
         }
     }
 
@@ -472,8 +450,6 @@ class Office_setup_model  extends CI_Model {
             $this->db->where('branch_code', $branch_code);
             $query = $this->db->get("branch_office")->result();
             foreach ($query as $row) {
-                $zonal_office = $row->zonal_office;
-                $zonal_code = $row->zonal_code;
                 $branch_office = $row->branch_office;
                 $district = $row->district;
                 $division = $row->division;
@@ -481,8 +457,6 @@ class Office_setup_model  extends CI_Model {
 
             //insert data to database
             $data = array(
-                'zonal_office'             => $zonal_office,
-                'zonal_code'             => $zonal_code,
                 'branch_office'         => $branch_office,
                 'branch_code'             => $this->input->post('branch_code'),
                 'division'                 => $division,
@@ -532,17 +506,8 @@ class Office_setup_model  extends CI_Model {
             $this->db->insert('bank_details', $data);
             //$id = $this->db->insert_id();
             redirect("super_admin/bank_details/");
-
-            /*$page_name=$this->uri->segment(3);
-
-		if($page_name=="create_supplier"){redirect("super_admin/create_supplier/");}
-		if($page_name=="create_unit_head"){redirect("super_admin/create_unit_head/");}
-		if($page_name=="create_common_user"){redirect("super_admin/create_common_user/");}*/
         }
     }
-
-
-
 
     function get_bank() {
         $this->db->order_by("b_id", "DESC");

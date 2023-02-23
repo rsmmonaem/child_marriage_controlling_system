@@ -55,16 +55,12 @@
                                             <th>Quantity/s</th>
                                             <th>Price</th>
                                             <th>Total</th>
-
-
-
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php $i = 1;
                                         foreach ($this->imm->getonerow_inventory_details() as $row) : ?>
                                             <tr>
-
                                                 <td><?= $i++ ?></td>
                                                 <?php
                                                 $this->db->where('pro_id', $row->pro_id);
@@ -74,7 +70,6 @@
                                                 <td><?= $row->pro_qnty ?>-<?= $row->measure ?></td>
                                                 <td><?= $row->qnty_price ?></td>
                                                 <td><?= $row->total_price ?></td>
-
                                             </tr>
                                         <?php endforeach; ?>
                                     </tbody>
@@ -103,7 +98,6 @@
                                 <p class="text-right">Sub-Total: <?= $row->sub_total ?></p>
                                 <p class="text-right">Payment: <?= $row->payment ?> By <?= $row->pay_sys ?></p>
                                 <p class="text-right">Due: <?= $row->due ?></p>
-
                                 <hr>
                                 <h4 class="text-right mb-0"><?= $row->sub_total ?> ৳</h4>
                             </div>
@@ -130,10 +124,6 @@
 
                             </div>
                         </div>
-
-
-
-
                     </div>
 
             </div>

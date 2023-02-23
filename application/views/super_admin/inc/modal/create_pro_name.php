@@ -13,6 +13,19 @@
                 </div>
                 <div class="modal-body">
                     <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="sup_id" class="control-label">Select Supplier</label>
+                                <select class="form-control" name="sup_id" id="sup_id" required>
+                                    <option value='' selected disabled hidden>Select Here</option>
+                                    <?php foreach ($this->imm->getsupplier() as $row) : ?>
+                                        <option value="<?= $row->sup_id ?>"><?= $row->sup_name ?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
                         <div class="col-md-6" id="product_name_id">
                             <div class="form-group">
                                 <label for="field_product_name" class="control-label">Product Name</label>

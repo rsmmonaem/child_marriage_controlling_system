@@ -22,31 +22,15 @@ if ($error == "username_invalid") {
                     <h4 class="mt-0 header-title">Field Worker Details</h4> <br>
 
                     <div class="form-group row">
-                        <label class="col-sm-2 col-form-label">ZONE</label>
-                        <div class="col-sm-6">
-                            <select class="form-control" name="zonal_code" id="zonal_dropdown" required>
-                                <?php foreach ($this->osm->get_zonal() as $row2) : ?>
-                                    <?php
-                                    foreach ($this->urm->getonerow_field_worker() as $row) : ?>
-                                        <option <?php if ($row->zonal_code == $row2->zonal_code) {
-                                                    echo "selected";
-                                                } ?> value="<?= $row2->zonal_code ?>"><?= $row2->zonal_office ?></option>
-                                    <?php endforeach; ?>
-                                <?php endforeach; ?>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
                         <label class="col-sm-2 col-form-label">BRANCH OFFICE</label>
                         <div class="col-sm-6">
                             <select class="form-control" name="branch_code" id="branch_dropdown" required>
                                 <?php foreach ($this->osm->get_branch() as $row2) : ?>
                                     <?php
                                     foreach ($this->urm->getonerow_field_worker() as $row) : ?>
-                                        <?php if ($row->branch_code == $row2->branch_code) : ?>
-                                            <option value="<?= $row2->branch_code ?>" selected><?= $row2->branch_office ?></option>
-                                        <?php endif; ?>
+                                        <option <?php if ($row->branch_code == $row2->branch_code) {
+                                                    echo "selected";
+                                                } ?> value="<?= $row2->branch_code ?>"><?= $row2->branch_office ?></option>
                                     <?php endforeach; ?>
                                 <?php endforeach; ?>
                             </select>

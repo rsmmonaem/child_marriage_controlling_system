@@ -45,7 +45,7 @@ class Super_admin extends CI_Controller {
         $this->session_data();
         $this->load->model('office_setup_model', 'osm');
         $this->load->model('order_management_model', 'omm');
-        $this->load->view('super_admin/zonal_office_list');
+        $this->load->view('super_admin/branch_office_list');
     }
 
 
@@ -878,6 +878,34 @@ class Super_admin extends CI_Controller {
         $this->imm->deleteinventory();
     }
 
+    public function inventory_cart() {
+        $this->session_data();
+        $this->load->model('inventory_management_model', 'imm');
+        $this->load->model('order_management_model', 'omm');
+        $this->load->view('super_admin/inventory_cart');
+    }
+    
+    public function inventory_checkout() {
+        $this->session_data();
+        $this->load->model('inventory_management_model', 'imm');
+        $this->load->model('order_management_model', 'omm');
+        $this->load->view('super_admin/inventory_checkout');
+    }
+
+    public function insert_inventory_checkout() {
+        $this->session_data();
+        $this->load->model('inventory_management_model', 'imm');
+        $this->load->model('order_management_model', 'omm');
+        $this->imm->insert_inventory_checkout();
+    }
+
+    public function delete_inventory_cart_item() {
+        $this->session_data();
+        $this->load->model('inventory_management_model', 'imm');
+        $this->load->model('order_management_model', 'omm');
+        $this->imm->delete_inventory_cart_item();
+    }
+
     public function stock_check() {
         $this->session_data();
         $this->load->model('inventory_management_model', 'imm');
@@ -1175,7 +1203,7 @@ class Super_admin extends CI_Controller {
         $this->po->purchase_order_view_approve();
     }
 
-    public function system_settings() {
+    public function pro_category_list() {
         $this->session_data();
         $this->load->model('requisition_model', 'rm');
         $this->load->model('purchase_model', 'pm');

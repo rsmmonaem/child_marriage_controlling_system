@@ -4,11 +4,14 @@
     <div class="card-body">
         <div class="btn-group">
             <div>
+                <a href="#" class="btn btn-secondary disabled btn-lg tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Inventory List">
+                    <i class="fas fa-book-alt"></i>Inventory List
+                </a>
                 <a href="<?= base_url() ?>super_admin/create_inventory/" class="btn btn-warning btn-lg tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Inventory List">
                     <i class="fas fa-pencil"></i>Create Inventory
                 </a>
-                <a href="#" class="btn btn-secondary disabled btn-lg tooltips" data-placement="top" data-toggle="tooltip" data-original-title="<?= $page_name = str_replace("_", " ", $page_name); ?>">
-                    <i class="fas fa-book-alt"></i> <?= $page_name = str_replace("_", " ", $page_name); ?>
+                <a href="<?= base_url() ?>super_admin/inventory_cart/" class="btn btn-success btn-lg tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Inventory Cart">
+                    <i class="fas fa-pencil"></i>Inventory Cart
                 </a>
                 <a href="<?= base_url() ?>super_admin/stock_check/" class="btn btn-primary btn-lg tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Stock Check">
                     <i class="fas fa-pencil"></i>Stock Check

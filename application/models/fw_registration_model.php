@@ -7,7 +7,6 @@ class Fw_registration_model  extends CI_Model {
     function create_field_worker() {
 
         $this->load->library("form_validation");
-        $this->form_validation->set_rules("zonal_code", "zonal_code", "xss_clean");
         $this->form_validation->set_rules("branch_code", "branch_code", "xss_clean");
         $this->form_validation->set_rules("field_worker", "field_worker", "xss_clean");
         $this->form_validation->set_rules("fw_id_no", "fw_id_no", "xss_clean");
@@ -68,8 +67,8 @@ class Fw_registration_model  extends CI_Model {
             $this->db->where('branch_code', $branch_code);
             $query = $this->db->get("branch_office")->result();
             foreach ($query as $row) {
-                $zonal_office = $row->zonal_office;
-                $zonal_code = $row->zonal_code;
+                // $zonal_office = $row->zonal_office;
+                // $zonal_code = $row->zonal_code;
                 $branch_office = $row->branch_office;
             }
 
@@ -82,8 +81,8 @@ class Fw_registration_model  extends CI_Model {
             $data = array(
                 'user_id'             => $fw_id_no,
                 'status'             => $status,
-                'zonal_office'         => $zonal_office,
-                'zonal_code'         => $zonal_code,
+                'zonal_office'         => '',
+                'zonal_code'         => '',
                 'branch_office'     => $branch_office,
                 'branch_code'         => $branch_code,
                 'field_worker'         => $this->input->post('field_worker'),

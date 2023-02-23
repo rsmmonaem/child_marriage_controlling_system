@@ -29,21 +29,12 @@
                             <span class="input-group-append">
                                 <button type="submit" class="btn btn-effect-ripple btn-primary"><i class="fas fa-search"></i> Search </button>
                             </span>
-                </form>
 
+                </form>
             </div>
         </div>
     </div>
 </div>
-</div><!--end row-->
-<div class="row">
-
-    <!-- Start of fao List -->
-
-
-
-    <!-- end of fao_list -->
-
 </div><!--end row-->
 
 <div class="row">
@@ -63,9 +54,7 @@
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item"><i class="fas fa-envelope float-right"></i><?= $row->sup_email ?></li>
                         <li class="list-group-item"><i class="fas fa-phone float-right"></i><?= $row->cont_num ?></li>
-
                         <li class="list-group-item"><i class="fas fa-home float-right"></i><?= $row->sup_address ?></li>
-
                     </ul>
 
                 </div>
