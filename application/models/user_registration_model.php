@@ -1188,24 +1188,36 @@ class User_registration_model  extends CI_Model {
     }
 
 
+
     function customer_purchase() {
+
         $this->load->library("form_validation");
         $this->form_validation->set_rules("pro_id", "pro_id", "xss_clean");
-        $this->form_validation->set_rules("fw_id_no", "fw_id_no", "xss_clean");
+        $this->form_validation->set_rules("pro_instock", "pro_instock", "xss_clean");
+        $this->form_validation->set_rules("pro_price", "pro_price", "xss_clean");
+        $this->form_validation->set_rules("purchase_qty", "purchase_qty", "xss_clean");
+        $this->form_validation->set_rules("purchase_total", "purchase_total", "xss_clean");
         $this->form_validation->set_rules("down_payment", "down_payment", "xss_clean");
+        $this->form_validation->set_rules("pay_due", "pay_due", "xss_clean");
+        $this->form_validation->set_rules("installment_plan", "installment_plan", "xss_clean");
+        $this->form_validation->set_rules("per_installment", "per_installment", "xss_clean");
         $this->form_validation->set_rules("next_pay", "next_pay", "xss_clean");
+        $this->form_validation->set_rules("fw_id_no", "fw_id_no", "xss_clean");
         $this->form_validation->set_rules("cm_id_no", "cm_id_no", "xss_clean");
 
         $cm_id_no = $this->input->post('cm_id_no');
 
         if ($this->form_validation->run() == FALSE) {
             echo  $this->upload->display_errors();
-            $this->load->view('super_admin/customer_profile/.$cm_id_no./error');
+            $this->load->view('super_admin/customer_profile/'.$cm_id_no.'/error');
         } else {
 
-            //find product price
-            echo $pro_id = $this->input->post('pro_id');
+            // Find product price
+            $pro_id = $this->input->post('pro_id');
             $down_payment = $this->input->post('down_payment');
+            $purchase_qty = $this->input->post('purchase_qty');
+            $installment_plan = $this->input->post('installment_plan');
+            $next_pay_date = $this->input->post('next_pay_date');
 
             $this->db->where('pro_id', $pro_id);
             $query = $this->db->get("product_name")->result();
@@ -1213,67 +1225,99 @@ class User_registration_model  extends CI_Model {
                 $pro_name = $row->pro_name;
                 $latest_price = $row->latest_price;
                 $sell_price = $row->sell_price;
+                $instock = $row->instock;
+                $all_time_sell = $row->all_time_sell;
             }
 
-            $due_payment = $sell_price - $down_payment;
+            $purchase_total = $sell_price * $purchase_qty;
+            $pay_due = $purchase_total - $down_payment;
+            $instl_given = 0;
+
+            if($pay_due == 0){
+                $installment_plan = 0;
+                $per_installment = 0;
+                $next_pay_date = '';
+                $pay_status = "COMPLETED";
+            }else{
+                $per_installment = round($pay_due / $installment_plan);
+                $instl_given = 1;
+                $pay_status = "RUNNING";
+            }
+
+            $next_level = "ADMIN";
+            $status = "PENDING";
+
             $cp_no = mt_rand(100000, 999999);
 
             $fw_id_no = $this->input->post('fw_id_no');
-
             $this->db->where('fw_id_no', $fw_id_no);
-            $query = $this->db->get("field_worker")->result();
-            foreach ($query as $row2) {
-                $branch_code = $row2->branch_code;
-                $zonal_code = $row2->zonal_code;
-            }
+            $branch_code = $this->db->get("field_worker")->row("branch_code");
+
 
             //insert data to database
-
             $data = array(
-                'pro_id'         => $pro_id,
                 'cp_no'         => $cp_no,
+                'pro_id'         => $pro_id,
                 'pro_name'         => $pro_name,
                 'latest_price'     => $latest_price,
                 'sell_price'     => $sell_price,
-                'due_payment'     => $due_payment,
+                'purchase_qty'     => $purchase_qty,
+                'purchase_total'     => $purchase_total,
+                'down_payment'     => $down_payment,
+                'pay_due'     => $pay_due,
+                'installment_plan'     => $installment_plan,
+                'per_installment'     => $per_installment,
+                'instl_given'     => $instl_given,
+                'next_pay_date'     => $next_pay_date,
+                'cm_id_no'        => $cm_id_no,
+                'fw_id_no'        => $fw_id_no,
                 'branch_code'     => $branch_code,
-                'zonal_code'     => $zonal_code,
-                'down_payment'    => $this->input->post('down_payment'),
-                'next_pay'        => $this->input->post('next_pay'),
-                'cm_id_no'        => $this->input->post('cm_id_no'),
-                'fw_id_no'        => $this->input->post('fw_id_no'),
-                'status'        => 'PENDING',
-                'next_level'    => 'BRANCH_MANAGER',
+                'status'        => $status,
+                'next_level'    => $next_level,
+                'pay_status'    => $pay_status,
                 'created_date'         => date('Y-m-d H:i:s'),
-                'update_date'         => date('Y-m-d H:i:s')
+                'updated_date'         => date('Y-m-d H:i:s')
             );
 
             $data2 = array(
-                'pro_id'         => $pro_id,
                 'cp_no'         => $cp_no,
+                'instl_no'         => 'INSTL-1',
+                'instl_pay'         => $down_payment,
+                'pro_id'         => $pro_id,
                 'pro_name'         => $pro_name,
                 'sell_price'     => $sell_price,
-                'payment'    => $this->input->post('down_payment'),
-                'due_payment'     => $due_payment,
-                'cm_id_no'        => $this->input->post('cm_id_no'),
-                'fw_id_no'        => $this->input->post('fw_id_no'),
-                'payment_date'         => date('Y-m-d H:i:s')
+                'purchase_qty'    => $purchase_qty,
+                'purchase_total'     => $purchase_total,
+                'down_payment'     => $down_payment,
+                'pay_due'     => $pay_due,
+                'installment_plan'     => $installment_plan,
+                'instl_given'     => $instl_given,
+                'cm_id_no'        => $cm_id_no,
+                'fw_id_no'        => $fw_id_no,
+                'payment_date'    => date('Y-m-d H:i:s')
             );
 
-
-
-            print_r($data);
             $this->db->insert('customer_purchase', $data);
             $this->db->insert('cp_history', $data2);
 
+            // Update Stock In Product_Name Table
+            $data3 = array(
+                'instock'     => $instock - $purchase_qty,
+                'all_time_sell'     => $all_time_sell + $purchase_qty,
+                'update_date'     => date('Y-m-d H:i:s')
+            );
 
+            $this->db->where('pro_id', $pro_id);
+            $this->db->update('product_name', $data3);
 
             //$id = $this->db->insert_id();
+
             $page_name = $this->uri->segment(1);
             if ($page_name == "field_worker") {
                 redirect("field_worker/customer_profile/" . $cm_id_no);
             }
             redirect("super_admin/customer_profile/" . $cm_id_no);
+
         }
     }
 
@@ -1281,6 +1325,12 @@ class User_registration_model  extends CI_Model {
         $cm_id_no = $this->uri->segment(3);
         $this->db->where('cm_id_no', $cm_id_no);
         $query = $this->db->get("customer_purchase");
+        return $query->result();
+    }
+
+    function get_purchase_due_payment() {
+        $cm_id_no = $this->uri->segment(3);
+        $query = $this->db->query("SELECT * FROM customer_purchase WHERE cm_id_no = '$cm_id_no' AND pay_due != 0  AND status='APPROVED' ORDER BY created_date DESC");
         return $query->result();
     }
 
@@ -1299,86 +1349,106 @@ class User_registration_model  extends CI_Model {
     }
 
     function purchase_order_approved_admin() {
+
         $cp_no = $this->input->post('cp_no');
         $status = $this->input->post('status');
         $data = array(
             'status'         => 'APPROVED',
             'next_level'     => 'N/A',
-            'update_date'     => date('Y-m-d H:i:s')
+            'updated_date'     => date('Y-m-d H:i:s')
         );
+
         $this->db->where('cp_no', $cp_no);
         $this->db->update('customer_purchase', $data);
+
         redirect("super_admin/customer_purchase_view/" . $cp_no);
     }
 
 
     function cp_payment() {
+
         $this->load->library("form_validation");
-        $this->form_validation->set_rules("pro_id", "pro_id", "xss_clean");
+        $this->form_validation->set_rules("cp_no", "cp_no", "xss_clean");
         $this->form_validation->set_rules("fw_id_no", "fw_id_no", "xss_clean");
-        $this->form_validation->set_rules("down_payment", "down_payment", "xss_clean");
-        $this->form_validation->set_rules("next_pay", "next_pay", "xss_clean");
         $this->form_validation->set_rules("cm_id_no", "cm_id_no", "xss_clean");
+        $this->form_validation->set_rules("pay_installment", "pay_installment", "xss_clean");
+        $this->form_validation->set_rules("next_payment_date", "next_payment_date", "xss_clean");
 
         $cm_id_no = $this->input->post('cm_id_no');
 
         if ($this->form_validation->run() == FALSE) {
             echo  $this->upload->display_errors();
-            $this->load->view('super_admin/customer_profile/.$cm_id_no./error');
+            $this->load->view('super_admin/customer_profile/'.$cm_id_no.'/error');
         } else {
 
-            //find product price
-            echo $cp_no = $this->input->post('cp_no');
-            $payment = $this->input->post('payment');
+            // Installment inputs
+            $pay_installment = floatval($this->input->post('pay_installment'));
+            $next_payment_date = $this->input->post('next_payment_date');
+
+            // Find product price
+            $cp_no = $this->input->post('cp_no');
 
             $this->db->where('cp_no', $cp_no);
             $query = $this->db->get("customer_purchase")->result();
             foreach ($query as $row) {
-                $due_payment = $row->due_payment;
                 $pro_id = $row->pro_id;
                 $pro_name = $row->pro_name;
-                $down_payment = $row->down_payment;
-
-
-                $cp_no = $row->cp_no;
                 $sell_price = $row->sell_price;
+                $purchase_qty = $row->purchase_qty;
+                $purchase_total = $row->purchase_total;
+                $down_payment = $row->down_payment;
+                $pay_due = $row->pay_due;
+                $installment_plan = $row->installment_plan;
+                $instl_given = $row->instl_given;
                 $cm_id_no = $row->cm_id_no;
                 $fw_id_no = $row->fw_id_no;
+                $pay_status = $row->pay_status;
             }
 
-            $due_payment2 = $due_payment - $payment;
-            $payment2 = $down_payment + $payment;
+            $calc_pay_due = $pay_due - $pay_installment;
+            $calc_down_payment = $down_payment + $pay_installment;
 
+            // Update installment number
+            $instl_given = $instl_given + 1;
+
+            if($calc_pay_due <= 0){
+                $pay_status = "COMPLETED";
+            }
 
             //insert data to database
-
             $data = array(
-                'due_payment'     => $due_payment2,
-                'next_pay'        => $this->input->post('next_pay'),
-                'down_payment'    => $payment2,
-                'update_date'         => date('Y-m-d H:i:s')
+                'down_payment'      => $calc_down_payment,
+                'pay_due'           => $calc_pay_due,
+                'instl_given'       => $instl_given,
+                'next_pay_date'     => $next_payment_date,
+                'pay_status'        => $pay_status,
+                'updated_date'      => date('Y-m-d H:i:s')
             );
 
+            $instl_no = "INSTL-$instl_given";
             $data2 = array(
-                'pro_id'         => $pro_id,
-                'cp_no'         => $cp_no,
-                'pro_name'         => $pro_name,
-                'sell_price'     => $sell_price,
-                'payment'        => $payment2,
-                'due_payment'     => $due_payment2,
-                'cm_id_no'        => $cm_id_no,
-                'fw_id_no'        => $fw_id_no,
-                'payment_date'         => date('Y-m-d H:i:s')
+                'cp_no'                 => $cp_no,
+                'instl_no'              => $instl_no,
+                'instl_pay'             => $pay_installment,
+                'pro_id'                => $pro_id,
+                'pro_name'              => $pro_name,
+                'sell_price'            => $sell_price,
+                'purchase_qty'          => $purchase_qty,
+                'purchase_total'        => $purchase_total,
+                'down_payment'          => $calc_down_payment,
+                'pay_due'               => $calc_pay_due,
+                'installment_plan'      => $installment_plan,
+                'instl_given'           => $instl_given,
+                'cm_id_no'              => $cm_id_no,
+                'fw_id_no'              => $fw_id_no,
+                'payment_date'          => date('Y-m-d H:i:s')
             );
 
-
-
-            print_r($data);
             $this->db->where('cp_no', $cp_no);
             $this->db->update('customer_purchase', $data);
+            
+            $this->db->where('cp_no', $cp_no);
             $this->db->insert('cp_history', $data2);
-
-
 
             //$id = $this->db->insert_id();
             $page_name = $this->uri->segment(1);
@@ -1388,16 +1458,7 @@ class User_registration_model  extends CI_Model {
             redirect("super_admin/customer_profile/" . $cm_id_no);
         }
     }
-
-
-
     // end of customer Functions
-
-
-
-
-
-
 
     function getadmin() {
         $this->db->order_by("u_id", "DESC");
@@ -1405,7 +1466,6 @@ class User_registration_model  extends CI_Model {
         $query = $this->db->get("admin_user");
         return $query->result();
     }
-
 
     function update_admin() {
 
@@ -1458,8 +1518,6 @@ class User_registration_model  extends CI_Model {
         }
     }
 
-
-
     function getfield_worker_panel() {
         $user_id = $this->session->userdata('user_id');
         //$this->db->order_by("u_id", "DESC");
@@ -1471,13 +1529,10 @@ class User_registration_model  extends CI_Model {
 
     function update_field_worker_panel() {
 
-
         $this->load->library("form_validation");
         $this->form_validation->set_rules("full_name", "full_name", "xss_clean");
         $this->form_validation->set_rules("new_user_name", "user_name", "xss_clean");
         $this->form_validation->set_rules("new_pass_word", "pass_word", "xss_clean");
-
-
 
         if ($this->form_validation->run() == FALSE) {
             echo  $this->upload->display_errors();
@@ -1504,12 +1559,10 @@ class User_registration_model  extends CI_Model {
             }
 
             //insert data to database
-
             $data2 = array(
                 'full_name'         => $this->input->post('full_name'),
                 'user_name'         => $this->input->post('new_user_name'),
                 'pass_word'         => $this->input->post('new_pass_word')
-
             );
 
             $this->db->where('user_id', $user_id);

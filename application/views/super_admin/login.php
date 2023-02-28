@@ -62,17 +62,11 @@ include "inc/form_header_links.php";
                             <div class="col-sm-7 m-t-20">
                                 <!-- <a href="pages-recoverpw.html" class="text-muted"><i class="mdi mdi-lock"></i> Forgot your password ?</a> -->
 
-                                login details: <br>
-                                <b>super admin:</b><br> user: admin password: admin <br>
-                                <b>Field Worker:</b><br> user: 281354 password: CF1234 <br>
-                                <b>Distributor:</b><br> user: 456788 password: CF1234 <br>
-                                <b>Zonal Manager:</b><br> user: 719872 password: CF1234 <br>
-                                <b>Branch Manager:</b><br> user: 789537 password: CF1234 <br>
-
+                                Login Details: <br>
+                                <b>Super Admin:</b><br> User: admin Password: admin <br>
+                                <b>Field Worker: Zahid Hasan</b><br> user: 122114 password: CF1234 <br>
+                                <b>Field Worker: Kabir Zahid</b><br> user: 168361 password: CF1234 <br>
                             </div>
-                            <!-- <div class="col-sm-5 m-t-20">
-                                    <a href="pages-register.html" class="text-muted"><i class="mdi mdi-account-circle"></i> Create an account ?</a>
-                                </div> -->
                         </div>
                     </form>
                 </div>

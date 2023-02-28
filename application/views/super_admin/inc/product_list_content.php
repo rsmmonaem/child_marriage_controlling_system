@@ -43,6 +43,7 @@
                             <th>Measure</th>
                             <th>Buy Price</th>
                             <th>Sell Price</th>
+                            <th>All Time Sells</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -61,6 +62,7 @@
                                 <td><?= $row->measure ?></td>
                                 <td><?= $row->latest_price ?></td>
                                 <td><?= $row->sell_price ?></td>
+                                <td><?= $row->all_time_sell ?></td>
                                 <td><a onclick="return confirm('Want to delete?');" href="<?= base_url() ?>super_admin/deleteproductbyid/<?= $row->pro_id ?>" class="btn btn-secondary btn-block mt-0 tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Delete">
                                         <i class="fas fa-times"></i>
                                     </a></td>

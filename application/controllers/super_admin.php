@@ -1388,6 +1388,143 @@ class Super_admin extends CI_Controller {
         $this->load->model('user_registration_model', 'urm');
         $this->urm->update_admin();
     }
+
+    public function get_product_by_id_ajax() {
+        $this->session_data();
+        $this->load->model('inventory_management_model', 'imm');
+
+        $pro_id = $this->input->post('pro_id');
+
+        foreach ($this->imm->get_product_by_id($pro_id) as $row) {
+
+            echo "<div class='form-group row'>
+                <div class='col-md-6'>
+                    <label for='pro_instock' class='col-md-12 col-form-label'>InStock</label>
+                    <input class='form-control' type='number' name='pro_instock' id='pro_instock' value='$row->instock' readonly required>
+                </div>
+                <div class='col-md-6'>
+                    <label for='pro_price' class='col-sm-12 col-form-label'>Price</label>
+                    <input class='form-control' type='number' name='pro_price' id='pro_price' value='$row->sell_price' readonly required>
+                </div>
+            </div>
+
+            <div class='form-group row'>
+                <div class='col-md-6'>
+                    <label for='purchase_qty' class='col-sm-12 col-form-label'>Quantity</label>
+                    <input class='form-control' type='number' name='purchase_qty' id='purchase_qty' placeholder='Enter quantity' required>
+                </div>
+                <div class='col-md-6'>
+                    <label for='purchase_total' class='col-sm-12 col-form-label'>Total Bill</label>
+                    <input class='form-control' type='number' name='purchase_total' id='purchase_total' readonly required>
+                </div>
+            </div>
+
+            <div class='form-group row'>
+                <div class='col-md-6'>
+                    <label for='down_payment' class='col-sm-12 col-form-label'>DOWN PAYMENT</label>
+                    <input type='number' class='form-control' name='down_payment' id='down_payment' placeholder='DownPayment' required>
+                </div>
+                <div class='col-md-6'>
+                    <label for='pay_due' class='col-sm-12 col-form-label'>Due</label>
+                    <input type='number' class='form-control' name='pay_due' id='pay_due' readonly required>
+                </div>
+            </div>
+
+            <div class='form-group row'>
+                <div class='col-md-12'>
+                    <label for='installment_plan' class='col-sm-6 col-form-label'>Installment Plan</label>
+                    <select class='form-control' name='installment_plan' id='installment_plan'>
+                        <option value='' selected='' disabled='' hidden=''>Choose here</option>
+                        <option value='4'>4 Week</option>
+                        <option value='16'>16 Week</option>
+                        <option value='24'>24 Week</option>
+                        <option value='36'>36 Week</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class='form-group row'>
+                <div class='col-md-6'>
+                    <label for='per_installment' class='col-md-12 col-form-label'>Per Installment</label>
+                    <input type='number' class='form-control' name='per_installment' id='per_installment' readonly>
+                </div>
+                <div class='col-md-6'>
+                    <label for='next_pay_date' class='col-md-12 col-form-label'>NEXT PAYMENT DATE</label>
+                    <input type='date' class='form-control' name='next_pay_date' placeholder='Next Installment Date'>
+                </div>
+            </div>
+            ";
+        }
+    }
+    
+    public function get_customer_purchase_product_ajx() {
+        $this->session_data();
+        $this->load->model('inventory_management_model', 'imm');
+
+        $cp_no = $this->input->post('cp_no');
+
+        foreach ($this->imm->get_customer_purchase_product($cp_no) as $row) {
+            echo "<div class='row'>
+            <input type='hidden' name='cp_no' value='$row->cp_no'>
+            <input type='hidden' name='cm_id_no' value='$row->cm_id_no'>
+            <input type='hidden' name='fw_id_no' value='$row->fw_id_no'>
+            <div class='col-md-3'>
+                <div class='form-group'>
+                    <label for='purchase_total' class='control-label'>Purchase</label>
+                    <input type='number' class='form-control' id='purchase_total' value='$row->purchase_total' readonly>
+                </div>
+            </div>
+            <div class='col-md-3'>
+                <div class='form-group'>
+                    <label for='down_payment' class='control-label'>Payment</label>
+                    <input type='number' class='form-control' id='down_payment' value='$row->down_payment' readonly>
+                </div>
+            </div>
+            <div class='col-md-3'>
+                <div class='form-group'>
+                    <label for='modal_pay_due' class='control-label'>Due</label>
+                    <input type='number' class='form-control' id='modal_pay_due' name='pay_due' value='$row->pay_due' readonly>
+                </div>
+            </div>
+            <div class='col-md-3'>
+                <div class='form-group'>
+                    <label for='installment_plan' class='control-label'>Instl. Plan</label>
+                    <input type='text' class='form-control' id='installment_plan' value='$row->installment_plan week' readonly>
+                </div>
+            </div>
+            <div class='col-md-3'>
+                <div class='form-group'>
+                    <label for='instl_given' class='control-label'>Instl. Given</label>
+                    <input type='number' class='form-control' id='instl_given' value='$row->instl_given' readonly>
+                </div>
+            </div>
+            <div class='col-md-3'>
+                <div class='form-group'>
+                    <label for='per_installment' class='control-label'>Per/Instl.</label>
+                    <input type='number' class='form-control' id='per_installment' value='$row->per_installment' readonly>
+                </div>
+            </div>
+            <div class='col-md-3'>
+                <div class='form-group'>
+                    <label for='pay_installment' class='control-label'>Pay Installment</label>
+                    <input type='number' class='form-control' id='pay_installment' name='pay_installment' required>
+                </div>
+            </div>
+            <div class='col-md-3'>
+                <div class='form-group'>
+                    <label for='next_payment_date' class='control-label'>Next Payment</label>
+                    <input type='date' class='form-control' id='next_payment_date' name='next_payment_date' required>
+                </div>
+            </div>
+        </div>
+        <div class='modal-footer'>
+            <button type='submit' class='btn btn-raised btn-primary ml-2'>Pay</button>
+            <button type='button' class='btn btn-raised btn-danger' data-dismiss='modal'>Close</button>
+        </div>
+        ";
+        }
+    }
+
 }
 
 

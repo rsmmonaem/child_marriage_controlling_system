@@ -912,6 +912,25 @@ class Inventory_management_model  extends CI_Model {
         return $query->result();
     }
 
+    function get_product_by_id($pro_id) {
+        $this->db->order_by("pro_id", "DESC");
+        $this->db->where('pro_id', $pro_id);
+        $query = $this->db->get("product_name");
+        return $query->result();
+    }
+
+    function getproduct_stock_exists() {
+        $query = $this->db->query("SELECT * FROM product_name WHERE instock > 0 ORDER BY update_date DESC");
+        return $query->result();
+    }
+
+    function get_customer_purchase_product($cp_no) {
+        $this->db->order_by("cp_no", "DESC");
+        $this->db->where('cp_no', $cp_no);
+        $query = $this->db->get("customer_purchase");
+        return $query->result();
+    }
+
     function getproduct_name_fw() {
         $user_id = $this->session->userdata('user_id');
         $this->db->where('user_id', $user_id);

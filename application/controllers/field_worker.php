@@ -13,7 +13,6 @@ class Field_worker extends CI_Controller {
         $this->output->set_header("Expires: Mon, 26 Jul 2010 05:00:00 GMT");
     }
 
-
     public function session_data() {
         $this->load->model('requisition_model', 'rm');
         $this->load->model('purchase_order_model', 'po');
@@ -22,7 +21,6 @@ class Field_worker extends CI_Controller {
             redirect("login");
         }
     }
-
 
     public function index() {
 
@@ -38,15 +36,12 @@ class Field_worker extends CI_Controller {
     }
 
     // office setup
-
-
     public function bank_details() {
         $this->session_data();
         $this->load->model('office_setup_model', 'osm');
         $this->load->model('order_management_model', 'omm');
         $this->load->view('field_worker/bank_details_list');
     }
-
 
     public function bank_deposit() {
         $this->session_data();
@@ -65,19 +60,10 @@ class Field_worker extends CI_Controller {
         $this->load->model('office_setup_model', 'osm');
         $this->load->view('field_worker/bank_deposit_list');
     }
-
-
-    //end of office setup
-
-
-    //end of zonal manager
-
+    // end of office setup
 
 
     // start field worker
-
-
-
     public function edit_field_worker() {
         $this->session_data();
         $this->load->model('user_registration_model', 'urm');
@@ -98,15 +84,9 @@ class Field_worker extends CI_Controller {
         $this->load->model('office_setup_model', 'osm');
         $this->urm->update_field_worker_panel();
     }
-
-
-
-    //end of field worker
+    // end of field worker
 
     // start customer
-
-    // start customer
-
     public function create_customer() {
         $this->session_data();
         $this->load->model('user_registration_model', 'urm');
@@ -219,15 +199,7 @@ class Field_worker extends CI_Controller {
         $this->load->model('order_management_model', 'omm');
         $this->urm->purchase_order_approved_admin();
     }
-
     //end of customer
-
-
-
-
-
-    //end of customer
-
 
 
     public function update_profile() {
@@ -235,17 +207,9 @@ class Field_worker extends CI_Controller {
         $this->load->model('user_registration_model', 'urm');
         $this->load->view('field_worker/update_profile');
     }
-
-
     //end of Common Users/Employee
 
-
-
-
     // START OF PRODUCT ENTRY
-
-
-
     public function stock_check() {
         $this->session_data();
         $this->load->model('inventory_management_model', 'imm');
@@ -253,36 +217,24 @@ class Field_worker extends CI_Controller {
         $this->load->view('field_worker/stock_check');
     }
 
-
-
     public function outof_stock_check() {
         $this->session_data();
         $this->load->model('inventory_management_model', 'imm');
         $this->load->model('order_management_model', 'omm');
         $this->load->view('field_worker/outof_stock_check');
     }
-
-
-
     // END OF PRODUCT ENTRY
 
 
     // START OF REQUISITION
-
-
-
     public function distribution_list() {
         $this->session_data();
         $this->load->model('requisition_model', 'rm');
         $this->load->view('field_worker/distribution_list');
     }
-
-
-
     // END OF REQUISITION
 
     // START OF ORDER
-
     public function create_order() {
         $this->session_data();
         $this->load->model('inventory_management_model', 'imm');
@@ -290,7 +242,6 @@ class Field_worker extends CI_Controller {
         $this->load->model('user_registration_model', 'urm');
         $this->load->view('field_worker/create_order');
     }
-
 
     public function insert_order() {
         $this->session_data();
@@ -345,7 +296,6 @@ class Field_worker extends CI_Controller {
         $this->load->view('field_worker/order_list_reject');
     }
 
-
     public function order_reject() {
         $this->session_data();
         $this->load->model('order_management_model', 'omm');
@@ -369,15 +319,9 @@ class Field_worker extends CI_Controller {
         $this->load->model('order_management_model', 'omm');
         $this->load->view('field_worker/distribution_list');
     }
-
-
-
     // END OF ORDER
 
     // START SALES ORDER
-
-
-
     public function create_sales() {
         $this->session_data();
         $this->load->model('inventory_management_model', 'imm');
@@ -439,8 +383,6 @@ class Field_worker extends CI_Controller {
         $this->som->sales_order_delevered();
     }
 
-
-
     public function sales_order_list_approved() {
         $this->session_data();
         $this->load->model('requisition_model', 'rm');
@@ -449,10 +391,6 @@ class Field_worker extends CI_Controller {
         $this->load->view('field_worker/sales_order_list_approved');
     }
 
-
-
-
-
     public function sales_order_view_update() {
         $this->session_data();
         $this->load->model('requisition_model', 'rm');
@@ -460,22 +398,13 @@ class Field_worker extends CI_Controller {
         $this->po->sales_order_view_update();
     }
 
-
-
     public function sales_order_view_approve() {
         $this->session_data();
         $this->load->model('requisition_model', 'rm');
         $this->load->model('sales_order_model', 'po');
         $this->po->sales_order_view_approve();
     }
-
     //end of sales order
-
-
-
 }
-
-
-
 /* End of file welcome.php */
 /* Location: ./application/controllers/welcome.php */
