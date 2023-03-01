@@ -20,18 +20,13 @@ if ($error == "success") {
 
 
 <form action="<?= base_url() ?>field_worker/update_field_worker_panel" method="post" enctype="multipart/form-data">
-
-
-
-    <?php $i = 1;
+    <?php
     foreach ($this->urm->getfield_worker_panel() as $row) : ?>
         <div class="row">
             <div class="col-12">
                 <div class="card m-b-30">
                     <div class="card-body">
-                        <h4 class="mt-0 header-title">UPDATE PROFIE</h4>
-                        <?php // $user_name = mt_rand(100000,999999); 
-                        ?>
+                        <h4 class="mt-0 header-title">UPDATE PROFILE</h4>
 
                         <input type="hidden" name="user_name" value="<?= $row->user_name ?>">
                         <input type="hidden" name="pass_word" value="<?= $row->pass_word ?>">
@@ -54,17 +49,15 @@ if ($error == "success") {
                                 <input type="text" class="form-control ml-2" name="new_pass_word" value="<?= $row->pass_word ?>">
                             </div>
                         </div>
-
-
-
                         <button type="submit" class="btn btn-primary ml-2">SUBMIT</button>
 
-                        <a href="<?= base_url() ?>super_admin/" class="btn btn-danger ml-2">Cancel</a>
+                        <a href="<?= base_url() ?>field_worker/" class="btn btn-danger ml-2">Cancel</a>
+                    </div>
+                </div>
+            </div>
+        </div> <!-- end col -->
 </form>
-</div>
-</div>
-</div>
-</div> <!-- end col -->
+<?php endforeach; ?>
 </div> <!-- end row -->
 
 
@@ -73,7 +66,6 @@ if ($error == "success") {
 </div> <!-- Page content Wrapper -->
 
 </div> <!-- content -->
-<?php endforeach; ?>
 
 <?php include "modal/create_department.php" ?>
 <?php include "modal/create_unit.php" ?>

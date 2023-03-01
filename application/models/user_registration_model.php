@@ -1351,7 +1351,7 @@ class User_registration_model  extends CI_Model {
     function purchase_order_approved_admin() {
 
         $cp_no = $this->input->post('cp_no');
-        $status = $this->input->post('status');
+        // $status = $this->input->post('status');
         $data = array(
             'status'         => 'APPROVED',
             'next_level'     => 'N/A',

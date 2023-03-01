@@ -1411,7 +1411,7 @@ class Super_admin extends CI_Controller {
             <div class='form-group row'>
                 <div class='col-md-6'>
                     <label for='purchase_qty' class='col-sm-12 col-form-label'>Quantity</label>
-                    <input class='form-control' type='number' name='purchase_qty' id='purchase_qty' placeholder='Enter quantity' required>
+                    <input class='form-control' type='number' min='1' name='purchase_qty' id='purchase_qty' placeholder='Enter quantity' required>
                 </div>
                 <div class='col-md-6'>
                     <label for='purchase_total' class='col-sm-12 col-form-label'>Total Bill</label>
@@ -1422,7 +1422,7 @@ class Super_admin extends CI_Controller {
             <div class='form-group row'>
                 <div class='col-md-6'>
                     <label for='down_payment' class='col-sm-12 col-form-label'>DOWN PAYMENT</label>
-                    <input type='number' class='form-control' name='down_payment' id='down_payment' placeholder='DownPayment' required>
+                    <input type='number' class='form-control' min='1' name='down_payment' id='down_payment' placeholder='DownPayment' required>
                 </div>
                 <div class='col-md-6'>
                     <label for='pay_due' class='col-sm-12 col-form-label'>Due</label>
