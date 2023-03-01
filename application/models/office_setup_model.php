@@ -606,42 +606,42 @@ class Office_setup_model  extends CI_Model {
             //dis ledger
             // distributor ledger
 
-            $this->db->order_by("dis_code", "DESC");
-            $this->db->where('dis_code', $dis_code);
-            $balance = $this->db->get("distributor")->row("balance");
-            $this->db->where('dis_code', $dis_code);
-            $credit = $this->db->get("distributor")->row("credit");
-            $this->db->where('dis_code', $dis_code);
-            $debit = $this->db->get("distributor")->row("debit");
+            // $this->db->order_by("dis_code", "DESC");
+            // $this->db->where('dis_code', $dis_code);
+            // $balance = $this->db->get("distributor")->row("balance");
+            // $this->db->where('dis_code', $dis_code);
+            // $credit = $this->db->get("distributor")->row("credit");
+            // $this->db->where('dis_code', $dis_code);
+            // $debit = $this->db->get("distributor")->row("debit");
 
-            $update_credit = $credit - $deposit_amount;
-            $update_debit = $debit + $deposit_amount;
-            $balance = $update_credit - $update_debit;
-            $data_dis_update = array(
+            // $update_credit = $credit - $deposit_amount;
+            // $update_debit = $debit + $deposit_amount;
+            // $balance = $update_credit - $update_debit;
+            // $data_dis_update = array(
 
-                'credit'                     => $update_credit,
-                'debit'                     => $update_debit,
-                'balance'                     => $update_credit - $update_debit,
-                'update_date'                 => date('Y-m-d H:i:s')
+            //     'credit'                     => $update_credit,
+            //     'debit'                     => $update_debit,
+            //     'balance'                     => $update_credit - $update_debit,
+            //     'update_date'                 => date('Y-m-d H:i:s')
 
-            );
+            // );
 
-            $this->db->where('dis_code', $dis_code);
-            $this->db->update('distributor', $data_dis_update);
+            // $this->db->where('dis_code', $dis_code);
+            // $this->db->update('distributor', $data_dis_update);
 
-            $dis_ledger = array(
+            // $dis_ledger = array(
 
 
-                'description'                 => "Direct Deposit",
-                'dis_code'                     => $dis_code,
-                'credit'                     => $update_credit,
-                'debit'                     => $update_debit,
-                'balance'                     => $update_credit - $update_debit,
-                'created_date'             => date('Y-m-d H:i:s')
+            //     'description'                 => "Direct Deposit",
+            //     'dis_code'                     => $dis_code,
+            //     'credit'                     => $update_credit,
+            //     'debit'                     => $update_debit,
+            //     'balance'                     => $update_credit - $update_debit,
+            //     'created_date'             => date('Y-m-d H:i:s')
 
-            );
+            // );
 
-            $this->db->insert('dis_ledger', $dis_ledger);
+            // $this->db->insert('dis_ledger', $dis_ledger);
             //$id = $this->db->insert_id();
             redirect("field_worker/bank_deposit_list/");
         }

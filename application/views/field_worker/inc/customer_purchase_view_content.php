@@ -38,8 +38,7 @@ foreach ($query4 as $row4) {
         <div class="card">
             <div class="card-body invoice">
                 <div class="float-right">
-                    <h6>Purchase No : #
-                        <strong><?= $cp_no ?></strong>
+                    <h6>Purchase No : #<strong><?= $cp_no ?></strong>
                     </h6>
                     <h6 class="mb-0 ">Date : <?= implode('-', array_reverse(explode('-', explode(' ', $row->created_date)[0]))); ?></h6>
                 </div>

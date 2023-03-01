@@ -912,6 +912,11 @@ class Inventory_management_model  extends CI_Model {
         return $query->result();
     }
 
+    function get_product_with_sales() {
+        $query = $this->db->query("SELECT * FROM product_name WHERE  total_stock - instock != 0 ORDER BY update_date DESC");
+        return $query->result();
+    }
+
     function get_product_by_id($pro_id) {
         $this->db->order_by("pro_id", "DESC");
         $this->db->where('pro_id', $pro_id);
@@ -923,6 +928,13 @@ class Inventory_management_model  extends CI_Model {
         $query = $this->db->query("SELECT * FROM product_name WHERE instock > 0 ORDER BY update_date DESC");
         return $query->result();
     }
+
+    function get_product_sales_list() {
+        $this->db->order_by("created_date", "DESC");
+        $query = $this->db->get("customer_purchase");
+        return $query->result();
+    }
+
 
     function get_customer_purchase_product($cp_no) {
         $this->db->order_by("cp_no", "DESC");

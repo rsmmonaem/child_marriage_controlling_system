@@ -1081,6 +1081,7 @@ class Super_admin extends CI_Controller {
         $this->load->model('purchase_model', 'pm');
         $this->load->model('sales_order_model', 'som');
         $this->load->model('order_management_model', 'omm');
+        $this->load->model('inventory_management_model', 'imm');
         $this->load->view('super_admin/sales_list');
     }
     public function sales_order_view() {
