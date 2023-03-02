@@ -31,7 +31,9 @@ class Field_worker extends CI_Controller {
             $this->load->model('requisition_model', 'rm');
             $this->load->model('purchase_order_model', 'po');
             $this->load->model('order_management_model', 'omm');
-            $this->load->view('field_worker/order_list');
+            $this->load->model('user_registration_model', 'urm');
+            // $this->load->view('field_worker/order_list');
+            $this->load->view('field_worker/index');
         }
     }
 
@@ -366,6 +368,25 @@ class Field_worker extends CI_Controller {
         $this->load->model('sales_order_model', 'som');
         $this->load->view('field_worker/sales_list');
     }
+
+    public function product_sales_list() {
+        $this->session_data();
+        $this->load->model('requisition_model', 'rm');
+        $this->load->model('purchase_model', 'pm');
+        $this->load->model('sales_order_model', 'som');
+        $this->load->model('user_registration_model', 'urm');
+        $this->load->view('field_worker/product_sales_list');
+    }
+
+    public function installment_collection() {
+        $this->session_data();
+        $this->load->model('requisition_model', 'rm');
+        $this->load->model('purchase_model', 'pm');
+        $this->load->model('sales_order_model', 'som');
+        $this->load->model('user_registration_model', 'urm');
+        $this->load->view('field_worker/installment_collection');
+    }
+
     public function sales_order_view() {
         $this->session_data();
         $this->load->model('requisition_model', 'rm');

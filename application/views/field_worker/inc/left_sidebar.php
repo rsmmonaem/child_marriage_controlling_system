@@ -55,7 +55,10 @@ if ($status == "DISABLE") {
                     <a href="<?= base_url() ?>field_worker/stock_check" class="waves-effect waves-light"><i class="mdi mdi-table"></i><span> Stock </span> <span class="float-right"><i class="mdi mdi-chevron-right"></i></span></a>
                 </li>
                 <li>
-                    <a href="<?= base_url() ?>field_worker/sales_list" class="waves-effect"><i class="mdi mdi-clipboard-outline"></i><span> Sales Order </span><span class="float-right"><i class="mdi mdi-chevron-right"></i></span></a>
+                    <a href="<?= base_url() ?>field_worker/installment_collection" class="waves-effect"><i class="mdi mdi-clipboard-outline"></i><span>Instl. Collection</span><span class="float-right"><i class="mdi mdi-chevron-right"></i></span></a>
+                </li>
+                <li>
+                    <a href="<?= base_url() ?>field_worker/product_sales_list" class="waves-effect"><i class="mdi mdi-clipboard-outline"></i><span>Product Sales</span><span class="float-right"><i class="mdi mdi-chevron-right"></i></span></a>
                 </li>
                 <!-- <li>
                     <a href="<?= base_url() ?>field_worker/purchase_order_list" class="waves-effect"><i class="mdi mdi-table"></i><span>Purchase Order </span><span class="float-right"><i class="mdi mdi-chevron-right"></i></span></a>

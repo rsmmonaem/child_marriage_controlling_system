@@ -36,7 +36,7 @@
                             <th>Pro Name</th>
                             <th>Code#</th>
                             <th>InStock</th>
-                            <th>action</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -47,8 +47,9 @@
                                 <td><?= $row->pro_name ?></td>
                                 <td><?= $row->pro_code ?></td>
                                 <td><?= $row->instock ?></td>
-                                <td>EDIT || <a onclick="return confirm('Want to delete?');" href="<?= base_url() ?>super_admin/deleteoutofstock/<?= $row->pro_id ?>" class="btn btn-secondary btn-block mt-0 tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Delete">
+                                <td>EDIT || <a onclick="return confirm('Want to delete?');" href="<?= base_url() ?>super_admin/deleteoutofstock/<?= $row->pro_id ?>" class="btn btn-danger mt-0 tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Delete">
                                         <i class="fas fa-times"></i>
+                                        DELETE
                                     </a>
                                 </td>
                             </tr>

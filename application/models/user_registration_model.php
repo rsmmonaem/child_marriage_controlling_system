@@ -1361,6 +1361,57 @@ class User_registration_model  extends CI_Model {
         return $query->result();
     }
 
+    function get_customer_purchase_by_fieldworker() {
+        $fw_id_no = $this->session->userdata("user_id");
+        $query = $this->db->query("SELECT * FROM customer_purchase WHERE fw_id_no = '$fw_id_no' ORDER BY created_date DESC");
+        return $query->result();
+    }
+    
+    function get_installment_collection_by_date() {
+        $fw_id_no = $this->session->userdata("user_id");
+        $date = date('Y-m-d');
+
+        $query = $this->db->query("SELECT * FROM customer_purchase WHERE fw_id_no = '$fw_id_no' AND next_pay_date = '$date' ORDER BY created_date DESC");
+        $number_of_rows = $query->num_rows();
+        
+        if($number_of_rows > 0){
+            return $query->result();
+        }
+        else{
+            return "NOT_FOUND";
+        }
+    }
+
+    function get_installment_upcoming_collection_by_date() {
+        $fw_id_no = $this->session->userdata("user_id");
+        $date = date('Y-m-d');
+
+        $query = $this->db->query("SELECT * FROM customer_purchase WHERE fw_id_no = '$fw_id_no' AND next_pay_date > '$date' ORDER BY created_date DESC");
+        $number_of_rows = $query->num_rows();
+        
+        if($number_of_rows > 0){
+            return $query->result();
+        }
+        else{
+            return "NO_COLLECTION_FOUND";
+        }
+    }
+
+    function get_installment_collection_by_fieldworker() {
+        $fw_id_no = $this->session->userdata("user_id");
+        $date = date('Y-m-d');
+
+        $query = $this->db->query("SELECT * FROM customer_purchase WHERE fw_id_no = '$fw_id_no' AND pay_status = 'RUNNING' ORDER BY created_date");
+        $number_of_rows = $query->num_rows();
+        
+        if($number_of_rows > 0){
+            return $query->result();
+        }
+        else{
+            return "NO_RECORD_FOUND";
+        }
+    }
+
     function get_purchase_due_payment() {
         $cm_id_no = $this->uri->segment(3);
         $query = $this->db->query("SELECT * FROM customer_purchase WHERE cm_id_no = '$cm_id_no' AND pay_due != 0  AND status='APPROVED' ORDER BY created_date DESC");
