@@ -871,6 +871,13 @@ class User_registration_model  extends CI_Model {
         return $query->result();
     }
 
+    function get_disabled_field_worker() {
+        $this->db->where('status', 'DISABLE');
+        $query = $this->db->get("field_worker");
+        return $query->result();
+    }
+
+
 
     // end of field worker Functions
 
@@ -878,7 +885,7 @@ class User_registration_model  extends CI_Model {
     //start CUSTOMER Functions
 
     function create_customer() {
-        
+
         $this->load->library("form_validation");
         $this->form_validation->set_rules("fw_id_no", "fw_id_no", "xss_clean");
         $this->form_validation->set_rules("customer", "customer", "xss_clean");
@@ -1019,6 +1026,15 @@ class User_registration_model  extends CI_Model {
 
     function getcustomer() {
         $this->db->order_by("cm_id", "DESC");
+        $query = $this->db->get("customer");
+        return $query->result();
+    }
+
+    function get_customer_by_fieldworker_id() {
+        $fw_id_no = $this->session->userdata('user_id');
+
+        $this->db->order_by("cm_id", "DESC");
+        $this->db->where('fw_id_no', $fw_id_no);
         $query = $this->db->get("customer");
         return $query->result();
     }
@@ -1217,7 +1233,13 @@ class User_registration_model  extends CI_Model {
             $down_payment = $this->input->post('down_payment');
             $purchase_qty = $this->input->post('purchase_qty');
             $installment_plan = $this->input->post('installment_plan');
-            $next_pay_date = $this->input->post('next_pay_date');
+
+            $user_type = $this->session->userdata('user_type');
+            
+            // 7 day ahead from today
+            $next_pay_date = date('Y-m-d', strtotime("+7 day", strtotime(date('Y-m-d'))));
+            
+            // $next_pay_date = $this->input->post('next_pay_date');
 
             $this->db->where('pro_id', $pro_id);
             $query = $this->db->get("product_name")->result();
@@ -1246,6 +1268,11 @@ class User_registration_model  extends CI_Model {
 
             $next_level = "ADMIN";
             $status = "PENDING";
+
+            if($user_type == "super_admin"){
+                $next_level = "N/A";
+                $status = "APPROVED";
+            }
 
             $cp_no = mt_rand(100000, 999999);
 
@@ -1323,8 +1350,14 @@ class User_registration_model  extends CI_Model {
 
     function getonerow_purchase() {
         $cm_id_no = $this->uri->segment(3);
+        $this->db->order_by("created_date", "DESC");
         $this->db->where('cm_id_no', $cm_id_no);
         $query = $this->db->get("customer_purchase");
+        return $query->result();
+    }
+
+    function get_pending_customer_purchase() {
+        $query = $this->db->query("SELECT * FROM customer_purchase WHERE status = 'PENDING' ORDER BY created_date DESC");
         return $query->result();
     }
 
@@ -1343,7 +1376,15 @@ class User_registration_model  extends CI_Model {
 
     function getonerow_cp_history() {
         $cm_id_no = $this->uri->segment(3);
+        $this->db->order_by("payment_date", "DESC");
         $this->db->where('cm_id_no', $cm_id_no);
+        $query = $this->db->get("cp_history");
+        return $query->result();
+    }
+
+    function get_purchase_installment_history() {
+        $cp_no = $this->uri->segment(3);
+        $this->db->where('cp_no', $cp_no);
         $query = $this->db->get("cp_history");
         return $query->result();
     }
@@ -1383,7 +1424,10 @@ class User_registration_model  extends CI_Model {
 
             // Installment inputs
             $pay_installment = floatval($this->input->post('pay_installment'));
-            $next_payment_date = $this->input->post('next_payment_date');
+
+            // $next_payment_date = $this->input->post('next_payment_date');
+            // 7 day ahead from today
+            $next_payment_date = date('Y-m-d', strtotime("+7 day", strtotime(date('Y-m-d'))));
 
             // Find product price
             $cp_no = $this->input->post('cp_no');

@@ -117,24 +117,15 @@ include "inc/dashboard_footer_js.php";
             let pay_installment = parseFloat(this.value);
             let pay_due = parseFloat($("#modal_pay_due").val());
             
-            if ((pay_due - pay_installment) == 0){
-                $("#modal_cp_payment #next_payment_date").removeAttr("required");
-                console.log('Due is zero');
-            }
+            // if ((pay_due - pay_installment) == 0){
+            //     $("#modal_cp_payment #next_payment_date").removeAttr("required");
+            //     console.log('Due is zero');
+            // }
             if ((pay_due - pay_installment) < 0){
                 $("#modal_cp_payment #pay_installment").val("");
-                $("#modal_cp_payment #next_payment_date").val("");
-                $("#modal_cp_payment #next_payment_date").attr("required", "true");
-            }
-            
-                // let requiredHas = $("#modal_cp_payment #next_payment_date").attr('required');
-                // // For some browsers, `attr` is undefined; for others,
-                // // `attr` is false.  Check for both.
-                // if (typeof requiredHas == 'undefined' && requiredHas == false) {
-                //     $("#modal_cp_payment #next_payment_date").attr("required", "true");
-                // }
-                // $("#modal_cp_payment #next_payment_date").attr("required", "true");
                 // $("#modal_cp_payment #next_payment_date").val("");
+                // $("#modal_cp_payment #next_payment_date").attr("required", "true");
+            }
             
         });
 

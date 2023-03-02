@@ -35,6 +35,7 @@ class Super_admin extends CI_Controller {
             $this->load->model('purchase_model', 'pm');
             $this->load->model('purchase_order_model', 'po');
             $this->load->model('order_management_model', 'omm');
+            $this->load->model('user_registration_model', 'urm');
             $this->load->view('super_admin/index');
         }
     }
@@ -1449,14 +1450,15 @@ class Super_admin extends CI_Controller {
                     <label for='per_installment' class='col-md-12 col-form-label'>Per Installment</label>
                     <input type='number' class='form-control' name='per_installment' id='per_installment' readonly>
                 </div>
-                <div class='col-md-6'>
-                    <label for='next_pay_date' class='col-md-12 col-form-label'>NEXT PAYMENT DATE</label>
-                    <input type='date' class='form-control' name='next_pay_date' placeholder='Next Installment Date'>
-                </div>
             </div>
             ";
         }
     }
+
+    // <div class='col-md-6'>
+    //     <label for='next_pay_date' class='col-md-12 col-form-label'>NEXT PAYMENT DATE</label>
+    //     <input type='date' class='form-control' name='next_pay_date' placeholder='Next Installment Date'>
+    // </div>
     
     public function get_customer_purchase_product_ajx() {
         $this->session_data();
@@ -1511,12 +1513,6 @@ class Super_admin extends CI_Controller {
                     <input type='number' class='form-control' id='pay_installment' name='pay_installment' required>
                 </div>
             </div>
-            <div class='col-md-3'>
-                <div class='form-group'>
-                    <label for='next_payment_date' class='control-label'>Next Payment</label>
-                    <input type='date' class='form-control' id='next_payment_date' name='next_payment_date' required>
-                </div>
-            </div>
         </div>
         <div class='modal-footer'>
             <button type='submit' class='btn btn-raised btn-primary ml-2'>Pay</button>
@@ -1527,6 +1523,13 @@ class Super_admin extends CI_Controller {
     }
 
 }
+
+// <div class='col-md-3'>
+//     <div class='form-group'>
+//         <label for='next_payment_date' class='control-label'>Next Payment</label>
+//         <input type='date' class='form-control' id='next_payment_date' name='next_payment_date' required>
+//     </div>
+// </div>
 
 
 

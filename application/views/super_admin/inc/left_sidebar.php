@@ -47,9 +47,9 @@
                 <li>
                     <a href="<?= base_url() ?>super_admin/inventory_list" class="waves-effect waves-light"><i class="mdi mdi-table"></i><span> Stock </span> <span class="float-right"><i class="mdi mdi-chevron-right"></i></span></a>
                 </li>
-                <li>
+                <!-- <li>
                     <a href="<?= base_url() ?>super_admin/order_list" class="waves-effect"><i class="mdi mdi-clipboard-outline"></i><span> Purchase Order </span><span class="float-right"><i class="mdi mdi-chevron-right"></i></span></a>
-                </li>
+                </li> -->
                 <li>
                     <a href="<?= base_url() ?>super_admin/sales_list" class="waves-effect"><i class="fas fa-chart-bar"></i><span>Sales List </span><span class="float-right"><i class="mdi mdi-chevron-right"></i></span></a>
                 </li>

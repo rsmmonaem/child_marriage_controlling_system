@@ -1,7 +1,5 @@
 <div class="page-content-wrapper">
-
     <div class="container-fluid">
-
         <div class="row">
             <div class="col-sm-12">
                 <div class="page-title-box">
@@ -10,7 +8,6 @@
                             <a href="<?= base_url() ?>super_admin/system_settings" class="btn btn-secondary btn-round" type="button" aria-haspopup="true" aria-expanded="false">
                                 <i class="mdi mdi-settings mr-1"></i>Settings
                             </a>
-
                         </div>
                     </div>
                     <h4 class="page-title">Dashboard</h4>
@@ -118,82 +115,51 @@
                         <h4 class="mb-0"><?= $total_users ?></h4>
                     </div>
                 </div>
-
             </div>
         </div><!-- end row -->
 
-
-
-
         <div class="row">
-
             <div class="col-12">
                 <div class="card">
                     <div class="card-body table-data">
-                        <h6 class="d-inline-block">Pending Orders</h6>
-                        <div class="float-right ml-2">
-                            <div class="dropdown">
-                                <a class="btn btn-outline-light btn-sm" id="dropdownMenuButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="mdi mdi-menu"></i>
-                                </a>
-                                <!-- <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton2">
-                                                        <a class="dropdown-item" href="#">Today</a>
-                                                        <a class="dropdown-item" href="#">This Week</a>
-                                                        <a class="dropdown-item" href="#">This Month</a>
-                                                    </div> -->
-                            </div>
-                        </div>
-                        <div class="table-responsive">
-                            <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                        <h6 class="d-inline-block">Pending Purchase Approval</h6>
 
+                        <div class="table-responsive mb-0" data-pattern="priority-columns">
+                            <table id="tech-companies-1" class="table table-striped focus-on">
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>Date</th>
-                                        <th>Order#</th>
-                                        <th>Company#</th>
-                                        <th>Distributor</th>
-                                        <th>Total</th>
-                                        <th>Commission</th>
+                                        <th>CP-No</th>
+                                        <th>Field Worker</th>
+                                        <th>Product</th>
+                                        <th>Purchase</th>
                                         <th>Payment</th>
-                                        <th>sub_total</th>
                                         <th>Due</th>
-                                        <th>status</th>
+                                        <th>Next Pay</th>
+                                        <th><strong>Status</strong></th>
+                                        <th>Next level</th>
                                     </tr>
                                 </thead>
-
-
                                 <tbody>
                                     <?php $i = 1;
-                                    foreach ($this->omm->getorder_list_pending() as $row) : ?>
+                                    foreach ($this->urm->get_pending_customer_purchase() as $row) : ?>
                                         <tr>
                                             <td><?= $i++ ?></td>
-                                            <td><?= $row->order_date ?></td>
-                                            <td><a href="<?= base_url() ?>super_admin/order_view/<?= $row->order_no ?>" type="button" class="btn btn-info">
-                                                    <?= $row->order_no ?>
-                                                </a></td>
-                                            <td><?= $row->company_code ?></td>
+                                            <td><a target="_blank" href="<?= base_url() ?>super_admin/customer_purchase_view/<?= $row->cp_no ?>" class="btn btn-warning btn-block mb-2"><?= $row->cp_no ?></a></td>
                                             <?php
-                                            $this->db->where('dis_code', $row->dis_code);
-                                            $distributor = $this->db->get("distributor")->row("distributor"); ?>
-                                            <td><?= $distributor ?></td>
-                                            <td><?= $row->intotal ?></td>
-                                            <td><?= $row->commission ?></td>
-                                            <td><?= $row->payment ?> By <?= $row->pay_sys ?></td>
-
-                                            <td><?= $row->sub_total ?></td>
-                                            <td><?= $row->due ?></td>
-                                            <td><?= $row->status ?></td>
-
-                                            <!-- <td><a href="<?= base_url() ?>super_admin/order_view/<?= $row->order_no ?>" class="btn btn-secondary btn-block mt-0 tooltips" data-placement="top" data-toggle="tooltip" data-original-title="View">
-                                                    <i class="fas fa-eye"></i>
-                                                </a></td> -->
-
-
+                                            $this->db->where('fw_id_no', $row->fw_id_no);
+                                            $field_worker_name = $this->db->get("field_worker")->row('field_worker');
+                                            ?>
+                                            <td><?= $field_worker_name ?></td>
+                                            <td><?= $row->pro_name ?></td>
+                                            <td><?= $row->purchase_total ?></td>
+                                            <td><?= $row->down_payment ?></td>
+                                            <td><?= $row->pay_due ?></td>
+                                            <td><?= implode('-', array_reverse(explode('-', $row->next_pay_date))); ?></td>
+                                            <td><strong style="color: red;"><?= $row->status ?></strong></td>
+                                            <td><?= $row->next_level ?></td>
                                         </tr>
-
                                     <?php endforeach; ?>
-
                                 </tbody>
                             </table>
                         </div>
@@ -201,126 +167,52 @@
                     </div>
                 </div>
             </div>
+        </div><!-- end row -->
 
-            <!-- pending PO -->
-            <!-- <div class="col-6">
-                                    <div class="card">
-                                        <div class="card-body table-data">
-                                            <h6 class="d-inline-block">Pending PO</h6>
-                                            <div class="float-right ml-2">
-                                                <div class="dropdown">
-                                                    <a class="btn btn-outline-light btn-sm" id="dropdownMenuButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                        <i class="mdi mdi-menu"></i>
-                                                    </a>
-                                                  
-                                                </div>
-                                            </div>
-                                            <div class="table-responsive">
-                                                <table class="table">
-                                                    <thead>
-                                                        <tr>
-                                                            <th class="border-top-0 w-60">Serial</th>
-                                                            <th class="border-top-0">PO#</th>
-                                                            <th class="border-top-0">Date/Time</th>
-                                                            
-                                                            <th class="border-top-0">Action</th> 
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <?php $i = 1;
-                                                        foreach ($this->po->getpurchase_order_limit() as $row) : ?>
-                                                        <tr>
-                                                            <td>
-                                                                <?= $i++ ?>
-                                                            </td>
-                                                            <td>
-                                                                <a href="javascript:void(0);" class="text-dark"><?= $row->po_no ?></a>
-                                                            </td>
-                                                            
-                                                            <td><?= $row->created_date ?></td>
-                                                            
-                                                            
-                                                            <td><a href="<?= base_url() ?>super_admin/purchase_order_view/<?= $row->po_no ?>"><span class="badge badge-boxed  badge-primary">View</span></a></td>  
-                                                        </tr>
-                                                        <?php endforeach; ?>                                                
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                            
-                                        </div>
-                                    </div>                                    
-                                </div> -->
-            <!-- end pending PO -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body table-data">
+                        <h6 class="d-inline-block">Field Worker Registration Request</h6>
+
+                        <div class="table-responsive mb-0" data-pattern="priority-columns">
+                            <table id="tech-companies-1" class="table table-striped focus-on">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>User ID</th>
+                                        <th>Name</th>
+                                        <th>Branch</th>
+                                        <th>Contact</th>
+                                        <th>Username</th>
+                                        <th><strong>Status</strong></th>
+                                        <th>Reg. Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php $i = 1;
+                                    foreach ($this->urm->get_disabled_field_worker() as $row) : ?>
+                                        <tr>
+                                            <td><?= $i++ ?></td>
+                                            <td><a target="_blank" href="<?= base_url() ?>super_admin/edit_field_worker/<?= $row->user_id ?>" class="btn btn-warning btn-block mb-2"><?= $row->user_id ?></a></td>
+                                            <td><?= $row->field_worker ?></td>
+                                            <td><?= $row->branch_office ?></td>
+                                            <td><?= $row->cont_num ?></td>
+                                            <td><?= $row->user_name ?></td>
+                                            <td><strong style="color: red;"><?= $row->status ?></strong></td>
+                                            <td><?= implode('-', array_reverse(explode('-', explode(' ', $row->created_date)[0]))); ?></td>
+                                        </tr>
+                                    <?php endforeach; ?>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
         </div><!-- end row -->
 
     </div><!-- container -->
-
 </div> <!-- Page content Wrapper -->
 
 </div> <!-- content -->
-
-
-
-
-
-<!-- <a class="monthly-price"> <span class="change-box-text">billed monthly</span> <span class="change-box"></span></a> -->
-
-<!-- <i class="monthly">$299.99<small>/mo</small></i> -->
-
-
-<!-- <a class="menu-btn-changer" href="#"><img src="{$WEB_ROOT}/templates/{$template}/img/flags/usa.svg" alt="" /> united states</a> -->
-
-
-
-<!-- <div class="container">
-            <div class="banner-servers-box">
-                <div class="counter-placeholder"></div>
-                <div class="banner-text-left">
-                    <h5>our server is<strong>24% faster</strong></h5>
-                    <p>with under 60 seconds worldwide Deploy!</p>
-                </div>
-                <a class="benchmarks-link" href="#">benchmarks</a>
-            </div>
-
-            <div class="row justify-content-left server-tabls-head">
-                <div class="col-md-2">storage</div>
-                <div class="col-md-2">cpu</div>
-                <div class="col-md-2">memory</div>
-                <div class="col-md-2">bandwidth</div>
-                <div class="col-md-4">price</div>
-            </div>
-
-            <div class="server-tabls-body">
-                <div class="row justify-content-left server-tabls-row">
-                    <div class="col-md-2"><span class="server-spects-for-mobile">space</span> <b>120 GB </b>SSD</div>
-                    <div class="col-md-2"><span class="server-spects-for-mobile">cpu</span> <b>16 CPU</b></div>
-                    <div class="col-md-2"><span class="server-spects-for-mobile">ram</span> <b>512 MB</b></div>
-                    <div class="col-md-2"><span class="server-spects-for-mobile">bandwidth</span> <b>0.50 TB</b><span class="span-info-servers">IPv6</span></div>
-                    <div class="col-md-2"><span class="server-spects-for-mobile">price</span> <b>$12</b>/mo</div>
-                    <div class="col-md-2"><a class="server-order-button" href="#">order now</a></div>
-                </div>
-
-                <div class="row justify-content-left server-tabls-row best-one">
-                    <div class="col-md-2"><span class="server-spects-for-mobile">space</span> <b>180 GB </b>SSD</div>
-                    <div class="col-md-2"><span class="server-spects-for-mobile">cpu</span> <b>32 CPU</b></div>
-                    <div class="col-md-2"><span class="server-spects-for-mobile">ram</span> <b>6 GB</b></div>
-                    <div class="col-md-2"><span class="server-spects-for-mobile">bandwidth</span> <b>3 TB</b><span class="span-info-servers">IPv6</span></div>
-                    <div class="col-md-2"><span class="server-spects-for-mobile">price</span> <b>$36</b>/mo</div>
-                    <div class="col-md-2"><a class="server-order-button" href="#">order now</a></div>
-                </div>
-
-                <div class="row justify-content-left server-tabls-row">
-                    <div class="col-md-2"><span class="server-spects-for-mobile">space</span> <b>320 GB </b>SSD</div>
-                    <div class="col-md-2"><span class="server-spects-for-mobile">cpu</span> <b>64 CPU</b></div>
-                    <div class="col-md-2"><span class="server-spects-for-mobile">ram</span> <b>12 GB</b></div>
-                    <div class="col-md-2"><span class="server-spects-for-mobile">bandwidth</span> <b>8 TB</b><span class="span-info-servers">IPv6</span></div>
-                    <div class="col-md-2"><span class="server-spects-for-mobile">price</span> <b>$46</b>/mo</div>
-                    <div class="col-md-2"><a class="server-order-button" href="#">order now</a></div>
-                </div>
-            </div>
-
-            <div class="button-row text-center">
-                <a class="btn jango-color-btn" href="#">create new account now</a>
-            </div>
-
-        </div> -->

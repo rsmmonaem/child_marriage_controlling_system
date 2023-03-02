@@ -70,6 +70,9 @@ foreach ($query4 as $row4) {
                 </div><!--end row-->
 
                 <div class="row">
+                    <div class="text-center mt-4 w-100">
+                        <strong style="text-decoration: underline">Purchase Details</strong>
+                    </div>
                     <div class="col-md-12">
                         <div class="table-responsive">
                             <table class="table mt-4">
@@ -103,6 +106,45 @@ foreach ($query4 as $row4) {
                                             <td><?= implode('-', array_reverse(explode('-', $row5->next_pay_date))); ?></td>
                                             <td><?= $row5->status ?></td>
                                             <td><?= $row5->next_level ?></td>
+                                        </tr>
+                                    <?php endforeach; ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div><!--end row-->
+
+                <div class="row">
+                    <div class="text-center mt-2 w-100">
+                        <strong style="text-decoration: underline">Installment Details</strong>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="table-responsive">
+                            <table class="table mt-4">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Date</th>
+                                        <th>Instl. No</th>
+                                        <th>Instl. Pay</th>
+                                        <th>Product</th>
+                                        <th>Purchase</th>
+                                        <th>Payment</th>
+                                        <th>Due</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php $i = 1;
+                                    foreach ($this->urm->get_purchase_installment_history() as $rowData) : ?>
+                                        <tr>
+                                            <td><?= $i++ ?></td>
+                                            <td><?= implode('-', array_reverse(explode('-', explode(" ",$rowData->payment_date)[0]))); ?></td>
+                                            <td><?= $rowData->instl_no ?></td>
+                                            <td><?= $rowData->instl_pay ?></td>
+                                            <td><?= $rowData->pro_name ?></td>
+                                            <td><?= $rowData->purchase_total ?></td>
+                                            <td><?= $rowData->down_payment ?></td>
+                                            <td><?= $rowData->pay_due ?></td>
                                         </tr>
                                     <?php endforeach; ?>
                                 </tbody>
