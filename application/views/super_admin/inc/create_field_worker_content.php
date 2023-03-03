@@ -7,10 +7,9 @@
                 <a href="<?= base_url() ?>super_admin/field_worker_list/" class="btn btn-warning btn-lg tooltips" data-placement="top" data-toggle="tooltip" data-original-title="List">
                     <i class="fas fa-pencil"></i>Field Worker List
                 </a>
-                <a href="#" class="btn btn-secondary disabled btn-lg tooltips" data-placement="top" data-toggle="tooltip" data-original-title="<?= $page_name = str_replace("_", " ", $page_name); ?>">
-                    <i class="fas fa-book-alt"></i> <?= $page_name = str_replace("_", " ", $page_name); ?>
+                <a href="#" class="btn btn-secondary disabled btn-lg tooltips" data-placement="top" data-toggle="tooltip" data-original-title="<?= ucwords($page_name = str_replace("_", " ", $page_name)); ?>">
+                    <i class="fas fa-book-alt"></i> <?= ucwords($page_name = str_replace("_", " ", $page_name)); ?>
                 </a>
-
             </div>
         </div>
     </div>

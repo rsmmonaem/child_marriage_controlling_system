@@ -1663,7 +1663,13 @@ class User_registration_model  extends CI_Model {
             $this->db->where('user_id', $user_id);
             $this->db->update('admin_user', $data2);
             //redirect("super_admin/update_profile/success");
-            $this->session->unset_userdata();
+            
+            // $this->session->unset_userdata();
+            $this->session->unset_userdata("user_name");
+            $this->session->unset_userdata("user_type");
+            $this->session->unset_userdata("user_id");
+            $this->session->unset_userdata("status");
+
             $this->session->sess_destroy();
             $this->session->set_flashdata('logout_notification', 'logged_out');
             redirect("login");

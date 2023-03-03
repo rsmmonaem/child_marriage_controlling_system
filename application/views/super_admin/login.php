@@ -22,18 +22,30 @@ include "inc/form_header_links.php";
                 <h6 class="text-center">Sign In</h6>
 
                 <div class="p-3">
-
+                    <div class="text-center" id="login_message">
+                        <p class="text-danger">
+                            <?php
+                                if ($this->session->flashdata('wrong_password')) {
+                                    echo "Wrong Password!";
+                                } else if ($this->session->flashdata('wrong_username')) {
+                                    echo "Wrong Username!";
+                                } else if ($this->session->flashdata('account_disabled')) {
+                                    echo "Account Disabled!";
+                                }
+                            ?>
+                        </p>
+                    </div>
                     <form class="form-horizontal" action="<?= base_url() ?>login/login_process" method="post">
 
                         <div class="form-group row">
                             <div class="col-12">
-                                <input class="form-control" type="text" required="" placeholder="Username" name="user_name">
+                                <input class="form-control" type="text" required="" placeholder="Username" name="user_name" id="username_id">
                             </div>
                         </div>
 
                         <div class="form-group row">
                             <div class="col-12">
-                                <input class="form-control" type="password" required="" placeholder="Password" name="pass_word">
+                                <input class="form-control" type="password" required="" placeholder="Password" name="pass_word" id="password_id">
                             </div>
                         </div>
 
@@ -60,8 +72,6 @@ include "inc/form_header_links.php";
 
                         <div class="form-group m-t-10 mb-0 row">
                             <div class="col-sm-7 m-t-20">
-                                <!-- <a href="pages-recoverpw.html" class="text-muted"><i class="mdi mdi-lock"></i> Forgot your password ?</a> -->
-
                                 Login Details: <br>
                                 <b>Super Admin:</b><br> User: admin Password: admin <br>
                                 <b>Field Worker: Zahid Hasan</b><br> user: 122114 password: CF1234 <br>
@@ -90,6 +100,16 @@ include "inc/form_header_links.php";
 
     <!-- App js -->
     <script src="<?= base_url() ?>assets/backend/js/app.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#username_id').on('click', function() {
+                $('#login_message p').html("");
+            });
+            $('#password_id').on('click', function() {
+                $('#login_message p').html("");
+            });
+        });
+    </script>
 
 </body>
 

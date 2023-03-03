@@ -3,13 +3,11 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="card m-b-30">
-
                 <div class="card-body">
                     <div class="btn-group">
                         <div>
-
-                            <a href="#" class="btn btn-secondary disabled btn-lg tooltips" data-placement="top" data-toggle="tooltip" data-original-title="<?= $page_name = str_replace("_", " ", $page_name); ?>">
-                                <i class="fas fa-book-alt"></i> <?= $page_name = str_replace("_", " ", $page_name); ?>
+                            <a href="#" class="btn btn-secondary disabled btn-lg tooltips" data-placement="top" data-toggle="tooltip" data-original-title="<?= ucwords($page_name = str_replace("_", " ", $page_name)) ?>">
+                                <i class="fas fa-book-alt"></i> <?= ucwords($page_name = str_replace("_", " ", $page_name)) ?>
                             </a>
                             <a href="<?= base_url() ?>super_admin/field_worker_list_table/" class="btn btn-info btn-lg tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Table View">
                                 <i class="fas fa-pencil"></i>Table View
@@ -31,34 +29,23 @@
                     <form action="<?= base_url() ?>super_admin/search_field_worker" method="post" enctype="multipart/form-data">
                         <div class="card-body">
                             <div class="input-group">
-
                                 <input type="text" class="form-control" placeholder="Search By ID" name="user_id">
                                 <span class="input-group-append">
                                     <button type="submit" class="btn btn-effect-ripple btn-primary"><i class="fas fa-search"></i> Search </button>
                                 </span>
-
-
                             </div>
                         </div>
+                    </form>
                 </div>
-                </form>
             </div>
         </div><!--end row-->
 
-
         <div class="row">
-
-            <!-- Start of fao List -->
-
-
-
-            <!-- end of fao_list -->
 
         </div><!--end row-->
 
         <div class="row">
             <!-- start fao list -->
-
             <?php $i = 1;
             foreach ($this->urm->getfield_worker() as $row) : ?>
                 <div class="col-md-12 col-xl-4">
@@ -89,10 +76,7 @@
                                                                                                                     echo 'style=color:green';
                                                                                                                 } ?>><?= $row->status ?></b></li>
 
-
                             </ul>
-
-
                         </div>
                         <div class="btn-group">
                             <a href="<?= base_url() ?>super_admin/edit_field_worker/<?= $row->user_id ?>" class="btn btn-primary btn-block mt-0 tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Edit">

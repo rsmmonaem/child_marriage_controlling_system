@@ -55,38 +55,38 @@
                             </div>
                         </div>
                         <div class="table-responsive">
-                        <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-                    <thead>
-                        <tr>
-                            <th>Serial</th>
-                            <th><strong>Date</strong></th>
-                            <th>Product</th>
-                            <th>Price</th>
-                            <th>InStock</th>
-                            <th><strong>Req Stock</strong></th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php $i = 1;
-                        foreach ($this->imm->get_product_requisition_by_fieldworker() as $row) : ?>
-                            <tr>
-                                <td><?= $i++ ?></td>
-                                <td><strong><?= implode("-", array_reverse(explode("-", explode(" ", $row->created_date)[0]))) ?></strong></td>
-                                <td><?= $row->pro_name ?></td>
-                                <td><?= $row->sell_price ?></td>
-                                <td><?= $row->instock ?></td>
-                                <td><strong><?= $row->req_stock ?></strong></td>
-                                <td>
-                                    <a onclick="return confirm('Want to this product requisition ?');" href="<?= base_url() ?>field_worker/delete_product_requisition/<?= $row->req_id ?>/index" class="btn btn-danger mt-0 tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Delete">
-                                        <i class="fas fa-times"></i>
-                                        Delete
-                                    </a>
-                                </td>
-                            </tr>
-                        <?php endforeach; ?>
-                    </tbody>
-                </table>
+                            <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                                <thead>
+                                    <tr>
+                                        <th>Serial</th>
+                                        <th><strong>Date</strong></th>
+                                        <th>Product</th>
+                                        <th>Price</th>
+                                        <th>InStock</th>
+                                        <th><strong>Req Stock</strong></th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php $i = 1;
+                                    foreach ($this->imm->get_product_requisition_by_fieldworker() as $row) : ?>
+                                        <tr>
+                                            <td><?= $i++ ?></td>
+                                            <td><strong><?= implode("-", array_reverse(explode("-", explode(" ", $row->created_date)[0]))) ?></strong></td>
+                                            <td><?= $row->pro_name ?></td>
+                                            <td><?= $row->sell_price ?></td>
+                                            <td><?= $row->instock ?></td>
+                                            <td><strong><?= $row->req_stock ?></strong></td>
+                                            <td>
+                                                <a onclick="return confirm('Want to delete this product requisition ?');" href="<?= base_url() ?>field_worker/delete_product_requisition/<?= $row->req_id ?>/index" class="btn btn-danger mt-0 tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Delete">
+                                                    <i class="fas fa-times"></i>
+                                                    Delete
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    <?php endforeach; ?>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>

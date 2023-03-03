@@ -45,7 +45,7 @@
                                 <td><?= $row->instock ?></td>
                                 <td><strong><?= $row->req_stock ?></strong></td>
                                 <td>
-                                    <a onclick="return confirm('Want to this product requisition ?');" href="<?= base_url() ?>field_worker/delete_product_requisition/<?= $row->req_id ?>/product_requisition" class="btn btn-danger mt-0 tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Delete">
+                                    <a onclick="return confirm('Want to delete this product requisition ?');" href="<?= base_url() ?>field_worker/delete_product_requisition/<?= $row->req_id ?>/product_requisition" class="btn btn-danger mt-0 tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Delete">
                                         <i class="fas fa-times"></i>
                                         Delete
                                     </a>

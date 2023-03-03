@@ -14,12 +14,21 @@ if ($user_type != "field_worker") {
 }
 
 if ($status == "DISABLE") {
-    $this->session->unset_userdata();
+    // $this->session->unset_userdata();
+
+    $this->session->unset_userdata("user_name");
+    $this->session->unset_userdata("user_type");
+    $this->session->unset_userdata("user_id");
+    $this->session->unset_userdata("status");
+
     $this->session->sess_destroy();
-    $this->session->set_flashdata('logout_notification', 'logged_out');
-    echo "<script>alert('ACCOUNT IS DISABLE!') 
-    window.location.href='login';</script>";
+    // $this->session->set_flashdata('logout_notification', 'logged_out');
+    // echo "<script>alert('ACCOUNT IS DISABLE!') 
+    // window.location.href='login';</script>";
+    $this->session->set_flashdata('account_disabled', 'Account Disabled!');
+    redirect("login");
 }
+
 ?>
 
 <div class="left side-menu">

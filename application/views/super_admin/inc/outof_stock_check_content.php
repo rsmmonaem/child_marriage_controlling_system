@@ -35,6 +35,7 @@
                             <th>#</th>
                             <th>Pro Name</th>
                             <th>Code#</th>
+                            <th>Supplier</th>
                             <th>InStock</th>
                             <th>Action</th>
                         </tr>
@@ -46,8 +47,13 @@
                                 <td><?= $i++ ?></td>
                                 <td><?= $row->pro_name ?></td>
                                 <td><?= $row->pro_code ?></td>
+                                <?php
+                                    $this->db->where('sup_id', $row->sup_id);
+                                    $supplier_name = $this->db->get("supplier")->row('sup_name');
+                                ?>
+                                <td><?= $supplier_name ?></td>
                                 <td><?= $row->instock ?></td>
-                                <td>EDIT || <a onclick="return confirm('Want to delete?');" href="<?= base_url() ?>super_admin/deleteoutofstock/<?= $row->pro_id ?>" class="btn btn-danger mt-0 tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Delete">
+                                <td><a onclick="return confirm('Want to delete?');" href="<?= base_url() ?>super_admin/deleteoutofstock/<?= $row->pro_id ?>" class="btn btn-danger mt-0 tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Delete">
                                         <i class="fas fa-times"></i>
                                         DELETE
                                     </a>

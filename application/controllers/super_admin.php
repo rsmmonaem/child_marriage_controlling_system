@@ -1521,7 +1521,21 @@ class Super_admin extends CI_Controller {
         ";
         }
     }
+    
+    // Product Requisition Starts
+    public function product_requisition() {
+        $this->session_data();
+        $this->load->model('inventory_management_model', 'imm');
+        $this->load->view('super_admin/product_requisition');
+    }
 
+    function delete_product_requisition(){
+        $this->session_data();
+        $this->load->model('inventory_management_model', 'imm');
+        $this->imm->delete_product_requisition();
+    }
+
+    // Product Requisition Ends
 }
 
 // <div class='col-md-3'>

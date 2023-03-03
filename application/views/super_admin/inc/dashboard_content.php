@@ -3,13 +3,13 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="page-title-box">
-                    <div class="float-right">
+                    <!-- <div class="float-right">
                         <div class="dropdown">
                             <a href="<?= base_url() ?>super_admin/system_settings" class="btn btn-secondary btn-round" type="button" aria-haspopup="true" aria-expanded="false">
                                 <i class="mdi mdi-settings mr-1"></i>Settings
                             </a>
                         </div>
-                    </div>
+                    </div> -->
                     <h4 class="page-title">Dashboard</h4>
                 </div>
             </div>
@@ -21,15 +21,16 @@
         //$this->db->where('status','pending');
 
         $this->db->from("product_name");
-        $items = $this->db->count_all_results();
+        $products = $this->db->count_all_results();
+
         $this->db->where('instock', 0);
-
         $this->db->from("product_name");
-        $items_stockout = $this->db->count_all_results();
-        $this->db->from("order_list");
-        $total_order = $this->db->count_all_results();
-        $this->db->where('status', "pending");
+        $products_stockout = $this->db->count_all_results();
 
+        $this->db->from("customer");
+        $customer = $this->db->count_all_results();
+
+        $this->db->where('status', "pending");
         $this->db->from("order_list");
         $pending_order = $this->db->count_all_results();
 
@@ -44,8 +45,8 @@
         $this->db->from("admin_user");
         $total_users = $this->db->count_all_results();
 
-        $this->db->from("common_user");
-        $common_user = $this->db->count_all_results();
+        $this->db->from("field_worker");
+        $field_worker = $this->db->count_all_results();
 
         ?>
 
@@ -56,14 +57,14 @@
                         <i class="mdi mdi-cube-outline"></i>
                     </div>
                     <div class="p-4">
-                        <h6 class="text-uppercase mb-3">Items</h6>
+                        <h6 class="text-uppercase mb-3">Products</h6>
                         <div class="float-right">
-                            <a href="<?= base_url() ?>super_admin/outof_stock_check">
-                                <p class="mb-0"><b>stock-out:</b> <?= $items_stockout ?></p>
+                            <a href="<?= base_url() ?>super_admin/outof_stock_check"  title="StockOut Product List">
+                                <p class="mb-0"><b>Stock-Out:</b> <?= $products_stockout ?></p>
                             </a>
                         </div>
-                        <a href="<?= base_url() ?>super_admin/stock_check">
-                            <h4 class="mb-0"><?= $items ?></h4>
+                        <a href="<?= base_url() ?>super_admin/stock_check"  title="Product List">
+                            <h4 class="mb-0"><?= $products ?></h4>
                         </a>
                     </div>
                 </div>
@@ -75,14 +76,9 @@
                         <i class="mdi mdi-buffer"></i>
                     </div>
                     <div class="p-4">
-                        <h6 class="text-uppercase mb-3">Orders</h6>
-                        <div class="float-right">
-                            <a href="<?= base_url() ?>super_admin/order_list_pending">
-                                <p class="mb-0"><b>pending:</b> <?= $pending_order ?></p>
-                            </a>
-                        </div>
-                        <a href="<?= base_url() ?>super_admin/order_list">
-                            <h4 class="mb-0"><?= $total_order ?></h4>
+                        <h6 class="text-uppercase mb-3">Customer</h6>
+                        <a href="<?= base_url() ?>super_admin/customer_list" title="Customer List">
+                            <h4 class="mb-0"><?= $customer ?></h4>
                         </a>
                     </div>
                 </div>
@@ -96,12 +92,15 @@
                     <div class="p-4">
                         <h6 class="text-uppercase mb-3">Purchase</h6>
                         <div class="float-right">
-                            <p class="mb-0"><b>due:</b> <?= $due_purchase ?></p>
+                            <p class="mb-0"><b>Due:</b> <?= $due_purchase ?></p>
                         </div>
-                        <h4 class="mb-0"><?= $total_purchase ?></h4>
+                        <a href="<?= base_url() ?>super_admin/inventory_list"  title="Purchase List">
+                            <h4 class="mb-0"><?= $total_purchase ?></h4>
+                        </a>
                     </div>
                 </div>
             </div>
+
             <div class="col-md-12 col-xl-3">
                 <div class="card mini-stat">
                     <div class="mini-stat-icon text-right">
@@ -110,12 +109,15 @@
                     <div class="p-4">
                         <h6 class="text-uppercase mb-3">Users</h6>
                         <div class="float-right">
-                            <p class="mb-0"><b>common:</b> <?= $common_user ?></p>
+                            <a href="<?= base_url() ?>super_admin/field_worker_list_table" title="Fieldworker List">
+                                <p class="mb-0"><b>Field Worker:</b> <?= $field_worker ?></p>
+                            </a>
                         </div>
                         <h4 class="mb-0"><?= $total_users ?></h4>
                     </div>
                 </div>
             </div>
+
         </div><!-- end row -->
 
         <div class="row">

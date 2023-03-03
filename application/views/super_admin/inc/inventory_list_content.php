@@ -40,7 +40,7 @@
                             <th>Total</th>
                             <th>Commission</th>
                             <th>Payment</th>
-                            <th>sub_total</th>
+                            <th>Sub-Total</th>
                             <th>Due</th>
                             <th>Action</th>
                         </tr>

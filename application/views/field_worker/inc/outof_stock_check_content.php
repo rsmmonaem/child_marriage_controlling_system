@@ -29,7 +29,7 @@
                             <th>Pro Name</th>
                             <th>Code#</th>
                             <th>InStock</th>
-                            <th>Action</th>
+                            <!-- <th>Action</th> -->
                         </tr>
                     </thead>
                     <tbody>
@@ -40,12 +40,12 @@
                                 <td><strong><?= $row->pro_name ?></strong></td>
                                 <td><?= $row->pro_code ?></td>
                                 <td><?= $row->instock ?></td>
-                                <td>
+                                <!-- <td>
                                     <a onclick="return confirm('Want to submit request stock?');" href="<?= base_url() ?>field_worker/req_stock_update/<?= $row->pro_id ?>" class="btn btn-secondary mt-0 tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Req Stock">
                                         <i class="fas fa-plus"></i>
                                         Req Stock
                                     </a>
-                                </td>
+                                </td> -->
                             </tr>
                         <?php endforeach; ?>
                     </tbody>

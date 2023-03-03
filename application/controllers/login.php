@@ -2,7 +2,6 @@
 
 class Login extends CI_Controller {
 
-
     function __construct() {
         parent::__construct();
 
@@ -19,26 +18,26 @@ class Login extends CI_Controller {
         $pass_word      = $_POST["pass_word"];
         $status      = "DISABLE";
 
-        /*$qry = "SELECT count(*) as cnt from admin_user where status= '$status'";
-        $resx = $this->db->query($qry,array($status))->result();
-        
-        if ($resx[0]->cnt == 1) {echo "<script>alert('Account is Disabled!') 
-            window.location.href='login';</script>";
-            
-            }*/
-
         $qry = "SELECT count(*) as cnt from admin_user where user_name= '$user_name'";
         $res = $this->db->query($qry, array($user_name))->result();
 
         if ($res[0]->cnt == 0) {
-            echo "<script>alert('Wrong User Name!') 
-            window.location.href='login';</script>";
+            $this->session->set_flashdata('wrong_username', 'Wrong Username!');
+            redirect("login");
         } else {
+            $qry_status = "SELECT count(*) as cnt_status from admin_user where user_name='$user_name' AND status = 'ENABLE'";
+            $res_status = $this->db->query($qry_status)->result();
+
+            if ($res_status[0]->cnt_status == 0) {
+                $this->session->set_flashdata('account_disabled', 'Account Disabled!');
+                redirect("login");
+            } 
+
             $qry2 = "SELECT count(*) as cnt from admin_user where pass_word= '$pass_word' AND user_name='$user_name'";
             $res2 = $this->db->query($qry2, array($pass_word))->result();
             if ($res2[0]->cnt == 0) {
-                echo "<script>alert('Wrong PassWord!') 
-                window.location.href='login';</script>";
+                $this->session->set_flashdata('wrong_password', 'Wrong PassWord!');
+                redirect("login");
             } else {
 
                 $this->session->set_userdata('user_name', $user_name);
@@ -61,18 +60,6 @@ class Login extends CI_Controller {
 
                 if ($user_type == "field_worker") {
                     redirect("field_worker");
-                }
-
-                if ($user_type == "distributor") {
-                    redirect("distributor");
-                }
-
-                if ($user_type == "zonal_manager") {
-                    redirect("zonal_manager");
-                }
-
-                if ($user_type == "branch_manager") {
-                    redirect("branch_manager");
                 }
             }
         }

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Feb 13, 2023 at 08:53 AM
+-- Generation Time: Mar 03, 2023 at 09:03 AM
 -- Server version: 8.0.31
 -- PHP Version: 7.4.33
 
@@ -38,7 +38,7 @@ CREATE TABLE IF NOT EXISTS `admin_user` (
   `status` varchar(33) NOT NULL,
   `update_date` datetime NOT NULL,
   PRIMARY KEY (`u_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=91 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=92 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `admin_user`
@@ -57,7 +57,8 @@ INSERT INTO `admin_user` (`u_id`, `user_id`, `user_name`, `full_name`, `pass_wor
 (87, '710505', '122114', 'Zahid Hasan', 'CF1234', 'field_worker', 'ENABLE', '2023-02-07 09:17:37'),
 (88, '839740', '416488', 'Selim Islam', 'CF1234', 'field_worker', 'ENABLE', '2023-02-09 16:22:05'),
 (89, '513503', '234517', 'Tonmoy Islam', 'CF1234', 'field_worker', 'ENABLE', '2023-02-11 11:44:33'),
-(90, '531300', '168361', 'Kabir Zahid', 'CF1234', 'field_worker', 'ENABLE', '2023-02-11 14:34:41');
+(90, '531300', '168361', 'Kabir Zahid', 'CF1234', 'field_worker', 'ENABLE', '2023-02-11 14:34:41'),
+(91, '316189', '802137', 'Minhazul Islam', 'CF1234', 'field_worker', 'DISABLE', '2023-03-01 15:17:03');
 
 -- --------------------------------------------------------
 
@@ -178,18 +179,19 @@ CREATE TABLE IF NOT EXISTS `branch_office` (
   `branch_head_id` varchar(33) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
   `founded_date` date NOT NULL,
   PRIMARY KEY (`br_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 
 --
 -- Dumping data for table `branch_office`
 --
 
 INSERT INTO `branch_office` (`br_id`, `zonal_office`, `zonal_code`, `branch_office`, `branch_code`, `division`, `district`, `address`, `contact_no`, `email_address`, `branch_head_id`, `founded_date`) VALUES
-(17, 'Dinajpur Zone', 'ZON-847', 'NilfamariNewMarket', 'BR-442', 'Rangpur', 'Dinajpur', 'Main Road', '01711123488', 'newmarket@gmail.com', 'null', '2023-02-18'),
+(17, 'Dinajpur Zone', 'ZON-847', 'NilfamariMarket', 'BR-442', 'Rangpur', 'Dinajpur', 'Main Road', '01711123488', 'newmarket@gmail.com', 'null', '2023-02-18'),
 (16, 'Bogura Zone', 'ZON-372', 'ComputerSource', 'BR-836', 'Rajshahi', 'Bogura', 'Seujgari', '01789123499', 'cm.help@gmail.com', 'null', '2023-02-11'),
 (15, 'Pabna Zone ', 'ZON-153', 'Dulai Shop', 'BR-392', 'Rajshahi', 'Pabna', 'Uposhohor Pabna', '01789123456', 'dulai.shop@gmail.com', 'null', '2023-02-09'),
 (13, 'Bogura Zone', 'ZON-372', 'Inleads IT', 'BR-192', 'Rajshahi', 'Bogura', 'Bogura Sadar', '01789123456', 'inleads@gmail.com', 'null', '2023-02-07'),
-(14, 'Rajshahi Zone ', 'ZON-253', 'Ryans Computer', 'BR-887', 'Rajshahi', 'Rajshahi', 'Rajshahi University Campus', '01789123456', 'tukitaki@gmail.com', 'null', '2023-02-07');
+(14, 'Rajshahi Zone ', 'ZON-253', 'Ryans Computer', 'BR-887', 'Rajshahi', 'Rajshahi', 'RU Campus', '01789123456', 'tukitaki@gmail.com', 'null', '2023-02-07'),
+(18, '', '', 'Shajahanpur Office', 'BR-159', 'Rajshahi', 'Bogura', 'Shajahanpur Sadar', '01711123488', 'shajahanpur@gmail.com', '', '2023-02-28');
 
 -- --------------------------------------------------------
 
@@ -277,34 +279,45 @@ CREATE TABLE IF NOT EXISTS `contact_us` (
 DROP TABLE IF EXISTS `cp_history`;
 CREATE TABLE IF NOT EXISTS `cp_history` (
   `cph_id` int NOT NULL AUTO_INCREMENT,
+  `cp_no` varchar(33) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `instl_no` varchar(33) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `instl_pay` decimal(10,2) NOT NULL,
   `pro_id` int NOT NULL,
-  `cp_no` varchar(33) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
-  `pro_name` varchar(33) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
+  `pro_name` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `sell_price` decimal(10,2) NOT NULL,
-  `payment` decimal(10,2) NOT NULL,
-  `due_payment` decimal(10,2) NOT NULL,
-  `cm_id_no` varchar(33) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
-  `fw_id_no` varchar(33) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
+  `purchase_qty` int NOT NULL,
+  `purchase_total` decimal(10,2) NOT NULL,
+  `down_payment` decimal(10,2) NOT NULL,
+  `pay_due` decimal(10,2) NOT NULL,
+  `installment_plan` int NOT NULL,
+  `instl_given` int NOT NULL,
+  `cm_id_no` varchar(33) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `fw_id_no` varchar(33) COLLATE utf8mb4_unicode_ci NOT NULL,
   `payment_date` datetime NOT NULL,
   PRIMARY KEY (`cph_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `cp_history`
 --
 
-INSERT INTO `cp_history` (`cph_id`, `pro_id`, `cp_no`, `pro_name`, `sell_price`, `payment`, `due_payment`, `cm_id_no`, `fw_id_no`, `payment_date`) VALUES
-(19, 48, '217749', 'Honda', '85000.00', '30000.00', '55000.00', '858556', '847940', '2023-02-08 08:50:05'),
-(18, 53, '992850', 'Computer', '55000.00', '55000.00', '0.00', '498042', '710505', '2023-02-07 16:47:14'),
-(17, 53, '459924', 'Computer', '55000.00', '55000.00', '0.00', '498042', '710505', '2023-02-07 16:47:01'),
-(16, 53, '992850', 'Computer', '55000.00', '68000.00', '-13000.00', '498042', '710505', '2023-02-07 16:46:16'),
-(15, 53, '459924', 'Computer', '55000.00', '42000.00', '13000.00', '498042', '710505', '2023-02-07 16:45:47'),
-(14, 53, '992850', 'Computer', '55000.00', '55000.00', '0.00', '498042', '710505', '2023-02-07 16:44:34'),
-(13, 53, '992850', 'Computer', '55000.00', '52000.00', '3000.00', '498042', '710505', '2023-02-07 16:44:02'),
-(12, 53, '992850', 'Computer', '55000.00', '50000.00', '5000.00', '498042', '710505', '2023-02-07 11:52:49'),
-(11, 53, '459924', 'Computer', '55000.00', '30000.00', '25000.00', '498042', '710505', '2023-02-07 11:47:37'),
-(20, 48, '217749', 'Honda', '85000.00', '60000.00', '25000.00', '858556', '847940', '2023-02-08 12:43:24'),
-(21, 48, '217749', 'Honda', '85000.00', '85000.00', '0.00', '858556', '847940', '2023-02-08 12:44:30');
+INSERT INTO `cp_history` (`cph_id`, `cp_no`, `instl_no`, `instl_pay`, `pro_id`, `pro_name`, `sell_price`, `purchase_qty`, `purchase_total`, `down_payment`, `pay_due`, `installment_plan`, `instl_given`, `cm_id_no`, `fw_id_no`, `payment_date`) VALUES
+(1, '454809', 'INSTL-1', '20000.00', 85, 'Football', '2200.00', 20, '44000.00', '20000.00', '24000.00', 4, 1, '667850', '710505', '2023-02-27 15:41:02'),
+(2, '721300', 'INSTL-1', '6000.00', 94, 'PataPata Flip-Flop', '250.00', 40, '10000.00', '6000.00', '4000.00', 4, 1, '667850', '710505', '2023-02-27 15:53:32'),
+(3, '813590', 'INSTL-1', '20000.00', 87, 'Volly Ball', '2500.00', 20, '50000.00', '20000.00', '30000.00', 0, 0, '667850', '710505', '2023-02-28 11:15:13'),
+(4, '813590', 'INSTL-2', '15000.00', 87, 'Volly Ball', '2500.00', 20, '50000.00', '35000.00', '15000.00', 16, 2, '667850', '710505', '2023-02-28 14:51:19'),
+(5, '813590', 'INSTL-3', '10000.00', 87, 'Volly Ball', '2500.00', 20, '50000.00', '45000.00', '5000.00', 16, 3, '667850', '710505', '2023-02-28 14:51:55'),
+(6, '813590', 'INSTL-4', '5000.00', 87, 'Volly Ball', '2500.00', 20, '50000.00', '50000.00', '0.00', 16, 4, '667850', '710505', '2023-02-28 14:58:41'),
+(7, '721300', 'INSTL-2', '4000.00', 94, 'PataPata Flip-Flop', '250.00', 40, '10000.00', '10000.00', '0.00', 4, 2, '667850', '710505', '2023-02-28 15:11:24'),
+(8, '454809', 'INSTL-2', '10000.00', 85, 'Football', '2200.00', 20, '44000.00', '30000.00', '14000.00', 4, 2, '667850', '710505', '2023-02-28 15:16:32'),
+(9, '132979', 'INSTL-1', '20000.00', 87, 'Volly Ball', '2500.00', 20, '50000.00', '20000.00', '30000.00', 16, 1, '667850', '710505', '2023-02-28 15:25:44'),
+(10, '720726', 'INSTL-1', '80000.00', 91, 'Server PC', '150000.00', 1, '150000.00', '80000.00', '70000.00', 16, 1, '667850', '710505', '2023-03-01 10:32:34'),
+(11, '720726', 'INSTL-2', '30000.00', 91, 'Server PC', '150000.00', 1, '150000.00', '110000.00', '40000.00', 16, 2, '667850', '710505', '2023-03-01 10:33:05'),
+(12, '132979', 'INSTL-2', '1875.00', 87, 'Volly Ball', '2500.00', 20, '50000.00', '21875.00', '28125.00', 16, 2, '667850', '710505', '2023-03-01 12:53:08'),
+(13, '947813', 'INSTL-1', '500.00', 94, 'PataPata Flip-Flop', '250.00', 10, '2500.00', '500.00', '2000.00', 4, 1, '498042', '710505', '2023-03-01 15:11:25'),
+(14, '785322', 'INSTL-1', '500.00', 95, 'Switch', '50.00', 50, '2500.00', '500.00', '2000.00', 4, 1, '667850', '710505', '2023-03-01 15:53:25'),
+(15, '138705', 'INSTL-1', '200.00', 95, 'Switch', '50.00', 10, '500.00', '200.00', '300.00', 4, 1, '667850', '710505', '2023-03-01 16:52:13'),
+(16, '989544', 'INSTL-1', '5500.00', 85, 'Football', '2200.00', 5, '11000.00', '5500.00', '5500.00', 16, 1, '667850', '710505', '2023-03-02 09:20:31');
 
 -- --------------------------------------------------------
 
@@ -357,7 +370,7 @@ INSERT INTO `customer` (`cm_id`, `user_id`, `status`, `fw_id_no`, `zonal_office`
 (14, '498042', 'ENABLE', '710505', 'Rajshahi Zone ', 'ZON-253', 'Ryans Computer', 'BR-887', 'SathmathaPoint', 'PP-467', 'Mijan Islam', 'Mijans Father', 'Mijans Mother', '1997-01-08', '5689252562', 'Shajahanpur, Bogura', 'Shajahanpur, Bogura', 'Tanvir', '01789596936', 'Latifpur, Bogura', '498042', 'customer', '01789562312', 'mijan@gmail.com', 'uepv2x8iJM.jpg', 'HfnPXBANMJ.jpg', 'default.png', NULL, NULL, '2023-02-07 16:42:30', '2023-02-11 10:22:22'),
 (15, '858556', 'ENABLE', '839740', 'Rajshahi Zone ', 'ZON-253', 'Ryans Computer', 'BR-887', 'RyansPickPoint', 'PP-172', 'Kajol Islam', 'Kajol Father', 'Kajols Mother', '2000-02-15', '56892525626', 'Latifpur. Bogura', 'Latifpur. Bogura', 'Arifur Rahman', '01789596938', 'Latifpur, Bogura', '858556', 'customer', '01789562315', 'kajol@gmail.com', 'btXQxclNS9.jpg', 'NKw7H5dAXU.jpg', 'vQK7NaXEJH.jpg', NULL, NULL, '2023-02-08 08:34:19', '2023-02-11 10:42:20'),
 (16, '495916', 'ENABLE', '847940', 'Rajshahi Zone ', 'ZON-253', 'Ryans Computer', 'BR-887', 'SathmathaPoint', 'PP-467', 'Nahid Hasan', 'Nahid\'s Father', 'Nahid\'s Mother', '2023-02-23', '142222445588', 'Kalitola, Bogura', 'Kalitola, Bogura', 'Washiqul Islam', '01712456789', 'Rangpur', '495916', 'customer', '01738556644', 'nahid@yahoo.com', 'l4d6srgGEz.jpg', 'HsYO9tVe3r.jpg', 'JPXTAVMGwW.jpg', NULL, NULL, '2023-02-11 09:40:59', '2023-02-11 10:42:00'),
-(17, '667850', 'ENABLE', '839740', 'Rajshahi Zone ', 'ZON-253', 'Ryans Computer', 'BR-887', 'RyansPickPoint', 'PP-172', 'Sumon Islam', 'Sumon\'s Father', 'Sumon\'s Mother', '2023-02-12', '568925256244', 'Shajahanpur, Bogura', 'Shajahanpur, Bogura', 'Tanvir', '01789598899', 'Bogura', '667850', 'customer', '01789562312', 'sumon@gmail.com', 'Bm4gTRpzWY.jpg', 'JqguPxKFnD.jpg', 'Y3AalkzpU5.jpg', NULL, NULL, '2023-02-11 10:27:38', '2023-02-11 10:55:58');
+(17, '667850', 'ENABLE', '710505', 'Rajshahi Zone ', 'ZON-253', 'Ryans Computer', 'BR-887', 'SathmathaPoint', 'PP-467', 'Sumon Islam', 'Sumon\'s Father', 'Sumon\'s Mother', '2023-02-12', '568925256244', 'Shajahanpur, Bogura', 'Shajahanpur, Bogura', 'Tanvir', '01789598899', 'Bogura', '667850', 'customer', '01789562312', 'sumon@gmail.com', 'dlyTtLvp9O.jpg', 'NPqQ2mAwIJ.jpg', 'hzkv42GEqo.jpg', NULL, NULL, '2023-02-11 10:27:38', '2023-03-01 14:11:30');
 
 -- --------------------------------------------------------
 
@@ -368,33 +381,44 @@ INSERT INTO `customer` (`cm_id`, `user_id`, `status`, `fw_id_no`, `zonal_office`
 DROP TABLE IF EXISTS `customer_purchase`;
 CREATE TABLE IF NOT EXISTS `customer_purchase` (
   `cp_id` int NOT NULL AUTO_INCREMENT,
-  `cp_no` varchar(11) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
+  `cp_no` varchar(25) COLLATE utf8mb4_unicode_ci NOT NULL,
   `pro_id` int NOT NULL,
-  `pro_name` text CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
+  `pro_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `latest_price` decimal(10,2) NOT NULL,
   `sell_price` decimal(10,2) NOT NULL,
+  `purchase_qty` int NOT NULL,
+  `purchase_total` decimal(10,2) NOT NULL,
   `down_payment` decimal(10,2) NOT NULL,
-  `due_payment` decimal(10,2) NOT NULL,
-  `next_pay` date NOT NULL,
-  `cm_id_no` varchar(33) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
-  `fw_id_no` varchar(33) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
-  `branch_code` varchar(33) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
-  `zonal_code` varchar(33) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
-  `status` varchar(33) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
-  `next_level` varchar(33) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
+  `pay_due` decimal(10,2) NOT NULL,
+  `installment_plan` int NOT NULL,
+  `per_installment` decimal(10,2) NOT NULL,
+  `instl_given` int NOT NULL,
+  `next_pay_date` date NOT NULL,
+  `cm_id_no` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `fw_id_no` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `branch_code` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `pay_status` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `next_level` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_date` datetime NOT NULL,
-  `update_date` datetime NOT NULL,
+  `updated_date` datetime NOT NULL,
   PRIMARY KEY (`cp_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `customer_purchase`
 --
 
-INSERT INTO `customer_purchase` (`cp_id`, `cp_no`, `pro_id`, `pro_name`, `latest_price`, `sell_price`, `down_payment`, `due_payment`, `next_pay`, `cm_id_no`, `fw_id_no`, `branch_code`, `zonal_code`, `status`, `next_level`, `created_date`, `update_date`) VALUES
-(10, '217749', 48, 'Honda', '70000.00', '85000.00', '85000.00', '0.00', '2023-02-22', '858556', '847940', 'BR-887', 'ZON-253', 'APPROVED', 'N/A', '2023-02-08 08:50:05', '2023-02-08 12:44:30'),
-(9, '992850', 53, 'Computer', '50000.00', '55000.00', '55000.00', '0.00', '2023-02-28', '498042', '710505', 'BR-192', 'ZON-372', 'APPROVED', 'N/A', '2023-02-07 11:52:49', '2023-02-07 16:47:14'),
-(8, '459924', 53, 'Computer', '50000.00', '55000.00', '55000.00', '0.00', '2023-02-15', '498042', '710505', 'BR-192', 'ZON-372', 'APPROVED', 'N/A', '2023-02-07 11:47:37', '2023-02-07 16:47:01');
+INSERT INTO `customer_purchase` (`cp_id`, `cp_no`, `pro_id`, `pro_name`, `latest_price`, `sell_price`, `purchase_qty`, `purchase_total`, `down_payment`, `pay_due`, `installment_plan`, `per_installment`, `instl_given`, `next_pay_date`, `cm_id_no`, `fw_id_no`, `branch_code`, `pay_status`, `next_level`, `status`, `created_date`, `updated_date`) VALUES
+(1, '454809', 85, 'Football', '1800.00', '2200.00', 20, '44000.00', '30000.00', '14000.00', 4, '6000.00', 2, '2023-02-28', '667850', '710505', 'BR-887', 'RUNNING', 'N/A', 'APPROVED', '2023-02-27 00:00:00', '2023-02-28 15:16:32'),
+(2, '721300', 94, 'PataPata Flip-Flop', '200.00', '250.00', 40, '10000.00', '10000.00', '0.00', 4, '1000.00', 2, '0000-00-00', '667850', '710505', 'BR-887', 'COMPLETED', 'N/A', 'APPROVED', '2023-02-27 15:53:32', '2023-02-28 15:11:24'),
+(5, '720726', 91, 'Server PC', '120000.00', '150000.00', 1, '150000.00', '110000.00', '40000.00', 16, '4375.00', 2, '2023-03-07', '667850', '710505', 'BR-887', 'RUNNING', 'N/A', 'APPROVED', '2023-03-01 10:32:34', '2023-03-01 10:33:05'),
+(3, '813590', 87, 'Volly Ball', '1800.00', '2500.00', 20, '50000.00', '50000.00', '0.00', 16, '1875.00', 4, '0000-00-00', '667850', '710505', 'BR-887', 'COMPLETED', 'N/A', 'APPROVED', '2023-02-28 11:15:13', '2023-02-28 14:58:41'),
+(4, '132979', 87, 'Volly Ball', '1800.00', '2500.00', 20, '50000.00', '21875.00', '28125.00', 16, '1875.00', 2, '2023-03-07', '667850', '710505', 'BR-887', 'RUNNING', 'N/A', 'APPROVED', '2023-02-28 15:25:44', '2023-03-01 12:53:08'),
+(6, '947813', 94, 'PataPata Flip-Flop', '200.00', '250.00', 10, '2500.00', '500.00', '2000.00', 4, '500.00', 1, '2023-03-31', '498042', '710505', 'BR-887', 'RUNNING', 'ADMIN', 'PENDING', '2023-03-01 15:11:25', '2023-03-01 15:11:25'),
+(7, '785322', 95, 'Switch', '35.00', '50.00', 50, '2500.00', '500.00', '2000.00', 4, '500.00', 1, '2023-03-08', '667850', '710505', 'BR-887', 'RUNNING', 'ADMIN', 'PENDING', '2023-03-01 15:53:25', '2023-03-01 15:53:25'),
+(8, '138705', 95, 'Switch', '35.00', '50.00', 10, '500.00', '200.00', '300.00', 4, '75.00', 1, '2023-03-08', '667850', '710505', 'BR-887', 'RUNNING', 'N/A', 'APPROVED', '2023-03-01 16:52:13', '2023-03-01 16:52:13'),
+(9, '989544', 85, 'Football', '1800.00', '2200.00', 5, '11000.00', '5500.00', '5500.00', 16, '344.00', 1, '2023-03-09', '667850', '710505', 'BR-887', 'RUNNING', 'N/A', 'APPROVED', '2023-03-02 09:20:31', '2023-03-02 09:20:31');
 
 -- --------------------------------------------------------
 
@@ -479,14 +503,6 @@ CREATE TABLE IF NOT EXISTS `distributor` (
   PRIMARY KEY (`dis_id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 
---
--- Dumping data for table `distributor`
---
-
-INSERT INTO `distributor` (`dis_id`, `dis_code`, `company_code`, `branch_code`, `distributor`, `contact_person`, `cont_num`, `dis_email`, `dis_address`, `credit`, `debit`, `balance`, `user_name`, `pass_word`, `status`, `created_date`, `update_date`) VALUES
-(12, 'DIS-227', 'CM-882', 'BR-192', 'M/S. Boshundara', 'Md Rahim', '01712456789', 'mdrahim@gmail.com', 'Bogura', '327875.00', '29000.00', '298875.00', '917481', 'CF1234', 'ENABLE', '2023-02-06 15:35:34', '2023-02-08 12:50:30'),
-(11, 'DIS-174', 'CM-778', 'BR-192', 'M/S. Faruk Enterprise ', 'Babla Ahmed', '01712456789', 'babla@gmail.com', 'Bogura', '-5500.50', '5500.50', '-11001.00', '773920', 'CF1234', 'ENABLE', '2023-02-06 15:07:31', '2023-02-07 16:58:52');
-
 -- --------------------------------------------------------
 
 --
@@ -509,15 +525,6 @@ CREATE TABLE IF NOT EXISTS `distributor_stock` (
   PRIMARY KEY (`ds_id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 
---
--- Dumping data for table `distributor_stock`
---
-
-INSERT INTO `distributor_stock` (`ds_id`, `company_code`, `dis_code`, `pro_id`, `pro_name`, `total_stock`, `instock`, `measure`, `buy_price`, `created_date`, `update_date`) VALUES
-(4, 'CM-882', 'DIS-227', 45, 'Electronic Fan', '15', '15', 'Piece', '1500.00', '2023-02-08 12:48:41', '2023-02-08 12:51:02'),
-(3, 'CM-882', 'DIS-227', 49, 'Cycle', '25', '25', 'Piece', '2500.00', '2023-02-07 12:53:26', '2023-02-07 14:19:19'),
-(5, 'CM-882', 'DIS-227', 53, 'Computer', '5', '5', 'Piece', '55000.00', '2023-02-08 12:49:01', '2023-02-08 12:51:02');
-
 -- --------------------------------------------------------
 
 --
@@ -536,15 +543,6 @@ CREATE TABLE IF NOT EXISTS `dis_ledger` (
   `created_date` datetime NOT NULL,
   PRIMARY KEY (`dl_id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=47 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
-
---
--- Dumping data for table `dis_ledger`
---
-
-INSERT INTO `dis_ledger` (`dl_id`, `dis_code`, `description`, `amount`, `debit`, `credit`, `balance`, `created_date`) VALUES
-(46, 'DIS-227', 'Purchase Order/ORN-4951', '29000.00', '29000.00', '327875.00', '298875.00', '2023-02-08 12:50:30'),
-(45, 'DIS-174', 'due_pay', '5500.50', '5500.50', '-5500.50', '-11001.00', '2023-02-07 16:58:52'),
-(44, 'DIS-227', 'Purchase Order/ORN-4391', '0.00', '0.00', '59375.00', '59375.00', '2023-02-07 14:14:29');
 
 -- --------------------------------------------------------
 
@@ -603,7 +601,7 @@ CREATE TABLE IF NOT EXISTS `field_worker` (
   `created_date` datetime NOT NULL,
   `update_date` datetime NOT NULL,
   PRIMARY KEY (`fw_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 
 --
 -- Dumping data for table `field_worker`
@@ -615,7 +613,8 @@ INSERT INTO `field_worker` (`fw_id`, `user_id`, `status`, `zonal_office`, `zonal
 (25, '710505', 'ENABLE', 'Rajshahi Zone ', 'ZON-253', 'Ryans Computer', 'BR-887', 'PP-467', 'SathmathaPoint', 'Zahid Hasan', '710505', 'field_worker', '01789562312', 'zahid@gmail.com', 'utUbxkJLiN.jpg', '0ZD5JSVCPn.pdf', '0.00', '0.00', '122114', 'CF1234', '2023-02-07 09:17:37', '2023-02-09 17:08:31'),
 (26, '839740', 'ENABLE', 'Rajshahi Zone ', 'ZON-253', 'Ryans Computer', 'BR-887', 'PP-172', 'RyansPickPoint', 'Selim Khan', '839740', 'field_worker', '01350060022', 'selimkhan@gmail.com', 'JWHNwK3BsF.jpg', 'cwteKo21HG.pdf', '5.00', '0.00', '416488', 'CF1234', '2023-02-09 16:22:05', '2023-02-09 17:10:11'),
 (27, '513503', 'ENABLE', 'Dinajpur Zone', 'ZON-847', 'NilfamariNewMarket', 'BR-442', 'PP-796', 'Elephant Road', 'Tonmoy Islam', '513503', 'field_worker', '01712456789', 'tonmoy@gmail.com', 'lVcRnTeCXJ.jpg', '4HeSK6sy8c.pdf', '5.00', '0.00', '234517', 'CF1234', '2023-02-11 11:44:33', '2023-02-11 11:44:42'),
-(28, '531300', 'ENABLE', 'Dinajpur Zone', 'ZON-847', 'NilfamariNewMarket', 'BR-442', 'PP-796', 'Elephant Road', 'Kabir Zahid', '531300', 'field_worker', '01789562312', 'zahid@gmail.com', 'eCNbJ3Q6gl.jpg', 'yf6jKGINc8.pdf', '0.00', '0.00', '168361', 'CF1234', '2023-02-11 14:34:41', '2023-02-13 08:43:00');
+(28, '531300', 'ENABLE', 'Dinajpur Zone', 'ZON-847', 'NilfamariNewMarket', 'BR-442', 'PP-796', 'Elephant Road', 'Kabir Zahid', '531300', 'field_worker', '0178956231222', 'zahid@gmail.com', 'eCNbJ3Q6gl.jpg', 'yf6jKGINc8.pdf', '0.00', '0.00', '168361', 'CF1234', '2023-02-11 14:34:41', '2023-02-23 10:46:32'),
+(29, '316189', 'DISABLE', '', '', 'ComputerSource', 'BR-836', '', '', 'Minhazul Islam', '316189', 'field_worker', '01789562312', 'minhaz@gmail.com', 'TRekQtUXvx.jpg', '45IMCFE6Zz.pdf', '0.00', '0.00', '802137', 'CF1234', '2023-03-01 15:17:03', '2023-03-01 15:17:03');
 
 -- --------------------------------------------------------
 
@@ -674,8 +673,6 @@ CREATE TABLE IF NOT EXISTS `inventory_cart` (
   `procat_id` varchar(33) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
   `pro_brand` varchar(33) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
   `sup_id` int NOT NULL,
-  `invoice_no` varchar(33) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
-  `invoice_date` date NOT NULL,
   `pro_qnty` varchar(33) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
   `measure` varchar(33) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
   `qnty_price` decimal(10,2) NOT NULL,
@@ -684,14 +681,7 @@ CREATE TABLE IF NOT EXISTS `inventory_cart` (
   `created_date` datetime NOT NULL,
   `update_date` datetime NOT NULL,
   PRIMARY KEY (`ivc_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
-
---
--- Dumping data for table `inventory_cart`
---
-
-INSERT INTO `inventory_cart` (`ivc_id`, `pro_id`, `procat_id`, `pro_brand`, `sup_id`, `invoice_no`, `invoice_date`, `pro_qnty`, `measure`, `qnty_price`, `sell_price`, `total_price`, `created_date`, `update_date`) VALUES
-(13, 54, 'Computer Accessories', 'Apple', 11, '369581364', '2023-02-14', '25', 'Piece', '90000.00', '110000.00', '2250000.00', '2023-02-13 14:51:45', '2023-02-13 14:51:45');
+) ENGINE=InnoDB AUTO_INCREMENT=50 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -717,17 +707,24 @@ CREATE TABLE IF NOT EXISTS `inventory_details` (
   `created_date` datetime NOT NULL,
   `update_date` datetime NOT NULL,
   PRIMARY KEY (`ivd_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=50 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 
 --
 -- Dumping data for table `inventory_details`
 --
 
 INSERT INTO `inventory_details` (`ivd_id`, `inventory_no`, `pro_id`, `procat_id`, `pro_brand`, `sup_id`, `invoice_no`, `invoice_date`, `pro_qnty`, `measure`, `qnty_price`, `sell_price`, `total_price`, `created_date`, `update_date`) VALUES
-(23, 'IV9942', 46, 'Sports', 'Puma', 8, '12321245', '2023-02-07', '3', 'Piece', '70000.00', '85000.00', '210000.00', '2023-02-07 11:21:40', '2023-02-07 11:21:46'),
-(24, 'IV9942', 47, 'Sports', 'Nitol', 8, '12321245', '2023-02-07', '12', 'Piece', '1800.00', '2500.00', '21600.00', '2023-02-07 11:20:47', '2023-02-07 11:21:46'),
-(25, 'IV1099', 51, 'Computer Accessories', 'ASUS', 10, '1122445569', '2023-02-15', '5', 'Piece', '26000.00', '32000.00', '130000.00', '2023-02-07 11:42:52', '2023-02-07 11:44:04'),
-(26, 'IV1099', 51, 'Computer Accessories', 'HP', 10, '1122445569', '2023-02-15', '10', 'Piece', '50000.00', '55000.00', '500000.00', '2023-02-07 11:33:04', '2023-02-07 11:44:04');
+(39, 'IV89691426', 87, 'Sports', 'Puma', 13, '67994651', '2023-02-23', '100', 'Piece', '1800.00', '2500.00', '180000.00', '2023-02-23 11:58:28', '2023-02-23 11:59:10'),
+(40, 'IV89691426', 85, 'Sports', 'Puma', 13, '67994651', '2023-02-23', '25', 'Piece', '800.00', '1200.00', '20000.00', '2023-02-23 11:59:01', '2023-02-23 11:59:10'),
+(41, 'IV59819922', 94, 'Shoe', 'Bata', 18, '79050930', '2023-02-23', '200', 'Piece', '200.00', '250.00', '40000.00', '2023-02-23 14:41:07', '2023-02-23 14:41:20'),
+(42, 'IV77484382', 85, 'Sports', 'Puma', 13, '25169676', '2023-02-24', '30', 'Piece', '1800.00', '2200.00', '54000.00', '2023-02-24 11:18:52', '2023-02-24 11:22:06'),
+(43, 'IV76796432', 92, 'Electronic Device', 'Nitol', 15, '87523750', '2023-02-24', '300', 'Piece', '35.00', '50.00', '10500.00', '2023-02-24 11:25:58', '2023-02-24 11:26:07'),
+(44, 'IV90224755', 91, 'Computer Accessories', 'ASUS', 14, '16629377', '2023-03-01', '15', 'Piece', '120000.00', '150000.00', '1800000.00', '2023-03-01 10:13:17', '2023-03-01 10:13:30'),
+(45, 'IV44848642', 89, 'Electronic Device', 'Superstar', 17, '26312541', '2023-03-02', '30', 'Piece', '1500.00', '2000.00', '45000.00', '2023-03-02 09:36:32', '2023-03-02 09:36:41'),
+(46, 'IV25218628', 94, 'Shoe', 'Bata', 18, '37473800', '2023-03-02', '15', 'Piece', '1500.00', '1750.00', '22500.00', '2023-02-23 17:15:56', '2023-03-02 09:36:49'),
+(47, 'IV74003930', 94, 'Shoe', 'Bata', 18, '44464830', '2023-03-02', '300', 'Piece', '200.00', '350.00', '60000.00', '2023-03-02 09:38:44', '2023-03-02 09:38:57'),
+(48, 'IV45039715', 88, 'Electronic Device', 'Superstar', 12, '94132895', '2023-03-02', '500', 'Piece', '450.00', '600.00', '225000.00', '2023-03-02 09:41:13', '2023-03-02 09:41:19'),
+(49, 'IV63355663', 90, 'Computer Accessories', 'HP', 14, '46228579', '2023-03-02', '15', 'Piece', '85000.00', '120000.00', '1275000.00', '2023-03-02 09:43:09', '2023-03-02 09:43:14');
 
 -- --------------------------------------------------------
 
@@ -751,16 +748,23 @@ CREATE TABLE IF NOT EXISTS `inventory_list` (
   `created_date` datetime NOT NULL,
   `update_date` datetime NOT NULL,
   PRIMARY KEY (`ivl_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 
 --
 -- Dumping data for table `inventory_list`
 --
 
 INSERT INTO `inventory_list` (`ivl_id`, `inventory_no`, `invoice_no`, `sup_id`, `invoice_date`, `intotal`, `commission`, `payment`, `pay_sys`, `sub_total`, `due`, `created_date`, `update_date`) VALUES
-(17, 'IV2281', '6985698569', 9, '2023-02-07', '14400.00', '0.00', '14400.00', 'cash', '14400.00', '0.00', '2023-02-07 10:30:46', '2023-02-07 10:30:46'),
-(18, 'IV9942', '12321245', 8, '2023-02-07', '231600.00', '0.00', '231600.00', 'cash', '231600.00', '0.00', '2023-02-07 11:21:46', '2023-02-07 11:21:46'),
-(19, 'IV1099', '1122445569', 10, '2023-02-15', '630000.00', '0.00', '630000.00', 'cash', '630000.00', '0.00', '2023-02-07 11:44:04', '2023-02-07 11:44:04');
+(28, 'IV89691426', '67994651', 13, '2023-02-23', '200000.00', '0.00', '200000.00', 'cash', '200000.00', '0.00', '2023-02-23 11:59:10', '2023-02-23 11:59:10'),
+(29, 'IV59819922', '79050930', 18, '2023-02-23', '40000.00', '0.00', '40000.00', 'cash', '40000.00', '0.00', '2023-02-23 14:41:20', '2023-02-23 14:41:20'),
+(30, 'IV77484382', '25169676', 13, '2023-02-24', '54000.00', '0.00', '54000.00', 'cash', '54000.00', '0.00', '2023-02-24 11:22:06', '2023-02-24 11:22:06'),
+(31, 'IV76796432', '87523750', 15, '2023-02-24', '10500.00', '0.00', '10500.00', 'cash', '10500.00', '0.00', '2023-02-24 11:26:07', '2023-02-24 11:26:07'),
+(32, 'IV90224755', '16629377', 14, '2023-03-01', '1800000.00', '0.00', '1800000.00', 'cash', '1800000.00', '0.00', '2023-03-01 10:13:30', '2023-03-01 10:13:30'),
+(33, 'IV44848642', '26312541', 17, '2023-03-02', '45000.00', '0.00', '45000.00', 'cash', '45000.00', '0.00', '2023-03-02 09:36:41', '2023-03-02 09:36:41'),
+(34, 'IV25218628', '37473800', 18, '2023-03-02', '22500.00', '0.00', '22500.00', 'cash', '22500.00', '0.00', '2023-03-02 09:36:49', '2023-03-02 09:36:49'),
+(35, 'IV74003930', '44464830', 18, '2023-03-02', '60000.00', '0.00', '60000.00', 'cash', '60000.00', '0.00', '2023-03-02 09:38:57', '2023-03-02 09:38:57'),
+(36, 'IV45039715', '94132895', 12, '2023-03-02', '225000.00', '0.00', '225000.00', 'cash', '225000.00', '0.00', '2023-03-02 09:41:19', '2023-03-02 09:41:19'),
+(37, 'IV63355663', '46228579', 14, '2023-03-02', '1275000.00', '0.00', '1275000.00', 'cash', '1275000.00', '0.00', '2023-03-02 09:43:14', '2023-03-02 09:43:14');
 
 -- --------------------------------------------------------
 
@@ -776,7 +780,7 @@ CREATE TABLE IF NOT EXISTS `measure` (
   `procat_id` int DEFAULT NULL,
   `pro_cat_name` varchar(33) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`msr_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 
 --
 -- Dumping data for table `measure`
@@ -815,7 +819,16 @@ CREATE TABLE IF NOT EXISTS `order_cart` (
   `created_date` datetime NOT NULL,
   `update_date` datetime NOT NULL,
   PRIMARY KEY (`or_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+
+--
+-- Dumping data for table `order_cart`
+--
+
+INSERT INTO `order_cart` (`or_id`, `order_no`, `order_date`, `fw_id_no`, `company_code`, `dis_code`, `pro_id`, `pro_name`, `pro_qnty`, `instock`, `measure`, `sell_price`, `total_price`, `distribute_price`, `created_date`, `update_date`) VALUES
+(16, 'ORN-5194', '2023-02-28', '531300', '', '', 94, 'PataPata Flip-Flop', '50', '25', 'Piece', '250.00', '12500.00', '12500.00', '2023-02-23 16:18:38', '2023-02-23 16:18:38'),
+(17, 'ORN-5194', '2023-02-28', '531300', '', '', 87, 'Volly Ball', '5', '25', 'Piece', '2500.00', '12500.00', '12500.00', '2023-02-23 16:19:01', '2023-02-23 16:19:01'),
+(18, 'ORN-5347', '2023-02-28', '531300', '', '', 87, 'Volly Ball', '10', '25', 'Piece', '2500.00', '25000.00', '25000.00', '2023-02-24 08:12:42', '2023-02-24 08:12:42');
 
 -- --------------------------------------------------------
 
@@ -846,16 +859,6 @@ CREATE TABLE IF NOT EXISTS `order_details` (
   PRIMARY KEY (`od_id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 
---
--- Dumping data for table `order_details`
---
-
-INSERT INTO `order_details` (`od_id`, `order_no`, `order_date`, `fw_id_no`, `company_code`, `dis_code`, `pro_id`, `pro_name`, `pro_qnty`, `instock`, `distribute`, `measure`, `sell_price`, `total_price`, `distribute_price`, `status`, `created_date`, `update_date`) VALUES
-(14, 'ORN-4951', '2023-02-08', '847940', 'CM-882', 'DIS-227', 45, 'Electronic Fan', '15', '12', '15', 'Piece', '1500.00', '22500.00', '22500.00', 'approved', '2023-02-08 12:48:41', '2023-02-08 12:51:02'),
-(13, 'ORN-4951', '2023-02-08', '847940', 'CM-882', 'DIS-227', 53, 'Computer', '5', '12', '5', 'Piece', '55000.00', '275000.00', '275000.00', 'approved', '2023-02-08 12:49:01', '2023-02-08 12:51:02'),
-(12, 'ORN-4391', '2023-02-08', '710505', 'CM-882', 'DIS-227', 49, 'Cycle', '20', '12', '20', 'Piece', '2500.00', '50000.00', '50000.00', 'approved', '2023-02-07 12:53:26', '2023-02-07 14:19:19'),
-(11, 'ORN-4391', '2023-02-08', '710505', 'CM-882', 'DIS-227', 49, 'Cycle', '5', '12', '5', 'Piece', '2500.00', '12500.00', '12500.00', 'approved', '2023-02-07 14:13:55', '2023-02-07 14:19:19');
-
 -- --------------------------------------------------------
 
 --
@@ -882,14 +885,6 @@ CREATE TABLE IF NOT EXISTS `order_list` (
   `update_date` datetime NOT NULL,
   PRIMARY KEY (`ol_id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
-
---
--- Dumping data for table `order_list`
---
-
-INSERT INTO `order_list` (`ol_id`, `order_no`, `order_date`, `fw_id_no`, `company_code`, `dis_code`, `intotal`, `commission_per`, `commission`, `payment`, `pay_sys`, `sub_total`, `due`, `status`, `created_date`, `update_date`) VALUES
-(9, 'ORN-4951', '2023-02-08', '847940', 'CM-882', 'DIS-227', '297500.00', '0', '0.00', '29000.00', 'cash', '297500.00', '268500.00', 'approved', '2023-02-08 12:50:30', '2023-02-08 12:51:02'),
-(8, 'ORN-4391', '2023-02-08', '710505', 'CM-882', 'DIS-227', '62500.00', '5', '3125.00', '0.00', 'bank_deposit', '59375.00', '59375.00', 'approved', '2023-02-07 14:14:29', '2023-02-07 14:19:19');
 
 -- --------------------------------------------------------
 
@@ -960,21 +955,60 @@ CREATE TABLE IF NOT EXISTS `product_name` (
   `last_price` decimal(10,2) DEFAULT NULL,
   `latest_price` decimal(10,2) DEFAULT NULL,
   `sell_price` decimal(10,2) NOT NULL,
+  `all_time_sell` int NOT NULL,
   `update_date` datetime DEFAULT NULL,
   PRIMARY KEY (`pro_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=55 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=99 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 
 --
 -- Dumping data for table `product_name`
 --
 
-INSERT INTO `product_name` (`pro_id`, `procat_id`, `pro_brand`, `pro_name`, `pro_code`, `sup_id`, `total_stock`, `instock`, `measure`, `last_price`, `latest_price`, `sell_price`, `update_date`) VALUES
-(45, 'Electronic Device', 'Nitol', 'Electronic Fan', NULL, 9, '12', '-3', 'Piece', '1200.00', '1200.00', '1500.00', '2023-02-08 12:51:02'),
-(48, 'Sports', 'Puma', 'Honda', NULL, 8, '3', '3', 'Piece', '70000.00', '70000.00', '85000.00', '2023-02-07 11:21:46'),
-(49, 'Sports', 'Nitol', 'Cycle', NULL, 8, '12', '-13', 'Piece', '1800.00', '1800.00', '2500.00', '2023-02-07 14:19:19'),
-(52, 'Computer Accessories', 'ASUS', 'Computer', NULL, 10, '5', '5', 'Piece', '26000.00', '26000.00', '32000.00', '2023-02-07 11:44:04'),
-(53, 'Computer Accessories', 'HP', 'Computer', NULL, 10, '10', '5', 'Piece', '50000.00', '50000.00', '55000.00', '2023-02-08 12:51:02'),
-(54, NULL, NULL, 'Mac Mini', 'PRO-914', NULL, NULL, '0', NULL, NULL, NULL, '0.00', NULL);
+INSERT INTO `product_name` (`pro_id`, `procat_id`, `pro_brand`, `pro_name`, `pro_code`, `sup_id`, `total_stock`, `instock`, `measure`, `last_price`, `latest_price`, `sell_price`, `all_time_sell`, `update_date`) VALUES
+(85, 'Sports', 'Puma', 'Football', 'PRO-184', 13, '55', '50', 'Piece', '800.00', '1800.00', '2200.00', 5, '2023-03-02 09:20:31'),
+(86, NULL, NULL, 'Cricket Bat', 'PRO-216', 13, NULL, '0', NULL, NULL, NULL, '0.00', 0, NULL),
+(87, 'Sports', 'Puma', 'Volly Ball', 'PRO-928', 13, '100', '80', 'Piece', '1800.00', '1800.00', '2500.00', 20, '2023-02-28 15:36:56'),
+(88, NULL, NULL, 'Electronic Bulb', 'PRO-706', 15, NULL, '0', NULL, NULL, NULL, '0.00', 0, NULL),
+(89, NULL, NULL, 'Electronic Fan', 'PRO-329', 15, NULL, '0', NULL, NULL, NULL, '0.00', 0, NULL),
+(90, 'Computer Accessories', 'HP', 'Laptop', 'PRO-738', 14, '15', '15', 'Piece', '85000.00', '85000.00', '120000.00', 0, '2023-03-02 09:43:14'),
+(91, 'Computer Accessories', 'ASUS', 'Server PC', 'PRO-238', 14, '15', '14', 'Piece', '120000.00', '120000.00', '150000.00', 1, '2023-03-01 10:32:34'),
+(92, NULL, NULL, 'Switch', 'PRO-926', 12, NULL, '0', NULL, NULL, NULL, '0.00', 0, NULL),
+(93, NULL, NULL, 'Juice', 'PRO-444', 16, NULL, '0', NULL, NULL, NULL, '0.00', 0, NULL),
+(94, 'Shoe', 'Bata', 'PataPata Flip-Flop', 'PRO-130', 18, '515', '505', 'Piece', '200.00', '200.00', '350.00', 10, '2023-03-02 09:38:57'),
+(95, 'Electronic Device', 'Nitol', 'Switch', 'PRO-468', 15, '300', '240', 'Piece', '35.00', '35.00', '50.00', 60, '2023-03-01 16:52:13'),
+(96, 'Electronic Device', 'Superstar', 'Electronic Fan', 'PRO-691', 17, '30', '30', 'Piece', '1500.00', '1500.00', '2000.00', 0, '2023-03-02 09:36:41'),
+(97, 'Electronic Device', 'Superstar', 'Electronic Bulb', 'PRO-777', 12, '500', '500', 'Piece', '450.00', '450.00', '600.00', 0, '2023-03-02 09:41:19');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `product_requisition`
+--
+
+DROP TABLE IF EXISTS `product_requisition`;
+CREATE TABLE IF NOT EXISTS `product_requisition` (
+  `req_id` int NOT NULL AUTO_INCREMENT,
+  `pro_id` int NOT NULL,
+  `pro_name` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `sup_id` int NOT NULL,
+  `supplier_name` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `latest_price` decimal(10,2) NOT NULL,
+  `sell_price` decimal(10,2) NOT NULL,
+  `instock` int NOT NULL,
+  `req_stock` int NOT NULL,
+  `field_worker` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `fw_id_no` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_date` datetime NOT NULL,
+  PRIMARY KEY (`req_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `product_requisition`
+--
+
+INSERT INTO `product_requisition` (`req_id`, `pro_id`, `pro_name`, `sup_id`, `supplier_name`, `latest_price`, `sell_price`, `instock`, `req_stock`, `field_worker`, `fw_id_no`, `created_date`) VALUES
+(4, 86, 'Cricket Bat', 13, 'Khela Ghar', '0.00', '0.00', 0, 50, 'Zahid Hasan', '710505', '2023-03-03 10:00:36'),
+(6, 88, 'Electronic Bulb', 15, 'Nitol BD', '0.00', '0.00', 0, 50, 'Kabir Zahid', '531300', '2023-03-03 10:01:53');
 
 -- --------------------------------------------------------
 
@@ -988,7 +1022,7 @@ CREATE TABLE IF NOT EXISTS `pro_brand` (
   `pro_brand` varchar(33) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
   `pro_brand_code` varchar(33) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
   PRIMARY KEY (`brand_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 
 --
 -- Dumping data for table `pro_brand`
@@ -1000,7 +1034,8 @@ INSERT INTO `pro_brand` (`brand_id`, `pro_brand`, `pro_brand_code`) VALUES
 (13, 'Superstar', 'BRAND-166'),
 (14, 'ASUS', 'BRAND-977'),
 (15, 'HP', 'BRAND-498'),
-(16, 'Apple', 'BRAND-907');
+(16, 'Apple', 'BRAND-907'),
+(17, 'Bata', 'BRAND-201');
 
 -- --------------------------------------------------------
 
@@ -1014,16 +1049,19 @@ CREATE TABLE IF NOT EXISTS `pro_category` (
   `pro_cat_name` varchar(33) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
   `pro_cat_code` varchar(33) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
   PRIMARY KEY (`procat_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 
 --
 -- Dumping data for table `pro_category`
 --
 
 INSERT INTO `pro_category` (`procat_id`, `pro_cat_name`, `pro_cat_code`) VALUES
-(14, 'Sports', 'PROCAT-945'),
-(15, 'Electronic Device', 'PROCAT-331'),
-(16, 'Computer Accessories', 'PROCAT-775');
+(17, 'Sports', 'PROCAT-600'),
+(18, 'Computer Accessories', 'PROCAT-700'),
+(19, 'Electronic Device', 'PROCAT-899'),
+(20, 'Furniture', 'PROCAT-550'),
+(21, 'Shoe', 'PROCAT-465'),
+(23, 'Dress', 'PROCAT-912');
 
 -- --------------------------------------------------------
 
@@ -1203,13 +1241,6 @@ CREATE TABLE IF NOT EXISTS `sales_cart` (
   PRIMARY KEY (`so_id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 
---
--- Dumping data for table `sales_cart`
---
-
-INSERT INTO `sales_cart` (`so_id`, `order_no`, `order_date`, `delevery_date`, `fw_id_no`, `company_code`, `dis_code`, `pro_id`, `pro_name`, `pro_qnty`, `instock`, `measure`, `sell_price`, `total_price`, `distribute_price`, `created_date`, `update_date`) VALUES
-(9, 'SON-2754', '2023-02-09', '2023-02-11', '847940', 'CM-882', 'DIS-227', 53, 'Computer', '25', '15', 'Piece', '55000.00', '1375000.00', NULL, '2023-02-08 14:17:06', '2023-02-08 14:17:06');
-
 -- --------------------------------------------------------
 
 --
@@ -1308,17 +1339,20 @@ CREATE TABLE IF NOT EXISTS `supplier` (
   `created_date` datetime NOT NULL,
   `update_date` datetime NOT NULL,
   PRIMARY KEY (`sup_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 
 --
 -- Dumping data for table `supplier`
 --
 
 INSERT INTO `supplier` (`sup_id`, `sup_category`, `sup_name`, `last_bal`, `balance`, `due`, `commission`, `cont_num`, `sup_email`, `sup_address`, `created_date`, `update_date`) VALUES
-(8, 'Electronic Items', 'M/S Azzizul Haque', '231600.00', '463200.00', '0.00', '0.00', '01712456789', 'azzizul@gmail.com', 'Pabna, Bangladesh', '2023-02-06 16:05:13', '2023-02-07 11:21:46'),
-(9, 'Sports Item', 'Sports Gear', '0.00', '14400.00', '0.00', '0.00', '01712456789', 'sports@gmail.com', 'Khandar, Bogura', '2023-02-06 16:07:04', '2023-02-07 10:30:46'),
-(10, 'Gadgets', 'M/S Khan Computers', '630000.00', '1260000.00', '0.00', '0.00', '01712456789', 'mskhan@gmail.com', '7 Matha, Bogura', '2023-02-07 11:25:08', '2023-02-07 11:44:04'),
-(11, 'Grocery', 'Shopno', '0.00', '0.00', '0.00', '0.00', '01712456699', 'shopno@gmail.com', '7 Matha, Bogura', '2023-02-13 14:49:23', '2023-02-13 14:49:23');
+(12, 'Electronic Items', 'M/S Superstar', '0.00', '225000.00', '0.00', '0.00', '01712456789', 'superstar@gmail.com', '7 Matha, Bogura', '2023-02-15 11:39:22', '2023-03-02 09:41:19'),
+(13, 'Sports Item', 'Khela Ghar', '378500.00', '432500.00', '0.00', '0.00', '01366556688', 'khela@gmail.com', '7 Matha, Bogura', '2023-02-15 12:17:04', '2023-02-24 11:22:06'),
+(14, 'Electronic Items', 'Ryans Computers', '1800000.00', '3075000.00', '0.00', '0.00', '01712456789', 'ryans@gmail.com', '7 Matha, Bogura', '2023-02-21 11:55:21', '2023-03-02 09:43:14'),
+(15, 'Electronic Items', 'Nitol BD', '306000.00', '316500.00', '0.00', '0.00', '01715556644', 'nitol@gmail.com', 'Natore, Bogura', '2023-02-21 11:56:16', '2023-02-24 11:26:07'),
+(16, 'Grocery', 'Pran Grop', '0.00', '0.00', '0.00', '0.00', '01712456789', 'pran@gmail.com', 'Gazipur, Bogura', '2023-02-21 11:56:49', '2023-02-21 11:56:49'),
+(17, 'Grocery', 'Boshundhara Group', '0.00', '45000.00', '0.00', '0.00', '01715556639', 'boshundhara@gmail.com', 'Boshundhara, Dhaka', '2023-02-21 11:58:02', '2023-03-02 09:36:41'),
+(18, '', 'Bata Industrials', '77500.00', '137500.00', '0.00', '0.00', '01366556688', 'bata@gmail.com', '7 Matha, Bogura', '2023-02-23 14:22:45', '2023-03-02 09:38:57');
 
 -- --------------------------------------------------------
 
@@ -1332,17 +1366,17 @@ CREATE TABLE IF NOT EXISTS `sup_category` (
   `supc_name` varchar(33) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
   `supc_code` varchar(33) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
   PRIMARY KEY (`supc_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 
 --
 -- Dumping data for table `sup_category`
 --
 
 INSERT INTO `sup_category` (`supc_id`, `supc_name`, `supc_code`) VALUES
-(12, 'Sports Item', 'SUPC-506'),
-(13, 'Electronic Items', 'SUPC-155'),
-(14, 'Gadgets', 'SUPC-434'),
-(15, 'Grocery', 'SUPC-261');
+(16, 'Electronic Items', 'SUPC-537'),
+(17, 'Sports Item', 'SUPC-312'),
+(19, 'Grocery', 'SUPC-782'),
+(20, 'Gadgets', 'SUPC-182');
 
 -- --------------------------------------------------------
 

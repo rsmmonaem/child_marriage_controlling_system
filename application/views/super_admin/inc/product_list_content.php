@@ -38,6 +38,7 @@
                             <th>Code#</th>
                             <th>Category</th>
                             <th>Brand</th>
+                            <th>Supplier</th>
                             <th>Total Stock</th>
                             <th>In Stock</th>
                             <th>Measure</th>
@@ -57,6 +58,11 @@
                                 <td><?= $row->pro_code ?></td>
                                 <td><?= $row->procat_id ?></td>
                                 <td><?= $row->pro_brand ?></td>
+                                <?php 
+                                    $this->db->where('sup_id', $row->sup_id);
+                                    $supplier_name = $this->db->get("supplier")->row('sup_name');
+                                ?>
+                                <td><?= $supplier_name ?></td>
                                 <td><?= $row->total_stock ?></td>
                                 <td><?= $row->instock ?></td>
                                 <td><?= $row->measure ?></td>
