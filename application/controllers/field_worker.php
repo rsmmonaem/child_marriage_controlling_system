@@ -32,6 +32,7 @@ class Field_worker extends CI_Controller {
             $this->load->model('purchase_order_model', 'po');
             $this->load->model('order_management_model', 'omm');
             $this->load->model('user_registration_model', 'urm');
+            $this->load->model('inventory_management_model', 'imm');
             // $this->load->view('field_worker/order_list');
             $this->load->view('field_worker/index');
         }
@@ -225,6 +226,60 @@ class Field_worker extends CI_Controller {
         $this->load->model('order_management_model', 'omm');
         $this->load->view('field_worker/outof_stock_check');
     }
+
+    public function product_requisition() {
+        $this->session_data();
+        $this->load->model('inventory_management_model', 'imm');
+        $this->load->model('order_management_model', 'omm');
+        $this->load->view('field_worker/product_requisition');
+    }
+
+    function create_product_requisition(){
+        $this->session_data();
+        $this->load->model('inventory_management_model', 'imm');
+        $this->imm->create_product_requisition();
+    }
+
+    function delete_product_requisition(){
+        $this->session_data();
+        $this->load->model('inventory_management_model', 'imm');
+        $this->imm->delete_product_requisition();
+    }
+
+
+    // Product Requisition Ajax Request
+    public function get_product_info_ajx() {
+        $this->session_data();
+        $this->load->model('inventory_management_model', 'imm');
+
+        $pro_id = $this->input->post('pro_id');
+
+        foreach ($this->imm->get_product_by_id($pro_id) as $row) {
+            $max = ($row->instock)/2;
+            if($max < 50){
+                $max = 50;
+            }
+
+            echo "<div class='col-md-6'>
+                    <div class='form-group'>
+                        <label for='product_instock' class='control-label'>InStock</label>
+                        <input type='number' class='form-control' id='product_instock' value='$row->instock' readonly>
+                    </div>
+                </div>
+                <div class='col-md-6'>
+                    <div class='form-group'>
+                        <label for='req_stock' class='control-label'>Request Stock</label>
+                        <input type='number' class='form-control' min='1' max='$max' name='req_stock' id='req_stock' required>
+                    </div>
+                </div>
+                <div class='modal-footer w-100 float-right'>
+                    <button type='button' class='btn btn-raised btn-danger' data-dismiss='modal'>CLOSE</button>
+                    <button type='submit' class='btn btn-raised btn-primary ml-2'>SEND</button>
+                </div>";
+        }
+    }
+
+
     // END OF PRODUCT ENTRY
 
 

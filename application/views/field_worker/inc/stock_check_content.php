@@ -9,6 +9,9 @@
                 <a href="<?= base_url() ?>field_worker/outof_stock_check/" class="btn btn-danger btn-lg tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Out of Stock Check">
                     <i class="fas fa-pencil"></i>Out of Stock Check
                 </a>
+                <a href="<?= base_url() ?>field_worker/product_requisition/" class="btn btn-info btn-lg tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Product Requisition">
+                    <i class="fas fa-book-alt"></i>Product Requisition
+                </a>
             </div>
         </div>
     </div>

@@ -18,7 +18,7 @@
                                 <select class="form-control" name="cp_no" id="modal_cp_no" required>
                                     <option value="" selected="" disabled="" hidden="">Choose here</option>
                                     <?php foreach ($this->urm->get_purchase_due_payment() as $row) : ?>
-                                        <option value="<?= $row->cp_no ?>"><?= $row->pro_name ?>_Due_<?= $row->pay_due ?> Tk.</option>
+                                        <option value="<?= $row->cp_no ?>"><?= $row->pro_name ?> (Pay Date: <?= implode("-", array_reverse(explode("-", $row->next_pay_date))); ?>)</option>
                                     <?php endforeach; ?>
                                 </select>
                             </div>

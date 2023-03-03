@@ -3,11 +3,14 @@
     <div class="card-body">
         <div class="btn-group">
             <div>
-                <a href="<?= base_url() ?>field_worker/stock_check/" class="btn btn-danger btn-lg tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Stock Check">
+                <a href="<?= base_url() ?>field_worker/stock_check/" class="btn btn-secondary btn-lg tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Stock Check">
                     <i class="fas fa-pencil"></i>Stock Check
                 </a>
-                <a href="#" class="btn btn-secondary disabled btn-lg tooltips" data-placement="top" data-toggle="tooltip" data-original-title="<?= $page_name = str_replace("_", " ", $page_name); ?>">
+                <a href="#" class="btn btn-danger disabled btn-lg tooltips" data-placement="top" data-toggle="tooltip" data-original-title="<?= $page_name = str_replace("_", " ", $page_name); ?>">
                     <i class="fas fa-book-alt"></i> <?= $page_name = str_replace("_", " ", $page_name); ?>
+                </a>
+                <a href="<?= base_url() ?>field_worker/product_requisition/" class="btn btn-info btn-lg tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Product Requisition">
+                    <i class="fas fa-book-alt"></i>Product Requisition
                 </a>
             </div>
         </div>

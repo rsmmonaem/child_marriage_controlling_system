@@ -1007,6 +1007,92 @@ class Inventory_management_model  extends CI_Model {
         redirect("super_admin/outof_stock_check");
     }
 
+    function create_product_requisition() {
+        $page_name = $this->uri->segment(3);
+
+        $user_id = $this->session->userdata('user_id');
+
+        $this->db->where('user_id', $user_id);
+        $field_worker = $this->db->get("field_worker")->row("field_worker");
+
+        $this->load->library("form_validation");
+        $this->form_validation->set_rules("pro_id", "pro_id", "xss_clean");
+        $this->form_validation->set_rules("req_stock", "req_stock", "xss_clean");
+
+        if ($this->form_validation->run() == FALSE) {
+            echo  $this->upload->display_errors();
+            $this->load->view('field_worker/'.$page_name.'/error');
+        } else {
+
+            $req_stock = $this->input->post('req_stock');
+
+            $pro_id = $this->input->post('pro_id');
+            $this->db->where('pro_id', $pro_id);
+            $query = $this->db->get("product_name")->result();
+
+            foreach ($query as $row) {
+                $pro_name = $row->pro_name;
+                $latest_price = $row->latest_price;
+                $sell_price = $row->sell_price;
+                $instock = $row->instock;
+                $sup_id = $row->sup_id;
+            }
+
+            $this->db->where('sup_id', $sup_id);
+            $supplier_name = $this->db->get("supplier")->row('sup_name');
+
+            if($latest_price == NULL){
+                $latest_price = 0;
+            }
+            if($sell_price == NULL){
+                $sell_price = 0;
+            }
+
+            //insert data to database
+            $data = array(
+                'pro_id'         => $pro_id,
+                'pro_name'         => $pro_name,
+                'sup_id'         => $sup_id,
+                'supplier_name'         => $supplier_name,
+                'latest_price'         => $latest_price,
+                'sell_price'         => $sell_price,
+                'instock'         => $instock,
+                'req_stock'         => $req_stock,
+                'field_worker'         => $field_worker,
+                'fw_id_no'         => $user_id,
+                'created_date'         => date('Y-m-d H:i:s'),
+            );
+
+            $this->db->insert('product_requisition', $data);
+            redirect("field_worker/".$page_name."/");
+        }
+    }
+
+    function get_all_product_requisition(){
+        $this->db->order_by("created_date", "DESC");
+        $query = $this->db->get("product_requisition");
+        return $query->result();
+    }
+
+    function get_product_requisition_by_fieldworker(){
+        $fw_id_no = $this->session->userdata('user_id');
+        $this->db->where('fw_id_no', $fw_id_no);
+        $query = $this->db->get('product_requisition');
+        return $query->result();
+    }
+    
+    function delete_product_requisition(){
+        $req_id = $this->uri->segment(3);
+        $page_name = $this->uri->segment(4);
+        $this->db->where('req_id', $req_id);
+        $this->db->delete('product_requisition');
+
+        $user_type = $this->session->userdata('user_type');
+        
+        $redirect_to = "$user_type/$page_name";
+
+        redirect($redirect_to);
+    }
 
     // END OF PRODUCT ENTRY
 }
