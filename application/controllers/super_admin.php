@@ -40,6 +40,136 @@ class Super_admin extends CI_Controller {
         }
     }
 
+//add_institute
+
+
+    public function add_institute() {
+        $this->session_data();
+        $this->load->model('add_institute_model', 'aim');
+        // $this->load->model('order_management_model', 'omm');
+        $this->aim->create_institute();
+
+        $this->load->view('super_admin/add_institute');
+        
+        
+    }
+
+    public function institute_list() {
+        $this->session_data();
+        $this->load->model('add_institute_model', 'aim');
+        // $this->load->model('office_setup_model', 'osm');
+        $this->load->view('super_admin/institute_list');
+    }
+
+    public function edit_institute($id) {
+        $this->session_data();
+        $this->load->model('add_institute_model', 'aim');
+        $data['data'] = $this->aim->get_institute_id('institute',$id);
+        $this->load->view('super_admin/institute_edit', $data);
+
+    }
+
+        public function update_institute() {
+        $this->session_data();
+        $this->load->model('add_institute_model', 'aim');
+        $this->aim->update_institute();
+        redirect("super_admin/institute_list","refresh");
+    }
+
+    function institute_delete($inst_id) {
+        $this->session_data();
+        $inst_id  = $this->uri->segment(3);
+        $this->db->where('inst_id', $inst_id );
+        $this->db->delete('institute');
+        redirect("super_admin/institute_list");
+    }
+
+
+
+
+
+//    Add Notice
+
+    public function add_notice() {
+        $this->session_data();
+        $this->load->model('add_notice_model', 'anm');
+        $this->anm->create_notice();
+        $this->load->view('super_admin/add_notice');       
+    }
+    
+    public function notice_list() {
+        $this->session_data();
+        $this->load->model('add_notice_model', 'anm');
+        // $this->load->model('office_setup_model', 'osm');
+        $this->load->view('super_admin/notice_list');
+    }
+
+    public function edit_notice($id) {
+        $this->session_data();
+        $this->load->model('add_notice_model', 'anm');
+        $data['data'] = $this->anm->get_notice_id('notice',$id);
+        $this->load->view('super_admin/notice_edit', $data);
+
+    }
+
+
+    public function update_notice() {
+        $this->session_data();
+        $this->load->model('add_notice_model', 'anm');
+        $this->anm->update_notice();
+        redirect("super_admin/notice_list");
+    }
+
+    public function notice_delete($not_id) {
+        $this->session_data();
+        $not_id  = $this->uri->segment(3);
+        $this->db->where('not_id', $not_id );
+        $this->db->delete('notice');
+        redirect("super_admin/notice_list");
+    }
+
+
+//    Add Studentes
+
+    public function add_notice() {
+        $this->session_data();
+        $this->load->model('add_notice_model', 'anm');
+        $this->anm->create_notice();
+        $this->load->view('super_admin/add_notice');       
+    }
+    
+    public function notice_list() {
+        $this->session_data();
+        $this->load->model('add_notice_model', 'anm');
+        // $this->load->model('office_setup_model', 'osm');
+        $this->load->view('super_admin/notice_list');
+    }
+
+    public function edit_notice($id) {
+        $this->session_data();
+        $this->load->model('add_notice_model', 'anm');
+        $data['data'] = $this->anm->get_notice_id('notice',$id);
+        $this->load->view('super_admin/notice_edit', $data);
+
+    }
+
+
+    public function update_notice() {
+        $this->session_data();
+        $this->load->model('add_notice_model', 'anm');
+        $this->anm->update_notice();
+        redirect("super_admin/notice_list");
+    }
+
+    public function notice_delete($not_id) {
+        $this->session_data();
+        $not_id  = $this->uri->segment(3);
+        $this->db->where('not_id', $not_id );
+        $this->db->delete('notice');
+        redirect("super_admin/notice_list");
+    }
+
+
     // office setup
 
     public function office_setup() {
@@ -169,7 +299,7 @@ class Super_admin extends CI_Controller {
         $this->db->delete('pickpoint_office');
         redirect("super_admin/pick_point_list");
     }
-    // Pick Point Functions Ends
+    // Pick Point Functions Ends 
 
 
     public function create_bank_details() {

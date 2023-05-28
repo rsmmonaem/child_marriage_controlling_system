@@ -1,5 +1,5 @@
 <footer class="footer">
-    © <?php echo date("Y") ?> All rights reserved || Developed by <a target="_blank" href="https://inleadsit.com">Inleads IT Solution Ltd</a>.
+    © <?php echo date("Y") ?> All rights reserved || Developed by <a target="_blank" href="https://seoexpartebd.com/">SEO Expate Bangladesh Ltd.</a>
 </footer>
 
 </div>

@@ -98,7 +98,7 @@
                     <div class="form-group row">
                         <label for="example-email-input" class="col-sm-2 col-form-label">MONTHLY TARGET</label>
                         <div class="col-sm-10">
-                            <input class="form-control" type="number" name="target" id="example-email-input" required>
+                            <input class="form-control" type="number" name="target"  required>
                         </div>
                     </div>
 

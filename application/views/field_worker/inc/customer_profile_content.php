@@ -35,19 +35,6 @@ foreach ($this->urm->getonerow_customer() as $row) : ?>
                                 </a></p>
                             <a class="btn btn-primary btn-block mb-2" data-toggle="modal" data-target=".cp_payment">Payment</a>
                         </div>
-
-                        <div class="row text-center">
-                            <div class="col-4 mt-3 align-self-center p-0">
-                                <p class="font-24 mb-0">1</p>
-                                <p class="mb-0">Product</p>
-                            </div>
-                            <div class="col-4 mt-3 align-self-center p-0">
-                                <p class="font-24 mb-0">1000 tk</p>
-                            </div>
-                            <div class="col-4 mt-3 align-self-center p-0">
-                                <p class="mb-0">Due</p>
-                            </div>
-                        </div>
                     </div>
                 </div>
 

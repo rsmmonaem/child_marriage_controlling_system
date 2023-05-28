@@ -20,7 +20,7 @@ class Admin extends CI_Controller {
     }
 
 
-    public function login_process() {
+    /*public function login_process() {
         $user_name      = $_POST["user_name"];
         $pass_word      = $_POST["pass_word"];
         $qry = "SELECT count(*) as cnt from admin_user where user_name= '$user_name'";
@@ -41,7 +41,7 @@ class Admin extends CI_Controller {
                 redirect("admin");
             }
         }
-    }
+    }*/
 
     /*******LOGOUT FUNCTION *******/
     function logout() {

@@ -2,7 +2,7 @@
 date_default_timezone_set('Asia/Dhaka');
 
 
-$config['base_url'] = 'http://'.$_SERVER['SERVER_NAME'].'/installment_v2/';
+$config['base_url'] = 'http://'.$_SERVER['SERVER_NAME'].'/child_marriage_controlling_system/';
 
 $config['index_page'] = '';
 

@@ -125,7 +125,6 @@ class Office_setup_model  extends CI_Model {
                 'com_name'                 => $this->input->post('com_name'),
                 'company_code'             => $this->input->post('company_code'),
                 'address'                 => $this->input->post('address'),
-                'contact_no'             => $this->input->post('contact_no'),
                 'com_logo'                 => $com_logo,
                 'founded_date'             => $this->input->post('founded_date')
 

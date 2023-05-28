@@ -20,12 +20,21 @@
                         <!-- <span class="badge badge-pill badge-primary float-right">5</span> -->
                     </a>
                 </li>
+
                 <li>
-                    <a href="<?= base_url() ?>super_admin/office_setup" class="waves-effect"><i class="fas fa-warehouse"></i><span>Office Setup</span> <span class="float-right"><i class="mdi mdi-chevron-right"></i></span></a>
+                    <a href="<?= base_url() ?>super_admin/add_institute" class="waves-effect"><i class="fas fa-warehouse"></i><span>Add Institute</span> <span class="float-right"><i class="mdi mdi-chevron-right"></i></span></a>
                 </li>
+                <li>
+                    <a href="<?= base_url() ?>super_admin/add_notice" class="waves-effect"><i class="fas fa-university"></i><span>Add Notice</span> <span class="float-right"><i class="mdi mdi-chevron-right"></i></span></a>
+                </li>
+<!--            <li>
+                    <a href="<?= base_url() ?>super_admin/office_setup" class="waves-effect"><i class="fas fa-warehouse"></i><span>Office Setup</span> <span class="float-right"><i class="mdi mdi-chevron-right"></i></span></a>
+                </li> -->
                 <li>
                     <a href="<?= base_url() ?>super_admin/bank_details" class="waves-effect"><i class="fas fa-university"></i><span>Banking</span> <span class="float-right"><i class="mdi mdi-chevron-right"></i></span></a>
                 </li>
+
+
                 <!-- <li>
                     <a href="<?= base_url() ?>super_admin/zonal_manager_list" class="waves-effect"><i class="fas fa-anchor"></i><span>Regional Manager</span> <span class="float-right"><i class="mdi mdi-chevron-right"></i></span></a>
                 </li>
