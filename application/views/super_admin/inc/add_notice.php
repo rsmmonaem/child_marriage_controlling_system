@@ -15,7 +15,7 @@
 
 <div class="row">
 	
-    <form action="<?= base_url() ?>super_admin/add_notice" method="post" enctype="multipart/form-data">
+    <form action="<?= base_url() ?>super_admin/save_student" method="post" enctype="multipart/form-data">
     <div class="col-md-12">
 
         <div class="card">

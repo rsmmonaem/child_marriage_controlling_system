@@ -131,43 +131,49 @@ class Super_admin extends CI_Controller {
 
 //    Add Studentes
 
-    public function add_notice() {
+    public function add_student() {
+        // $this->session_data();
+        // $this->load->model('add_student_model', 'asm');
+        // $this->asm->create_student();
+        $this->load->view('super_admin/add_student');       
+    }
+
+	public function save_student() {
         $this->session_data();
-        $this->load->model('add_notice_model', 'anm');
-        $this->anm->create_notice();
-        $this->load->view('super_admin/add_notice');       
+        $this->load->model('add_student_model', 'asm');
+        $this->asm->create_student();
+        redirect("super_admin/add_student");    
     }
     
-    public function notice_list() {
-        $this->session_data();
-        $this->load->model('add_notice_model', 'anm');
-        // $this->load->model('office_setup_model', 'osm');
-        $this->load->view('super_admin/notice_list');
-    }
+    // public function student_list() {
+    //     $this->session_data();
+    //     $this->load->model('add_student_model', 'asm');
+    //     $this->load->view('super_admin/student_list');
+    // }
 
-    public function edit_notice($id) {
-        $this->session_data();
-        $this->load->model('add_notice_model', 'anm');
-        $data['data'] = $this->anm->get_notice_id('notice',$id);
-        $this->load->view('super_admin/notice_edit', $data);
+    // public function edit_notice($id) {
+    //     $this->session_data();
+    //     $this->load->model('add_student_model', 'asm');
+    //     $data['data'] = $this->anm->get_student_id('student',$id);
+    //     $this->load->view('super_admin/student_edit', $data);
 
-    }
+    // }
 
 
-    public function update_notice() {
-        $this->session_data();
-        $this->load->model('add_notice_model', 'anm');
-        $this->anm->update_notice();
-        redirect("super_admin/notice_list");
-    }
+    // public function update_student() {
+    //     $this->session_data();
+    //     $this->load->model('add_student_model', 'asm');
+    //     $this->asm->update_student();
+    //     redirect("super_admin/student_list");
+    // }
 
-    public function notice_delete($not_id) {
-        $this->session_data();
-        $not_id  = $this->uri->segment(3);
-        $this->db->where('not_id', $not_id );
-        $this->db->delete('notice');
-        redirect("super_admin/notice_list");
-    }
+    // public function student_delete($not_id) {
+    //     $this->session_data();
+    //     $not_id  = $this->uri->segment(3);
+    //     $this->db->where('st_id', $not_id );
+    //     $this->db->delete('student');
+    //     redirect("super_admin/student_list");
+    // }
 
 
     // office setup

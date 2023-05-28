@@ -27,6 +27,10 @@
                 <li>
                     <a href="<?= base_url() ?>super_admin/add_notice" class="waves-effect"><i class="fas fa-university"></i><span>Add Notice</span> <span class="float-right"><i class="mdi mdi-chevron-right"></i></span></a>
                 </li>
+
+				<li>
+                    <a href="<?= base_url() ?>super_admin/add_student" class="waves-effect"><i class="fas fa-university"></i><span>Add student</span> <span class="float-right"><i class="mdi mdi-chevron-right"></i></span></a>
+                </li>
 <!--            <li>
                     <a href="<?= base_url() ?>super_admin/office_setup" class="waves-effect"><i class="fas fa-warehouse"></i><span>Office Setup</span> <span class="float-right"><i class="mdi mdi-chevron-right"></i></span></a>
                 </li> -->
