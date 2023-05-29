@@ -22,6 +22,7 @@
                     </thead>
                     <tbody>
                         <?php $i = 1;
+						
                         foreach ($this->aim->get_institute() as $row) : ?>
                             <tr>
                                 <td><?= $i++ ?></td>

@@ -59,7 +59,7 @@ class add_notice_model  extends CI_Model {
     function get_notice() {
         $this->db->order_by("not_id", "DESC");
         $query = $this->db->get("notice");
-        $query->result();
+        return $query->result();
     }
 // Display Notice By Id As A row
       function get_notice_id($table, $id)

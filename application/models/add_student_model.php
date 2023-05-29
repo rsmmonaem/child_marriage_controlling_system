@@ -5,7 +5,25 @@ class add_student_model  extends CI_Model {
 
 	public function create_student()
 	{
+		$st_photo = $_FILES['st_photo']['name'];
+		if ($st_photo != "") {
+			$st_photo = random_string('alnum', 10) . '.jpg';
+			
+			//insert image
+			$config['file_name'] = $st_photo;
+			$config['upload_path'] = 'uploads/student';
+			$config['allowed_types'] = 'gif|jpg|jpeg|png';
+			$config['max_size']         = '100000';
+			$config['encrypt_name']     = false;
+			$config['image_library'] = 'gd2';
+			$this->load->library('upload', $config);
+			$this->upload->initialize($config);
+			$this->upload->do_upload('st_photo');
 
+			$file_data = $this->upload->data();
+		} else {
+			$st_photo = "default.png";
+		}
 		
      // Insert Data In Student Table 
        $student['st_name'] 					= $this->input->post('st_name');
@@ -17,7 +35,7 @@ class add_student_model  extends CI_Model {
 	   $student['st_nid_no'] 				= $this->input->post('st_nid_no');
 	   $student['st_birth_certificate_id'] 	= $this->input->post('st_birth_certificate_id');
 	   $student['st_health_condition'] 		= $this->input->post('st_health_condition');
-	   $student['st_photo'] 				= "Null Velue";
+	   $student['st_photo'] 				= $st_photo;
 	   $student['st_inst_name'] 			= $this->input->post('st_inst_name');
 	   $student['st_present_address'] 		= $this->input->post('st_present_address');
 	   $student['st_permanent_address'] 	= $this->input->post('st_permanent_address');
@@ -41,9 +59,6 @@ class add_student_model  extends CI_Model {
 
        $this->db->insert('parents_info',$parents_info);
        $id = $this->db->insert_id();
-       
-      
-	 
 	
 
 	   // Insert Data In Payments Table
@@ -65,34 +80,11 @@ class add_student_model  extends CI_Model {
       // Insert Data In users
     
        
-       
        // View
-		
+	   $this->session->set_flashdata('message', '<div class="alert alert-success">Record has been Created successfully.</div>');
 	   redirect("super_admin/add_student");
 
 	}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
 
 
 
