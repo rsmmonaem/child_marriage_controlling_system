@@ -86,10 +86,20 @@ class add_student_model  extends CI_Model {
 
 	}
 
-
-
+	public function get_student() {
+        // $id = $this->db->order_by('st_id', 'DESC'); 
+        $this->db->select('p.*,g.*','s*'); 
+        $this->db->from('parents_info as p');   
+        $this->db->join('student as s','s.st_id = p.uid');
+        $this->db->join('guardian_info as g','g.uid = p.uid');
+        $this->db->where('s.st_id','p.uid');
+        $query_result = $this->db->get();
+        $result = $query_result->result();
+        return $result;
+    }
+	
     // function get_student() {
-    //     $this->db->order_by("inst_id", "DESC");
+    //     $this->db->order_by("st_id ", "DESC");
     //     $query = $this->db->get("student");
     //     return $query->result();
     // }

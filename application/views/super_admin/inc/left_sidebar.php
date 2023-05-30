@@ -1,13 +1,14 @@
-<div class="left side-menu">
+<div class="left side-menu" style="background: #d6ebd6";>
     <button type="button" class="button-menu-mobile button-menu-mobile-topbar open-left">
         <i class="ion-close"></i>
     </button>
+	
 
     <!-- LOGO -->
     <div class="topbar-left">
         <div class="text-center">
             <!--<a href="index.html" class="logo"><i class="fa fa-paw"></i> Aplomb</a>-->
-            <a href="<?= base_url() ?>super_admin" class="logo"><img src="<?= base_url() ?>assets/backend/images/logo.png" height="50" alt="logo"></a>
+            <a href="<?= base_url() ?>super_admin" class="logo"><img src="<?= base_url() ?>assets/backend/images/logo.png" height="100" alt="logo"></a>
         </div>
     </div>
 
@@ -22,77 +23,101 @@
                 </li>
 
                 <li>
-                    <a href="<?= base_url() ?>super_admin/add_institute" class="waves-effect"><i class="fas fa-warehouse"></i><span>Add Institute</span> <span class="float-right"><i class="mdi mdi-chevron-right"></i></span></a>
+                    <a href="<?= base_url() ?>super_admin/add_institute" class="waves-effect"><i class="fas fa-school"></i><span>Add Institute</span> <span class="float-right"><i class="mdi mdi-chevron-right"></i></span></a>
                 </li>
-                <li>
-                    <a href="<?= base_url() ?>super_admin/add_notice" class="waves-effect"><i class="fas fa-university"></i><span>Add Notice</span> <span class="float-right"><i class="mdi mdi-chevron-right"></i></span></a>
-                </li>
-
 				<li>
-                    <a href="<?= base_url() ?>super_admin/add_student" class="waves-effect"><i class="fas fa-university"></i><span>Add student</span> <span class="float-right"><i class="mdi mdi-chevron-right"></i></span></a>
-                </li>
-<!--            <li>
-                    <a href="<?= base_url() ?>super_admin/office_setup" class="waves-effect"><i class="fas fa-warehouse"></i><span>Office Setup</span> <span class="float-right"><i class="mdi mdi-chevron-right"></i></span></a>
-                </li> -->
-                <li>
-                    <a href="<?= base_url() ?>super_admin/bank_details" class="waves-effect"><i class="fas fa-university"></i><span>Banking</span> <span class="float-right"><i class="mdi mdi-chevron-right"></i></span></a>
+                    <a href="<?= base_url() ?>super_admin/add_student" class="waves-effect"><i class="fas fa-user-graduate"></i><span>Add student</span> <span class="float-right"><i class="mdi mdi-chevron-right"></i></span></a>
                 </li>
 
-
-                <!-- <li>
-                    <a href="<?= base_url() ?>super_admin/zonal_manager_list" class="waves-effect"><i class="fas fa-anchor"></i><span>Regional Manager</span> <span class="float-right"><i class="mdi mdi-chevron-right"></i></span></a>
-                </li>
                 <li>
-                    <a href="<?= base_url() ?>super_admin/branch_manager_list" class="waves-effect"><i class="fas fa-band-aid"></i><span>Branch Manager</span> <span class="float-right"><i class="mdi mdi-chevron-right"></i></span></a>
-                </li>
-                <li>
-                    <a href="<?= base_url() ?>super_admin/distributor_list_table" class="waves-effect waves-light"><i class="mdi mdi-cart"></i> <span> Distributor </span> <span class="float-right"><i class="mdi mdi-chevron-right"></i></span></a>
-                </li> -->
-                <li>
-                    <a href="<?= base_url() ?>super_admin/field_worker_list_table" class="waves-effect"><i class="fas fa-chalkboard-teacher"></i><span>Field Worker</span> <span class="float-right"><i class="mdi mdi-chevron-right"></i></span></a>
-                </li>
-                <li>
-                    <a href="<?= base_url() ?>super_admin/customer_list" class="waves-effect"><i class="fas fa-users"></i><span>Customer List</span> <span class="float-right"><i class="mdi mdi-chevron-right"></i></span></a>
-                </li>
-                <li>
-                    <a href="<?= base_url() ?>super_admin/supplier_list" class="waves-effect waves-light"><i class="mdi mdi-bullseye"></i> <span> Supplyer </span> <span class="float-right"><i class="mdi mdi-chevron-right"></i></span></a>
-                </li>
-                <li>
-                    <a href="<?= base_url() ?>super_admin/inventory_list" class="waves-effect waves-light"><i class="mdi mdi-table"></i><span> Stock </span> <span class="float-right"><i class="mdi mdi-chevron-right"></i></span></a>
-                </li>
-                <!-- <li>
-                    <a href="<?= base_url() ?>super_admin/order_list" class="waves-effect"><i class="mdi mdi-clipboard-outline"></i><span> Purchase Order </span><span class="float-right"><i class="mdi mdi-chevron-right"></i></span></a>
-                </li> -->
-                <li>
-                    <a href="<?= base_url() ?>super_admin/product_requisition" class="waves-effect"><i class="mdi mdi-clipboard-outline"></i><span>Product Requisition</span><span class="float-right"><i class="mdi mdi-chevron-right"></i></span></a>
-                </li>
-                <li>
-                    <a href="<?= base_url() ?>super_admin/sales_list" class="waves-effect"><i class="fas fa-chart-bar"></i><span>Sales List </span><span class="float-right"><i class="mdi mdi-chevron-right"></i></span></a>
-                </li>
-                <li>
-                    <a href="<?= base_url() ?>super_admin/profit_fact" class="waves-effect"><i class="fas fa-wallet"></i><span>Profit Fact </span><span class="float-right"><i class="mdi mdi-chevron-right"></i></span></a>
+                    <a href="<?= base_url() ?>super_admin/add_non_student" class="waves-effect"><i class="fas fa-quidditch"></i><span>Add Non-Student</span> <span class="float-right"><i class="mdi mdi-chevron-right"></i></span></a>
                 </li>
 
-
-                <!-- extra  -->
-                <li class="menu-title">Extra</li>
                 <li>
-                    <a href="<?= base_url() ?>super_admin/product_list" class="waves-effect waves-light"><i class="fas fa-plus-square"></i><span> Add Product </span> <span class="float-right"></span></a>
+                    <a href="<?= base_url() ?>super_admin/2" class="waves-effect"><i class="fas fa-users"></i><span>Guardian</span> <span class="float-right"><i class="mdi mdi-chevron-right"></i></span></a>
                 </li>
-
-                <!-- <li class="menu-title">Reporting</li>
-                
-                <li class="has_sub">
-                    <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-calendar-clock"></i><span> Report </span><span class="float-right"><i class="mdi mdi-chevron-right"></i></span> </a>
-                    <ul class="list-unstyled">
-                        <li><a href="#"> Purchase Report</a></li>
-                        <li><a href="#"> Requisition Report</a></li>
-                        <li><a href="#"> Distribution Report</a></li>
-                    </ul>
-                </li> -->
+                <li>
+                    <a href="<?= base_url() ?>super_admin/3" class="waves-effect"><i class="fas fa-university"></i><span>Mosque</span> <span class="float-right"><i class="mdi mdi-chevron-right"></i></span></a>
+                </li>
+                <li>
+                    <a href="<?= base_url() ?>super_admin/4" class="waves-effect"><i class="fas fa-university"></i><span>Temple</span> <span class="float-right"><i class="mdi mdi-chevron-right"></i></span></a>
+                </li> 
+                <li>
+                    <a href="<?= base_url() ?>super_admin/5" class="waves-effect"><i class="fas fa-user-tie"></i><span>Kazi</span> <span class="float-right"><i class="mdi mdi-chevron-right"></i></span></a>
+                </li>
+                <li>
+                    <a href="<?= base_url() ?>super_admin/6" class="waves-effect"><i class="fas fa-user-tie"></i><span>Imam</span> <span class="float-right"><i class="mdi mdi-chevron-right"></i></span></a>
+                </li>
+                <li>
+                    <a href="<?= base_url() ?>super_admin/7" class="waves-effect"><i class="fas fa-user-tie"></i><span>Purohit</span> <span class="float-right"><i class="mdi mdi-chevron-right"></i></span></a>
+                </li>
+                <li>
+                    <a href="<?= base_url() ?>super_admin/8" class="waves-effect"><i class="fab fa-readme"></i><span>Latest inquiry</span> <span class="float-right"><i class="mdi mdi-chevron-right"></i></span></a>
+                </li> 
+                <li>
+                    <a href="<?= base_url() ?>super_admin/9" class="waves-effect"><i class="fab fa-readme"></i><span>Objections</span> <span class="float-right"><i class="mdi mdi-chevron-right"></i></span></a>
+                </li>
+                <li>
+                    <a href="<?= base_url() ?>super_admin/10" class="waves-effect"><i class="fab fa-readme"></i><span>Law and regulation</span> <span class="float-right"><i class="mdi mdi-chevron-right"></i></span></a>
+                </li> 
+                <li>
+                    <a href="<?= base_url() ?>super_admin/11" class="waves-effect"><i class="fas fa-receipt"></i><span>Notice Publication</span> <span class="float-right"><i class="mdi mdi-chevron-right"></i></span></a>
+                </li>                
+                <li>
+                    <a href="<?= base_url() ?>super_admin/create_news" class="waves-effect"><i class="fas fa-university"></i><span>News Publication</span> <span class="float-right"><i class="mdi mdi-chevron-right"></i></span></a>
+                </li>
+                <li>
+                    <a href="<?= base_url() ?>super_admin/13" class="waves-effect"><i class="fas fa-university"></i><span>User Management</span> <span class="float-right"><i class="mdi mdi-chevron-right"></i></span></a>
+                </li>
+                <li>
+                    <a href="<?= base_url() ?>" class="waves-effect"><i class="fas fa-university"></i><span>Profile</span> <span class="float-right"><i class="mdi mdi-chevron-right"></i></span></a>
+                </li>
             </ul>
         </div>
         <div class="clearfix"></div>
     </div> <!-- end sidebarinner -->
 </div>
-<!-- Left Sidebar End
+
+
+<!-- Left Sidebar End-->
+
+
+<style>
+	.mini-stat-icon.text-right {
+    background-color: green;
+}
+
+.mini-stat .mini-stat-icon i{
+    background: white;
+	color: green;
+}
+a.bg-primary:hover, a.bg-primary:focus, .btn-primary {
+    background-color: green !important;
+    border: 1px solid white !important;
+}
+
+.btn:not(:disabled):not(.disabled) {
+    background: green;
+}
+
+.af-title {
+    background-color: #008000;
+    color: white;
+}
+
+#sidebar-menu > ul > li > a {
+	color: #000000;
+}
+
+.text-center {
+	background: #00800029;
+}
+#sidebar-menu {
+    background: #d6ebd6;
+}
+
+#sidebar-menu > ul > li > a.active {
+    color: #28a745;
+    background-color: #ffffff;
+}
+</style>

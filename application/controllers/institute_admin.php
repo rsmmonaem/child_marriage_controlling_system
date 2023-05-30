@@ -1,6 +1,6 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-class Super_admin extends CI_Controller {
+class institute_admin extends CI_Controller {
 
 
     function __construct() {
@@ -152,64 +152,6 @@ class Super_admin extends CI_Controller {
         $this->load->view('super_admin/student_list');
     }
 
-
-    //Add Non Student
-    public function add_non_student() {
-        $this->session_data();
-        // $this->load->model('add_non_student_model', 'ansm');
-        // $this->ansm->create_non_student();
-        $this->load->view('super_admin/add_non_student');
-    }
-
-	public function save_non_student() {
-        $this->session_data();
-        $this->load->model('add_non_student_model', 'ansm');
-        $this->ansm->create_non_student();
-    }
-
-
-   
-    //End Non Student
-	//News
-    public function create_news() {
-        $this->session_data();
-        // $this->load->model('add_news_model', 'anm');
-        // $this->anm->create_news();
-        $this->load->view('super_admin/create_news');
-    }
-
-    public function news_list() {
-        $this->session_data();
-        $this->load->model('add_news_model', 'anm');
-        $this->anm->get_news();
-        $this->load->view('super_admin/news_list');
-    }
-
-  public function edit_news($id) {
-        $this->session_data();
-        $this->load->model('add_news_model', 'anm');
-        $data['data'] = $this->anm->get_news_id('news',$id);
-        $this->load->view('super_admin/edit_news', $data);
-
-    }
-
-    public function update_news() {
-        $this->session_data();
-        $this->load->model('add_news_model', 'anm');
-        $this->anm->update_news();
-        redirect("super_admin/news_list");
-    }
-
-    function news_delete($news_id) {
-        $this->session_data();
-        $news_id = $this->uri->segment(3);
-        $this->db->where('news_id', $news_id);
-        $this->db->delete('news');
-        redirect("super_admin/news_list");
-    } 
-
-
-    //End News
     // public function edit_notice($id) {
     //     $this->session_data();
     //     $this->load->model('add_student_model', 'asm');

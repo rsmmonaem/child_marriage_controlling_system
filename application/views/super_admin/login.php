@@ -5,7 +5,7 @@ include "inc/form_header_links.php";
 ?>
 
 
-<body class="fixed-left">
+<body  class="fixed-left" style=" background: radial-gradient(black, transparent);">
     <!-- Begin page -->
     <!--<div class="accountbg"></div>-->
     <div id="stars"></div>
@@ -16,7 +16,7 @@ include "inc/form_header_links.php";
             <div class="card-body">
 
                 <h3 class="text-center mt-0">
-                    <a href="#" class="logo logo-admin"><img src="<?= base_url() ?>assets/backend/images/logo.png" height="50" alt="logo"></a>
+                    <a href="#" class="logo logo-admin"><img src="<?= base_url() ?>assets/backend/images/logo.png" height="100" alt="logo"></a>
                 </h3>
 
                 <h6 class="text-center">Sign In</h6>
@@ -64,18 +64,15 @@ include "inc/form_header_links.php";
                             </div>
                         </div>
 
-                        <div class="form-group text-center row m-t-20">
+                        <!-- <div class="form-group text-center row m-t-20">
                             <div class="col-12">
                                 <a href="<?= base_url() ?>fw_registration/create_field_worker" class="btn btn-info btn-block waves-effect waves-light" type="submit">Registration</a>
                             </div>
-                        </div>
+                        </div> -->
 
                         <div class="form-group m-t-10 mb-0 row">
                             <div class="col-sm-7 m-t-20">
-                                Login Details: <br>
-                                <b>Super Admin:</b><br> User: admin Password: admin <br>
-                                <b>Field Worker: Zahid Hasan</b><br> user: 122114 password: CF1234 <br>
-                                <b>Field Worker: Kabir Zahid</b><br> user: 168361 password: CF1234 <br>
+                                
                             </div>
                         </div>
                     </form>

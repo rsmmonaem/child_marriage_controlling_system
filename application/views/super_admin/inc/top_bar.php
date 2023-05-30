@@ -47,7 +47,8 @@ if ($user_type != "super_admin") {
                         </button>
                     </li>
                 </ul>
-                <div class="clearfix"></div>
+                <div class="clearfix" style="background-color: #ffffffd4;">
+				</div>
             </nav>
         </div>
         <!-- Top Bar End -->
