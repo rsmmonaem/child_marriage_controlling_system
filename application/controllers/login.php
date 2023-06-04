@@ -58,13 +58,33 @@ class Login extends CI_Controller {
                     redirect("super_admin");
                 }
 
-                if ($user_type == "field_worker") {
-                    redirect("field_worker");
+                if ($user_type == "institute_admin") {
+                    redirect("institute_admin");
+                }
+				
+                if ($user_type == "mosque_admin") {
+                    redirect("mosque_admin");
+                }
+
+				if ($user_type == "Imam_admin") {
+                    redirect("Imam_admin");
+                }
+
+				if ($user_type == "kazi_admin") {
+                    redirect("kazi_admin");
+                }
+
+				if ($user_type == "purohit_admin") {
+                    redirect("purohit_admin");
+                }
+
+				if ($user_type == "temple_admin") {
+                    redirect("temple_admin");
                 }
             }
         }
     }
-
+	
     /*******LOGOUT FUNCTION *******/
     function logout() {
         // $this->session->unset_userdata();

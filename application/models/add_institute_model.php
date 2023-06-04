@@ -7,13 +7,14 @@ class add_institute_model  extends CI_Model {
         $this->load->library("form_validation");
         $this->form_validation->set_rules("inst_name", "inst_name", "xss_clean");
         $this->form_validation->set_rules("inst_eiin", "inst_eiin", "xss_clean");
+		$this->form_validation->set_rules("inst_username", "inst_username", "xss_clean");
+        $this->form_validation->set_rules("inst_password", "inst_password", "xss_clean");
         $this->form_validation->set_rules("inst_founded", "inst_founded", "xss_clean");
         $this->form_validation->set_rules("inst_board", "inst_board", "xss_clean");
         $this->form_validation->set_rules("inst_contact", "inst_contact", "xss_clean");
         $this->form_validation->set_rules("inst_logo", "inst_logo", "xss_clean");
 
         if ($this->form_validation->run() == FALSE) {
-            // $this->load->view('super_admin/company_list/error');
                    
                    
         } else {
@@ -43,18 +44,29 @@ class add_institute_model  extends CI_Model {
 
             $data = array(
                 'inst_name'             => $this->input->post('inst_name'),
-                'inst_eiin'                 => $this->input->post('inst_eiin'),
-                'inst_founded'                 => $this->input->post('inst_founded'),
-                'inst_board'             => $this->input->post('inst_board'),
-                'inst_contact'             => $this->input->post('inst_contact'),
-                'inst_logo'                 => $inst_logo,
-                               
+                'inst_eiin'             => $this->input->post('inst_eiin'),
+                'inst_founded'          => $this->input->post('inst_founded'),
+                'inst_board'            => $this->input->post('inst_board'),
+                'inst_contact'          => $this->input->post('inst_contact'),
+                'inst_logo'             => $inst_logo,
+				'inst_username' 		=> $this->input->post('inst_username'),
+                'inst_password' 		=> $this->input->post('inst_password'),              
             );
 
             $this->db->insert('institute', $data);
+
+			$data2 = array(
+				'full_name'             => $this->input->post('inst_name'),
+				'user_name' 		=> $this->input->post('inst_username'),
+                'pass_word' 		=> $this->input->post('inst_password'),
+				'user_type' 		=> 'institute_admin',  
+				'status' 		=> 'ENABLE', 
+				            
+            );
            
+			$this->db->insert('admin_user', $data2);
             //$id = $this->db->insert_id();
-            redirect("super_admin/add_institute");
+           
         }
     }
 
@@ -85,7 +97,6 @@ class add_institute_model  extends CI_Model {
 
         if ($this->form_validation->run() == FALSE) {
             echo  $this->upload->display_errors();
-            //$this->load->view('super_admin/company_list/error');
         } else {
 
             $inst_logo = $_FILES['inst_logo']['name'];
@@ -127,18 +138,12 @@ class add_institute_model  extends CI_Model {
             //insert data to database
 
             $data = array(
-
-
-
-
                 'inst_name'             => $this->input->post('inst_name'),
                 'inst_eiin'                 => $this->input->post('inst_eiin'),
                 'inst_founded'                 => $this->input->post('inst_founded'),
                 'inst_board'             => $this->input->post('inst_board'),
                 'inst_contact'             => $this->input->post('inst_contact'),
                 'inst_logo'                 => $inst_logo,
-
-
             );
 
 

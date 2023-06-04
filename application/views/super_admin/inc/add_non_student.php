@@ -136,28 +136,28 @@
                         <div class="col-md-3 col-sm-3 col-xs-12">
                             <div class="item form-group">
                                <label for="father_name">Father's Name </label>
-                               <input class="form-control col-md-12 col-xs-12" name="non_st_fathers_name" id="father_name" value="" placeholder="Father's Name" type="text" autocomplete="off">
+                               <input class="form-control col-md-12 col-xs-12" name="non_student_fathers_name" id="father_name" value="" placeholder="Father's Name" type="text" autocomplete="off">
                                <div class="help-block"></div>
                             </div>
                         </div>
                         <div class="col-md-3 col-sm-3 col-xs-12">
                             <div class="item form-group">
                                <label for="father_phone">Father's Phone </label>
-                               <input class="form-control col-md-12 col-xs-12" name="non_st_fathers_phone" id="father_phone" value="" placeholder="Father's Phone" type="text" autocomplete="off">
+                               <input class="form-control col-md-12 col-xs-12" name="non_student_fathers_phone" id="father_phone" value="" placeholder="Father's Phone" type="text" autocomplete="off">
                                <div class="help-block"></div>
                             </div>
                         </div>
 						<div class="col-md-3 col-sm-3 col-xs-12">
                             <div class="item form-group">
                                <label for="mother_designation">Father's NID</label>
-                               <input class="form-control col-md-12 col-xs-12" name="non_st_fathers_nid" id="mother_designation" value="" placeholder="Mother's Designation" type="text" autocomplete="off">
+                               <input class="form-control col-md-12 col-xs-12" name="non_student_fathers_nid" id="mother_designation" value="" placeholder="Mother's Designation" type="text" autocomplete="off">
                                <div class="help-block"></div>
                             </div>
                         </div> 
                         <div class="col-md-3 col-sm-3 col-xs-12">
                             <div class="item form-group">
                                <label for="father_profession">Father's Profession </label>
-                               <input class="form-control col-md-12 col-xs-12" name="non_st_fathers_profession" id="father_profession" value="" placeholder="Father's Profession" type="text" autocomplete="off">
+                               <input class="form-control col-md-12 col-xs-12" name="non_student_fathers_profession" id="father_profession" value="" placeholder="Father's Profession" type="text" autocomplete="off">
                                <div class="help-block"></div>
                             </div>
                         </div>                       
@@ -170,28 +170,28 @@
                         <div class="col-md-3 col-sm-3 col-xs-12">
                             <div class="item form-group">
                                <label for="mother_name">Mother's Name </label>
-                               <input class="form-control col-md-12 col-xs-12" name="non_st_mothers_name" id="mother_name" value="" placeholder="Mother's Name" type="text" autocomplete="off">
+                               <input class="form-control col-md-12 col-xs-12" name="non_student_mothers_name" id="mother_name" value="" placeholder="Mother's Name" type="text" autocomplete="off">
                                <div class="help-block"></div>
                             </div>
                         </div>
                         <div class="col-md-3 col-sm-3 col-xs-12">
                             <div class="item form-group">
                                <label for="mother_phone">Mother's Phone </label>
-                               <input class="form-control col-md-12 col-xs-12" name="non_st_mothers_phone" id="mother_phone" value="" placeholder="Mother's Phone" type="text" autocomplete="off">
+                               <input class="form-control col-md-12 col-xs-12" name="non_student_mothers_phone" id="mother_phone" value="" placeholder="Mother's Phone" type="text" autocomplete="off">
                                <div class="help-block"></div>
                             </div>
                         </div>
 						<div class="col-md-3 col-sm-3 col-xs-12">
                             <div class="item form-group">
                                <label for="mother_designation">Mother's NID</label>
-                               <input class="form-control col-md-12 col-xs-12" name="non_st_mothers_nid" id="mother_designation" value="" placeholder="Mother's Designation" type="text" autocomplete="off">
+                               <input class="form-control col-md-12 col-xs-12" name="non_student_mothers_nid" id="mother_designation" value="" placeholder="Mother's Designation" type="text" autocomplete="off">
                                <div class="help-block"></div>
                             </div>
                         </div> 
                         <div class="col-md-3 col-sm-3 col-xs-12">
                             <div class="item form-group">
                                <label for="mother_profession">Mother's Profession </label>
-                               <input class="form-control col-md-12 col-xs-12" name="non_st_mothers_profession" id="mother_profession" value="" placeholder="Mother Profession" type="text" autocomplete="off">
+                               <input class="form-control col-md-12 col-xs-12" name="non_student_mothers_profession" id="mother_profession" value="" placeholder="Mother Profession" type="text" autocomplete="off">
                                <div class="help-block"></div>
                             </div>
                         </div>
@@ -208,7 +208,7 @@
                         <div class="col-md-3 col-sm-3 col-xs-12">
                             <div class="item form-group">
                                 <label for="is_guardian">Is Guardian?<span class="required">*</span></label>
-                                <select class="form-control col-md-12 col-xs-12 quick-field" name="non_st_guardian_info_type" id="is_guardian" required="required" onchange="check_guardian_type(this.value);">
+                                <select class="form-control col-md-12 col-xs-12 quick-field" name="non_student_guardian_info_type" id="is_guardian" required="required" onchange="check_guardian_type(this.value);">
                                     <option value="">--Select--</option>
                                     <option value="father">Father</option>
                                     <option value="mother">Mother</option>
@@ -221,14 +221,14 @@
                         <div class="col-md-3 col-sm-3 col-xs-12">
                             <div class="item form-group">
                                 <label for="gud_name">Name<span class="required">*</span></label>
-                                <input class="form-control col-md-12 col-xs-12" name="non_st_guardian_info_name" id="gud_name" value="" placeholder="Name" required="required" type="text" autocomplete="off">
+                                <input class="form-control col-md-12 col-xs-12" name="non_student_guardian_info_name" id="gud_name" value="" placeholder="Name" required="required" type="text" autocomplete="off">
                                 <div class="help-block"></div>
                             </div>
                         </div>
                         <div class="col-md-3 col-sm-3 col-xs-12">
                             <div class="item form-group">
                                 <label for="gud_phone">Phone<span class="required">*</span></label>
-                                <input class="form-control col-md-12 col-xs-12" name="non_st_guardian_info_phone" id="gud_phone" value="" placeholder="Phone" required="required" type="text" autocomplete="off">
+                                <input class="form-control col-md-12 col-xs-12" name="non_student_guardian_info_phone" id="gud_phone" value="" placeholder="Phone" required="required" type="text" autocomplete="off">
                                 <div class="help-block"></div>
                             </div>
                         </div>
@@ -236,7 +236,7 @@
                         <div class="col-md-3 col-sm-3 col-xs-12">
                             <div class="item form-group">
                                 <label for="gud_relation">Relation With Guardian </label>
-                                <input class="form-control col-md-12 col-xs-12" name="non_st_guardian_info_rltn" id="relation_with" value="" placeholder="Relation With Guardian" type="text">
+                                <input class="form-control col-md-12 col-xs-12" name="non_student_guardian_info_rltn" id="relation_with" value="" placeholder="Relation With Guardian" type="text">
                                 <div class="help-block"></div>
                             </div>
                         </div> 
@@ -249,28 +249,28 @@
                         <div class="col-md-3 col-sm-3 col-xs-12">
                             <div class="item form-group">
                                 <label for="gud_national_id">National ID</label>
-                                <input class="form-control col-md-12 col-xs-12" name="non_st_guardian_info_nid" id="gud_national_id" value="" placeholder="National ID" type="text" autocomplete="off">
+                                <input class="form-control col-md-12 col-xs-12" name="non_student_guardian_info_nid" id="gud_national_id" value="" placeholder="National ID" type="text" autocomplete="off">
                                 <div class="help-block"></div>
                             </div>
                         </div>                        
                         <div class="col-md-3 col-sm-3 col-xs-12">
                             <div class="item form-group">
                                 <label for="gud_profession">Profession</label>
-                                <input class="form-control col-md-12 col-xs-12" name="non_st_guardian_info_profession" id="gud_profession" value="" placeholder="Profession" type="text" autocomplete="off">
+                                <input class="form-control col-md-12 col-xs-12" name="non_student_guardian_info_profession" id="gud_profession" value="" placeholder="Profession" type="text" autocomplete="off">
                                 <div class="help-block"></div>
                             </div>
                         </div>
                         <div class="col-md-3 col-sm-3 col-xs-12">
                              <div class="item form-group">
                                 <label for="gud_dob">Birth Date </label>
-                                <input class="form-control col-md-12 col-xs-12" name="non_st_guardian_info_date_of_birth" id="add_gud_dob" value="" placeholder="Birth Date" type="date" autocomplete="off">
+                                <input class="form-control col-md-12 col-xs-12" name="non_student_guardian_info_date_of_birth" id="add_gud_dob" value="" placeholder="Birth Date" type="date" autocomplete="off">
                                 <div class="help-block"></div>
                              </div>
                         </div>
                         <div class="col-md-3 col-sm-3 col-xs-12">
                              <div class="item form-group">
                                 <label for="gud_religion">Religion </label>
-                                <select class="form-control col-md-12 col-xs-12" name="non_st_guardian_info_religion" id="gud_religion">
+                                <select class="form-control col-md-12 col-xs-12" name="non_student_guardian_info_religion" id="gud_religion">
                                     <option value="">--Select--</option>
                                                                                                                 <option value="Islam">Islam</option>
                                                                             <option value="Hindu">Hindu</option>
@@ -283,7 +283,7 @@
                         <div class="col-md-3 col-sm-3 col-xs-12">
                             <div class="item form-group">
                                 <label for="other_info">Other Info </label>
-                                <input class="form-control col-md-12 col-xs-12" name="non_st_guardian_info_other" id="add_gud_other_info" value="" placeholder="Other Info" type="text">
+                                <input class="form-control col-md-12 col-xs-12" name="non_student_guardian_info_other" id="add_gud_other_info" value="" placeholder="Other Info" type="text">
                                 <div class="help-block"></div>
                             </div>
                         </div> 
@@ -292,7 +292,7 @@
                         <div class="col-md-6 col-sm-6 col-xs-12">
                             <div class="item form-group">
                                 <label for="gud_present_address">Present Address</label>
-                                <textarea class="form-control col-md-12 col-xs-12 textarea-4column" name="non_st_guardian_info_present_address" id="gud_present_address" placeholder="Permanent Address"></textarea>
+                                <textarea class="form-control col-md-12 col-xs-12 textarea-4column" name="non_student_guardian_info_present_address" id="gud_present_address" placeholder="Permanent Address"></textarea>
                                 <div class="help-block"></div>
                             </div>
                         </div>
@@ -300,7 +300,7 @@
                         <div class="col-md-6 col-sm-6 col-xs-12">
                             <div class="item form-group">
                                 <label for="gud_permanent_address">Permanent Address</label>
-                                <textarea class="form-control col-md-12 col-xs-12 textarea-4column" name="non_st_guardian_info_permanent_address" id="gud_permanent_address" placeholder="Permanent Address"></textarea>
+                                <textarea class="form-control col-md-12 col-xs-12 textarea-4column" name="non_student_guardian_info_permanent_address" id="gud_permanent_address" placeholder="Permanent Address"></textarea>
                                 <div class="help-block"></div>
                             </div>
                         </div>

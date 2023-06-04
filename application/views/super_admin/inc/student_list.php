@@ -12,10 +12,10 @@
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>Title</th>
-                            <th>Category</th>
-                            <th>Description</th>
-                            <th>Thumbnail </th>
+                            <th>Name</th>
+                            <th>DOB</th>
+                            <th>Institute</th>
+                            <th>Photo </th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -33,10 +33,10 @@
                                      
                                 </td>
 
-                                <!-- <td><a onclick="return confirm('Want to delete?');" href="<?= base_url() ?>super_admin/notice_delete/<?= $row->not_id ?>" class="btn btn-secondary btn-block mt-0 tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Delete">
+                                <td><a onclick="return confirm('Want to delete?');" href="<?= base_url() ?>super_admin/student_delete/<?= $row->st_id ?>" class="btn btn-secondary btn-block mt-0 tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Delete">
                                         <i class="fas fa-times"></i>
                                     </a>
-                                    <a class="btn btn-warning btn-block mt-0" data-toggle="" href="<?= base_url() ?>super_admin/edit_notice/<?= $row->not_id ?>"><i class="fas fa-pencil-alt"></i></a> -->
+                                    <a class="btn btn-warning btn-block mt-0" data-toggle="" href="<?= base_url() ?>super_admin/edit_student/<?= $row->st_id ?>"><i class="fas fa-pencil-alt"></i></a>
                                 </td>
                             </tr>
                             <!-- <?php include "modal/update_zonal_office.php" ?> -->

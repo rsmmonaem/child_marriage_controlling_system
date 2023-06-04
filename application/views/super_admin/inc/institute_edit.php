@@ -40,7 +40,6 @@
                                 <input type="text" value="<?=$data->inst_eiin?>" class="form-control" id="field-2" name="inst_eiin" >
                             </div>
                         </div>
-
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="field-3" class="control-label">Institute Founded Date</label>
@@ -67,6 +66,20 @@
                                 <label for="field-6" class="control-label">Institute Logo</label>
                                  <input type="hidden" name="old_logo" value="<?= $data->inst_logo ?>">
                                 <input type="file" class="form-control" id="field-6" name="inst_logo" >
+                            </div>
+                        </div>
+						<div class="col-md-6 col-sm-3 col-xs-12">
+                            <div class="item form-group">
+                                <label for="health_condition">Institute Username</label>
+                                <input class="form-control col-md-12 col-xs-12" value="<?=$data->inst_username;  ?>" name="inst_username"  type="text" readonly="readonly">
+                                <div class="help-block"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-3 col-xs-12">
+                            <div class="item form-group">
+                                <label for="health_condition">Institute Password</label>
+                                <input class="form-control col-md-12 col-xs-12"  value="<?=$data->inst_password ; ?>" name="inst_password" type="text" readonly="readonly" >
+                                <div class="help-block"></div>
                             </div>
                         </div>
 

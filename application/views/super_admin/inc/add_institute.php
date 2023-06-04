@@ -40,7 +40,6 @@
                                 <input type="text" class="form-control" id="field-2" name="inst_eiin" >
                             </div>
                         </div>
-
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="field-3" class="control-label">Institute Founded Date</label>
@@ -66,6 +65,20 @@
                             <div class="form-group">
                                 <label for="field-6" class="control-label">Institute Logo</label>
                                 <input type="file" class="form-control" id="field-6" name="inst_logo" required="">
+                            </div>
+                        </div>
+						<div class="col-md-6 col-sm-3 col-xs-12">
+                            <div class="item form-group">
+                                <label for="health_condition">Institute Username</label>
+                                <input class="form-control col-md-12 col-xs-12" value="<?= random_int(100000, 999999); ?>" name="inst_username"  type="text" readonly="readonly">
+                                <div class="help-block"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-3 col-xs-12">
+                            <div class="item form-group">
+                                <label for="health_condition">Institute Password</label>
+                                <input class="form-control col-md-12 col-xs-12"  value="<?= random_int(100000, 999999); ?>" name="inst_password" type="text" readonly="readonly" >
+                                <div class="help-block"></div>
                             </div>
                         </div>
 

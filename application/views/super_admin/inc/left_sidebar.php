@@ -34,22 +34,22 @@
                 </li>
 
                 <li>
-                    <a href="<?= base_url() ?>super_admin/2" class="waves-effect"><i class="fas fa-users"></i><span>Guardian</span> <span class="float-right"><i class="mdi mdi-chevron-right"></i></span></a>
+                    <a href="<?= base_url() ?>super_admin/guardian_list" class="waves-effect"><i class="fas fa-users"></i><span>Guardian</span> <span class="float-right"><i class="mdi mdi-chevron-right"></i></span></a>
                 </li>
                 <li>
-                    <a href="<?= base_url() ?>super_admin/3" class="waves-effect"><i class="fas fa-university"></i><span>Mosque</span> <span class="float-right"><i class="mdi mdi-chevron-right"></i></span></a>
+                    <a href="<?= base_url() ?>super_admin/add_mosque" class="waves-effect"><i class="fas fa-university"></i><span>Mosque</span> <span class="float-right"><i class="mdi mdi-chevron-right"></i></span></a>
                 </li>
                 <li>
-                    <a href="<?= base_url() ?>super_admin/4" class="waves-effect"><i class="fas fa-university"></i><span>Temple</span> <span class="float-right"><i class="mdi mdi-chevron-right"></i></span></a>
+                    <a href="<?= base_url() ?>super_admin/add_temple" class="waves-effect"><i class="fas fa-university"></i><span>Temple</span> <span class="float-right"><i class="mdi mdi-chevron-right"></i></span></a>
                 </li> 
                 <li>
-                    <a href="<?= base_url() ?>super_admin/5" class="waves-effect"><i class="fas fa-user-tie"></i><span>Kazi</span> <span class="float-right"><i class="mdi mdi-chevron-right"></i></span></a>
+                    <a href="<?= base_url() ?>super_admin/add_kazi" class="waves-effect"><i class="fas fa-user-tie"></i><span>Kazi</span> <span class="float-right"><i class="mdi mdi-chevron-right"></i></span></a>
                 </li>
                 <li>
-                    <a href="<?= base_url() ?>super_admin/6" class="waves-effect"><i class="fas fa-user-tie"></i><span>Imam</span> <span class="float-right"><i class="mdi mdi-chevron-right"></i></span></a>
+                    <a href="<?= base_url() ?>super_admin/add_imam" class="waves-effect"><i class="fas fa-user-tie"></i><span>Imam</span> <span class="float-right"><i class="mdi mdi-chevron-right"></i></span></a>
                 </li>
                 <li>
-                    <a href="<?= base_url() ?>super_admin/7" class="waves-effect"><i class="fas fa-user-tie"></i><span>Purohit</span> <span class="float-right"><i class="mdi mdi-chevron-right"></i></span></a>
+                    <a href="<?= base_url() ?>super_admin/add_purohit" class="waves-effect"><i class="fas fa-user-tie"></i><span>Purohit</span> <span class="float-right"><i class="mdi mdi-chevron-right"></i></span></a>
                 </li>
                 <li>
                     <a href="<?= base_url() ?>super_admin/8" class="waves-effect"><i class="fab fa-readme"></i><span>Latest inquiry</span> <span class="float-right"><i class="mdi mdi-chevron-right"></i></span></a>
@@ -58,10 +58,10 @@
                     <a href="<?= base_url() ?>super_admin/9" class="waves-effect"><i class="fab fa-readme"></i><span>Objections</span> <span class="float-right"><i class="mdi mdi-chevron-right"></i></span></a>
                 </li>
                 <li>
-                    <a href="<?= base_url() ?>super_admin/10" class="waves-effect"><i class="fab fa-readme"></i><span>Law and regulation</span> <span class="float-right"><i class="mdi mdi-chevron-right"></i></span></a>
+                    <a href="<?= base_url() ?>super_admin/add_law_regulation" class="waves-effect"><i class="fab fa-readme"></i><span>Law and regulation</span> <span class="float-right"><i class="mdi mdi-chevron-right"></i></span></a>
                 </li> 
                 <li>
-                    <a href="<?= base_url() ?>super_admin/11" class="waves-effect"><i class="fas fa-receipt"></i><span>Notice Publication</span> <span class="float-right"><i class="mdi mdi-chevron-right"></i></span></a>
+                    <a href="<?= base_url() ?>super_admin/add_notice" class="waves-effect"><i class="fas fa-receipt"></i><span>Notice Publication</span> <span class="float-right"><i class="mdi mdi-chevron-right"></i></span></a>
                 </li>                
                 <li>
                     <a href="<?= base_url() ?>super_admin/create_news" class="waves-effect"><i class="fas fa-university"></i><span>News Publication</span> <span class="float-right"><i class="mdi mdi-chevron-right"></i></span></a>

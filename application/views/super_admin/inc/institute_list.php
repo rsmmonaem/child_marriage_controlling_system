@@ -13,7 +13,9 @@
                         <tr>
                             <th>#</th>
                             <th>Institute Name</th>
-                            <th>EIIN</th>
+                            <th>User</th>
+							<th>Password</th>
+							<th>EIIN</th>
                             <th>Board </th>
                             <th>Contact</th>
                             <th>Logo</th>
@@ -27,6 +29,8 @@
                             <tr>
                                 <td><?= $i++ ?></td>
                                 <td><?= $row->inst_name ?></td>
+								<td><?= $row->inst_username  ?></td>
+								<td><?= $row->inst_password  ?></td>
                                 <td><?= $row->inst_eiin  ?></td>
                                 <td><?= $row->inst_board ?></td>
                                 <td><?= $row->inst_contact ?></td>
